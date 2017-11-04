@@ -3,75 +3,77 @@
   <ID>JAVA</ID>
   <OriginalElement />
   <nodes>
-    <node x="0.0" y="162.0">snippets.jee.base.ReviewGrade</node>
-    <node x="1143.0" y="162.0">snippets.jee.entities.User</node>
-    <node x="906.0" y="162.0">snippets.jee.entities.Review</node>
+    <node x="539.0" y="162.0">snippets.jee.base.ReviewGrade</node>
+    <node x="442.0" y="162.0">snippets.jee.entities.User</node>
+    <node x="205.0" y="162.0">snippets.jee.entities.Review</node>
     <node x="30.25" y="400.0">snippets.jee.util.DateFormatter</node>
+    <node x="685.0" y="162.0">snippets.jee.base.RequestStatus</node>
     <node x="0.0" y="238.0">org.springframework.format.Parser</node>
-    <node x="549.0" y="162.0">snippets.jee.base.RequestStatus</node>
+    <node x="88.0" y="162.0">snippets.jee.entities.Request</node>
     <node x="107.0" y="238.0">org.springframework.format.Printer</node>
-    <node x="789.0" y="162.0">snippets.jee.entities.Request</node>
     <node x="245.0" y="400.0">snippets.jee.util.JsonDateSerializer</node>
-    <node x="433.0" y="162.0">snippets.jee.base.PetType</node>
-    <node x="146.0" y="162.0">snippets.jee.base.UserType</node>
-    <node x="864.0" y="0.0">java.io.Serializable</node>
-    <node x="271.0" y="162.0">snippets.jee.base.ResponseStatus</node>
-    <node x="301.0" y="81.0">java.lang.Enum</node>
+    <node x="837.0" y="162.0">snippets.jee.base.PetType</node>
+    <node x="1115.0" y="162.0">snippets.jee.base.UserType</node>
+    <node x="221.0" y="0.0">java.io.Serializable</node>
+    <node x="953.0" y="162.0">snippets.jee.base.ResponseStatus</node>
+    <node x="844.0" y="81.0">java.lang.Enum</node>
     <node x="43.75" y="319.0">org.springframework.format.Formatter</node>
+    <node x="185.5" y="81.0">snippets.jee.base.AbstractEntity</node>
     <node x="240.0" y="238.0">com.fasterxml.jackson.databind.jsonFormatVisitors.JsonFormatVisitable</node>
-    <node x="886.5" y="81.0">snippets.jee.base.AbstractEntity</node>
-    <node x="1016.0" y="162.0">snippets.jee.entities.Response</node>
+    <node x="315.0" y="162.0">snippets.jee.entities.Response</node>
     <node x="258.5" y="319.0">com.fasterxml.jackson.databind.JsonSerializer</node>
-    <node x="260.5" y="0.0">java.lang.Comparable</node>
-    <node x="701.0" y="162.0">snippets.jee.entities.Pet</node>
+    <node x="844.5" y="0.0">java.lang.Comparable</node>
+    <node x="0.0" y="162.0">snippets.jee.entities.Pet</node>
   </nodes>
   <notes />
   <edges>
     <edge source="snippets.jee.base.RequestStatus" target="java.lang.Enum">
       <point x="0.0" y="-15.5" />
-      <point x="615.0" y="132.0" />
-      <point x="374.8" y="132.0" />
-      <point x="32.80000000000001" y="15.5" />
+      <point x="751.0" y="142.0" />
+      <point x="868.6" y="142.0" />
+      <point x="-16.399999999999977" y="15.5" />
     </edge>
     <edge source="snippets.jee.entities.User" target="snippets.jee.base.AbstractEntity">
       <point x="0.0" y="-15.5" />
-      <point x="1181.5" y="132.0" />
-      <point x="1002.6" y="132.0" />
+      <point x="480.5" y="132.0" />
+      <point x="301.6" y="132.0" />
       <point x="51.60000000000002" y="15.5" />
     </edge>
     <edge source="snippets.jee.entities.Request" target="snippets.jee.base.AbstractEntity">
       <point x="0.0" y="-15.5" />
-      <point x="837.5" y="142.0" />
-      <point x="925.2" y="142.0" />
-      <point x="-25.799999999999955" y="15.5" />
+      <point x="136.5" y="142.0" />
+      <point x="224.2" y="142.0" />
+      <point x="-25.80000000000001" y="15.5" />
     </edge>
     <edge source="snippets.jee.entities.Response" target="snippets.jee.base.AbstractEntity">
       <point x="0.0" y="-15.5" />
-      <point x="1069.5" y="142.0" />
-      <point x="976.8" y="142.0" />
-      <point x="25.799999999999955" y="15.5" />
+      <point x="368.5" y="142.0" />
+      <point x="275.8" y="142.0" />
+      <point x="25.80000000000001" y="15.5" />
     </edge>
     <edge source="snippets.jee.util.JsonDateSerializer" target="com.fasterxml.jackson.databind.JsonSerializer">
       <point x="0.0" y="-15.5" />
       <point x="0.0" y="15.5" />
     </edge>
     <edge source="java.lang.Enum" target="java.lang.Comparable">
-      <point x="-20.5" y="-15.5" />
+      <point x="20.5" y="-15.5" />
       <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="snippets.jee.base.ResponseStatus" target="java.lang.Enum">
+      <point x="0.0" y="-15.5" />
+      <point x="1024.0" y="142.0" />
+      <point x="901.4" y="142.0" />
+      <point x="16.399999999999977" y="15.5" />
     </edge>
     <edge source="com.fasterxml.jackson.databind.JsonSerializer" target="com.fasterxml.jackson.databind.jsonFormatVisitors.JsonFormatVisitable">
       <point x="0.0" y="-15.5" />
       <point x="0.0" y="15.5" />
     </edge>
-    <edge source="snippets.jee.base.ResponseStatus" target="java.lang.Enum">
-      <point x="0.0" y="-15.5" />
-      <point x="0.0" y="15.5" />
-    </edge>
     <edge source="snippets.jee.base.UserType" target="java.lang.Enum">
       <point x="0.0" y="-15.5" />
-      <point x="198.5" y="142.0" />
-      <point x="325.6" y="142.0" />
-      <point x="-16.399999999999977" y="15.5" />
+      <point x="1167.5" y="132.0" />
+      <point x="917.8" y="132.0" />
+      <point x="32.799999999999955" y="15.5" />
     </edge>
     <edge source="org.springframework.format.Formatter" target="org.springframework.format.Printer">
       <point x="26.75" y="-15.5" />
@@ -81,21 +83,19 @@
     </edge>
     <edge source="snippets.jee.base.PetType" target="java.lang.Enum">
       <point x="0.0" y="-15.5" />
-      <point x="481.0" y="142.0" />
-      <point x="358.4" y="142.0" />
-      <point x="16.399999999999977" y="15.5" />
+      <point x="0.0" y="15.5" />
     </edge>
     <edge source="snippets.jee.entities.Pet" target="snippets.jee.base.AbstractEntity">
       <point x="0.0" y="-15.5" />
-      <point x="735.0" y="132.0" />
-      <point x="899.4" y="132.0" />
-      <point x="-51.60000000000002" y="15.5" />
+      <point x="34.0" y="132.0" />
+      <point x="198.39999999999998" y="132.0" />
+      <point x="-51.599999999999994" y="15.5" />
     </edge>
     <edge source="java.lang.Enum" target="java.io.Serializable">
-      <point x="20.5" y="-15.5" />
-      <point x="362.5" y="56.0" />
-      <point x="893.0" y="56.0" />
-      <point x="-29.0" y="15.5" />
+      <point x="-20.5" y="-15.5" />
+      <point x="864.5" y="56.0" />
+      <point x="308.0" y="56.0" />
+      <point x="29.0" y="15.5" />
     </edge>
     <edge source="org.springframework.format.Formatter" target="org.springframework.format.Parser">
       <point x="-26.75" y="-15.5" />
@@ -109,9 +109,9 @@
     </edge>
     <edge source="snippets.jee.base.ReviewGrade" target="java.lang.Enum">
       <point x="0.0" y="-15.5" />
-      <point x="63.0" y="132.0" />
-      <point x="309.2" y="132.0" />
-      <point x="-32.80000000000001" y="15.5" />
+      <point x="602.0" y="132.0" />
+      <point x="852.2" y="132.0" />
+      <point x="-32.799999999999955" y="15.5" />
     </edge>
     <edge source="snippets.jee.util.DateFormatter" target="org.springframework.format.Formatter">
       <point x="0.0" y="-15.5" />
@@ -119,12 +119,12 @@
     </edge>
     <edge source="snippets.jee.base.AbstractEntity" target="java.io.Serializable">
       <point x="0.0" y="-15.5" />
-      <point x="29.0" y="15.5" />
+      <point x="-29.0" y="15.5" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="1.0" x="428.0" y="288.0" />
+  <settings layout="Hierarchic Group" zoom="1.0" x="612.0" y="280.5" />
   <SelectedNodes>
-    <node>com.fasterxml.jackson.databind.jsonFormatVisitors.JsonFormatVisitable</node>
+    <node>com.fasterxml.jackson.databind.JsonSerializer</node>
   </SelectedNodes>
   <Categories />
   <SCOPE>All</SCOPE>
