@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="254.0" y="0.0">snippets.jee.repos.AbstractRepo</node>
+    <node x="546.0" y="173.0">snippets.jee.repos.RequestRepo</node>
+    <node x="0.0" y="173.0">snippets.jee.repos.ResponseRepo</node>
+    <node x="299.0" y="173.0">snippets.jee.repos.UserRepo</node>
+    <node x="427.0" y="173.0">snippets.jee.repos.PetRepo</node>
+    <node x="158.0" y="173.0">snippets.jee.repos.ReviewRepo</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="snippets.jee.repos.ResponseRepo" target="snippets.jee.repos.AbstractRepo">
+      <point x="0.0" y="-15.5" />
+      <point x="69.0" y="143.0" />
+      <point x="273.8" y="143.0" />
+      <point x="-79.19999999999999" y="61.5" />
+    </edge>
+    <edge source="snippets.jee.repos.UserRepo" target="snippets.jee.repos.AbstractRepo">
+      <point x="0.0" y="-15.5" />
+      <point x="0.0" y="61.5" />
+    </edge>
+    <edge source="snippets.jee.repos.ReviewRepo" target="snippets.jee.repos.AbstractRepo">
+      <point x="0.0" y="-15.5" />
+      <point x="218.5" y="153.0" />
+      <point x="313.4" y="153.0" />
+      <point x="-39.60000000000002" y="61.5" />
+    </edge>
+    <edge source="snippets.jee.repos.RequestRepo" target="snippets.jee.repos.AbstractRepo">
+      <point x="0.0" y="-15.5" />
+      <point x="610.0" y="143.0" />
+      <point x="432.19999999999993" y="143.0" />
+      <point x="79.19999999999993" y="61.5" />
+    </edge>
+    <edge source="snippets.jee.repos.PetRepo" target="snippets.jee.repos.AbstractRepo">
+      <point x="0.0" y="-15.5" />
+      <point x="476.5" y="153.0" />
+      <point x="392.59999999999997" y="153.0" />
+      <point x="39.599999999999966" y="61.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="263.0" y="176.5" />
+  <SelectedNodes>
+    <node>snippets.jee.repos.ResponseRepo</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+    <Category>Constructors</Category>
+    <Category>Properties</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
