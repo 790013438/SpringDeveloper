@@ -60,4 +60,59 @@ public abstract class AbstractEntity implements Serializable {
      * 
      * @return the unique entity identifier
      */
+    public Long getId() {
+
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Date getCreateAt() {
+        return createAt;
+    }
+
+    public void setCreateAt(Date createAt) {
+        this.createAt = createAt;
+    }
+
+    public Date getModifiedAt() {
+        return modifiedAt;
+    }
+
+    public void setModifiedAt(Date modifiedAt) {
+        this.modifiedAt = modifiedAt;
+    }
+
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        AbstractEntity that = (AbstractEntity) o;
+
+        if (version != that.version) return false;
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (createAt != null ? !createAt.equals(that.createAt) : that.createAt != null) return false;
+        return modifiedAt != null ? modifiedAt.equals(that.modifiedAt) : that.modifiedAt == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (createAt != null ? createAt.hashCode() : 0);
+        result = 31 * result + (modifiedAt != null ? modifiedAt.hashCode() : 0);
+        result = 31 * result + version;
+        return result;
+    }
+
 }
