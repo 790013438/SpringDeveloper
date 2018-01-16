@@ -82,11 +82,4 @@ public class Journal {
         this.summary = summary;
     }
 
-    public SimpleDateFormat getFormat() {
-        return format;
-    }
-
-    public void setFormat(SimpleDateFormat format) {
-        this.format = format;
-    }
 }
