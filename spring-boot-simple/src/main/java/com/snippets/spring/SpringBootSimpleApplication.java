@@ -9,9 +9,8 @@ public class SpringBootSimpleApplication {
 
     public static void main(String[] args) {
 
-        new SpringApplicationBuilder()
-                .bannerMode(Banner.Mode.OFF)
-                .sources(SpringBootSimpleApplication.class)
+        new SpringApplicationBuilder(SpringBootSimpleApplication.class)
+                .logStartupInfo(false)
                 .run(args);
     }
 }
