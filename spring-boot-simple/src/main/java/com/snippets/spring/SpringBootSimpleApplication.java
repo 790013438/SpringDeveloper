@@ -13,12 +13,7 @@ public class SpringBootSimpleApplication {
     public static void main(String[] args) {
 
         SpringApplication app = new SpringApplication(SpringBootSimpleApplication.class);
-        app.setBanner(new Banner() {
-            @Override
-            public void printBanner(Environment environment, Class<?> sourceClass, PrintStream out) {
-                out.println("\n\n\tThis is my own banner!\n\n".toUpperCase());
-            }
-        });
+        app.setBannerMode(Banner.Mode.OFF);
         app.run(args);
     }
 }
