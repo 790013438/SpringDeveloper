@@ -14,13 +14,7 @@ public class SpringBootSimpleApplication {
 
         Logger log = LoggerFactory.getLogger(SpringBootSimpleApplication.class);
         new SpringApplicationBuilder(SpringBootSimpleApplication.class)
-                .listeners(new ApplicationListener<ApplicationEvent>() {
-
-                    @Override
-                    public void onApplicationEvent(ApplicationEvent event) {
-                        log.info("#### > " + event.getClass().getCanonicalName());
-                    }
-                })
+                .listeners((ApplicationListener<ApplicationEvent>) event -> log.info("#### > " + event.getClass().getCanonicalName()))
                 .run(args);
     }
 }
