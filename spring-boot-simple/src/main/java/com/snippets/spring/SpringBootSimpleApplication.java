@@ -1,6 +1,5 @@
 package com.snippets.spring;
 
-import org.springframework.boot.Banner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 
@@ -10,7 +9,7 @@ public class SpringBootSimpleApplication {
     public static void main(String[] args) {
 
         new SpringApplicationBuilder(SpringBootSimpleApplication.class)
-                .logStartupInfo(false)
+                .profiles("prod", "cloud")
                 .run(args);
     }
 }
