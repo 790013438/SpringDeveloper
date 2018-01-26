@@ -3,6 +3,7 @@ package com.snippets.spring;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.CommandLineRunner;
@@ -17,6 +18,11 @@ import java.util.List;
 public class SpringBootSimpleApplication implements ApplicationRunner {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SpringBootSimpleApplication.class);
+    @Value("${data.server}")
+    private String server;
+
+    @Value("${data.sever}")
+    private String sever;
 
     public static void main(String[] args) {
         new SpringApplicationBuilder(SpringBootSimpleApplication.class)
@@ -37,6 +43,7 @@ public class SpringBootSimpleApplication implements ApplicationRunner {
         LOGGER.info("## > ApplicationRunner Implementation...");
         LOGGER.info("Accessing the Info bean: " + info);
         applicationArguments.getNonOptionArgs().forEach(LOGGER::info);
+        LOGGER.info(server);
     }
 
     @Bean
