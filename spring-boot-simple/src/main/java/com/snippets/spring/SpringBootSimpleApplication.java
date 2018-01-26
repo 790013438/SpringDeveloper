@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @SpringBootApplication
-public class SpringBootSimpleApplication implements CommandLineRunner, ApplicationRunner {
+public class SpringBootSimpleApplication implements ApplicationRunner {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SpringBootSimpleApplication.class);
 
@@ -39,12 +39,14 @@ public class SpringBootSimpleApplication implements CommandLineRunner, Applicati
         applicationArguments.getNonOptionArgs().forEach(LOGGER::info);
     }
 
-    @Override
-    public void run(String... args) {
-        LOGGER.info("## > CommandLineRunner Implementation...");
-        LOGGER.info("Accessing the Info bean: " + info);
-        for (String arg : args)
-            LOGGER.info(arg);
+    @Bean
+    CommandLineRunner myMethod() {
+        return args -> {
+            LOGGER.info("## > CommandLineRunner Implementation...");
+            LOGGER.info("Accessing the Info bean: " + info);
+            for (String arg : args)
+                LOGGER.info(arg);
+        };
     }
 }
 
