@@ -15,7 +15,7 @@ public class SpringBootConfigApplication {
 
     public static void main(String[] args) {
         new SpringApplicationBuilder(SpringBootConfigApplication.class)
-                .logStartupInfo(false)
+                .logStartupInfo(true)
                 .run(args);
     }
 
