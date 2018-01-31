@@ -44,6 +44,7 @@ mvnw*
 */.gitignore
 */*.jar
 */*.jar.original
+*/*.war.original
 target/
 pom.xml.tag
 pom.xml.releaseBackup
