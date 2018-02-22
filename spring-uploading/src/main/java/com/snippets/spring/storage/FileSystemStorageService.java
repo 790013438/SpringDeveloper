@@ -50,8 +50,7 @@ public class FileSystemStorageService implements StorageService {
             }
             Files.copy(multipartFile.getInputStream(), this.rootLocation.resolve(filename),
                     StandardCopyOption.REPLACE_EXISTING);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new StorageException("Failed to store file " + filename, e);
         }
     }
