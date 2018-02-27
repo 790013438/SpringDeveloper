@@ -91,3 +91,4 @@ gradle-app.setting
 .idea/
 mvnw
 mvnw.cmd
+*.swp
