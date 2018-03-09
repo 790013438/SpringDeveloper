@@ -5,7 +5,7 @@
 
     <bean name="/showMessage.html" class="com.snippets.spring.SimpleController"/>
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/view"/>
+        <property name="prefix" value="/WEB-INF/view/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
 </beans>
