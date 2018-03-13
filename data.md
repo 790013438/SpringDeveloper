@@ -1901,3 +1901,18 @@ config:
 # 毕业设计
 D:\Users\zrkj08\IdeaProjects\spring-boot\SpringBoot+VusJS
 D:\Users\zrkj08\IdeaProjects\learningvuejs
+
+# DWSurvey
+
+改包名
+改前端页面
+使用thymlead
+
+描述前期为毕业设计工作你做了什么准备
+完成情况如何
+如何查找相关资料
+如何提高编程开发能力
+如何做需求分析
+如何做系统结构设计
+如何进行数据库设计
+
