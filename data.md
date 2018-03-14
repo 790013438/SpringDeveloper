@@ -1916,6 +1916,12 @@ D:\Users\zrkj08\IdeaProjects\learningvuejs
 如何做系统结构设计
 如何进行数据库设计
 
+Beginning Spring Boot 2.pdf
+    这个有登录
+Mastering Spring MVC 4.pdf
+    这个有页面一般
+Pivotal Certified Professional Spring Developer Exam.pdf
+
 完成情况：
 完成了系统需求分析部分的工作，大致分为注册登录，文件上传，视频在线播放，在线出题做题，在线考试。查询整理了相关计算机专业学习资料，大致分为SpringBoot，Vue.js，MongoDB，视频在线播放，问卷调查。
 模仿DWSurvey，完成了出题模块的数据库实体模型设计。模仿anyvideo，完成视频模块的数据库实体模型设计。模仿cms，完成管理模块的数据库实体模型设计。
