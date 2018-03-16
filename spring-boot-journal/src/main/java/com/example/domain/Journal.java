@@ -74,6 +74,17 @@ public class Journal {
         this.created = created;
     }
 
+    public void setCreated(String date) throws ParseException {
+        Long _date = null;
+        try {
+            _date = Long.parseLong(date);
+            this.created = new Date(_date);
+            return;
+        } catch(Exception ex) {
+        }
+        this.created = format.parse(date);
+    }
+
     public String getSummary() {
         return summary;
     }
