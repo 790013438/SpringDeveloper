@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
-public class Journal {
+public class JournalEntry {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -23,13 +23,13 @@ public class Journal {
     @Transient
     private SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
 
-    public Journal(String title, String sumary, String date) throws ParseException {
+    public JournalEntry(String title, String summary, String date) throws ParseException {
         this.title = title;
         this.summary = summary;
         this.created = format.parse(date);
     }
 
-    Journal() {}
+    JournalEntry() {}
 
     @Override
     public String toString() {
