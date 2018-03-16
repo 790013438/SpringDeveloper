@@ -7,6 +7,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@SpringApplicationConfiguration(classes = SpringBootWebTestApplication.class)
+@WebAppConfiguration
 public class SpringBootWebTestApplicationTests {
 
     @Test
