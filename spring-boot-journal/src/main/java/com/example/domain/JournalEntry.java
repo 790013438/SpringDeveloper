@@ -33,17 +33,15 @@ public class JournalEntry {
 
     @Override
     public String toString() {
-        StringBuilder value = new StringBuilder("JournalEntry(");
-        value.append("Id: ");
-        value.append(id);
-        value.append(",Title: ");
-        value.append(title);
-        value.append(",Summary: ");
-        value.append(summary);
-        value.append(",Created: ");
-        value.append(getCreatedAsShort());
-        value.append(")");
-        return value.toString();
+        return "JournalEntry(" + "Id: " +
+                id +
+                ",Title: " +
+                title +
+                ",Summary: " +
+                summary +
+                ",Created: " +
+                getCreatedAsShort() +
+                ")";
     }
 
     public String getCreatedAsShort() {
@@ -81,6 +79,7 @@ public class JournalEntry {
             this.created = new Date(_date);
             return;
         } catch(Exception ex) {
+            ex.printStackTrace();
         }
         this.created = format.parse(date);
     }
