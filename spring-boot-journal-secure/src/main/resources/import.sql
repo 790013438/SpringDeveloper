@@ -17,6 +17,14 @@ USE `journal`;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+-- SECURITY: USER ACCOUNT
+DROP TABLE IF EXISTS `account`;
+CREATE TABLE `account` (`ACCOUNT_NAME` VARCHAR(255) NOT NULL, `PASSWORD` VARCHAR(255) NOT NULL, `ID` SERIAL, `ENABLED` BOOL DEFAULT true);
+
+-- USERS IN JOURNAL
+INSERT INTO ACCOUNT(account_name , password) VALUES('springboot', '{bcrypt}$2a$10$1h1SU3yaMe0nlgLhBBeccu7mOs9fwiTVoHad6R.d4grdrrTV0gZ7S');
+INSERT INTO ACCOUNT(account_name , password) VALUES('springsecurity', '{bcrypt}$2a$10$xtqCwu.WnsWuDJU5z3ob9OdqXw7Dy3HdD.YoZ7AYnhNhdOZg7op6C');
+
 --
 -- Table structure for table `entry`
 --
