@@ -9,19 +9,27 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.jms.core.JmsTemplate;
+import org.springframework.messaging.handler.annotation.SendTo;
 
 @SpringBootApplication
 public class SpringBootJmsV2Application {
 
-    private static final Logger log = LoggerFactory.getLogger(SpringBootJmsV2Application.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(SpringBootJmsV2Application.class);
 
     public static void main(String[] args) {
         SpringApplication.run(SpringBootJmsV2Application.class, args);
     }
 
     @JmsListener(destination="${myqueue}")
-    public void simplerConsumer(String message) {
-        log.info("Simple Consumer> " + message);
+    @SendTo("${myotherqueue}")
+    public String simplerConsumer(String message) {
+        LOGGER.info("Simple Consumer> " + message);
+        return message + " and Spring Messaging too!";
+    }
+
+    @JmsListener(destination="${myotherqueue}")
+    public void anotherSimplerConsumer(String message) {
+        LOGGER.info("Another Simple Consumer> " + message);
     }
 
     @Value("${myqueue}")
@@ -30,7 +38,7 @@ public class SpringBootJmsV2Application {
     @Bean
     CommandLineRunner start(JmsTemplate jmsTemplate) {
         return args -> {
-            log.info("Sending> ...");
+            LOGGER.info("Sending> ...");
             jmsTemplate.convertAndSend(queue, "SpringBoot Rocks!");
         };
     }
