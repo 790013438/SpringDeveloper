@@ -18,7 +18,7 @@ import javax.persistence.MappedSuperclass;
 @MappedSuperclass
 public abstract class IdEntity {//implements Serializable
 
-	protected String id;
+	private String id;
 
 	@Id
 //	@GeneratedValue(strategy = GenerationType.AUTO)

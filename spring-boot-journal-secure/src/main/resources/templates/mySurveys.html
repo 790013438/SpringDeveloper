@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" media="all" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" media="all" href="css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" type="text/css" media="all" href="css/styles.css"/>
+</head>
+<body>
+     <div>
+         <div th:each="survey,status : ${mySurveys}">
+             <li th:attr="class=${status.odd}?'timeline-inverted':''">
+                 <div class="tl-circ"></div>
+                 <div class="timeline-panel">
+                     <div class="tl-heading">
+                         <h4><span th:text="${survey.surveyName}">TITLE</span></h4>
+                         <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i><span th:text="${survey.htmlPath}">CREATED</span></small></p>
+                     </div>
+                     <div class="tl-body">
+                         <p><span th:text="${survey.createDate}">SUMMARY</span></p>
+                     </div>
+                 </div>
+             </li>
+         </div>
+
+         <div style="padding: 5px;color:#666565; ">
+             <table class="contacts-table" width="100%" cellpadding="0" cellspacing="0">
+                 <tr>
+                     <th style="text-align: center;" width="30"><!-- <input type="checkbox">  --></th>
+                     <th align="left" >问卷</th>
+                     <th align="left" width="100">创建者</th>
+                     <th align="left" width="200">创建时间</th>
+                     <th align="left" width="60">答卷</th>
+                     <th align="left" width="80">状态</th>
+                     <th align="center" width="220" style="padding-left: 10px;">操作</th>
+                 </tr>
+                     <tr th:each="en,status : ${mySurveys}">>
+                         <td align="left" width="100" th:text="${en.userName}"></td>
+                         </td>
+                     </tr>
+
+             </table>
+
+         </div>
+     </div>
+
+     </div>
+</body>
+</html>

@@ -13,11 +13,11 @@ public class ResourceSecurityConfiguration extends WebSecurityConfigurerAdapter 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeRequests()
-            .antMatchers("/").permitAll()
-            .antMatchers("/api/**").authenticated()
+            .antMatchers("/").permitAll();
+            /*.antMatchers("/api/**").authenticated()
             .and()
             .formLogin().loginPage("/login").permitAll()
             .and()
-            .logout().permitAll();
+            .logout().permitAll();*/
     }
 }
