@@ -1716,15 +1716,15 @@ isAdmin 设置成true
 region不设置
 挂到user上
 
-	"name": "IAM-ADMIN",
-	"icon": "IAM-ADMIN",
-	"appTypeEnum": "PC",
-	"regionId": "15b10cb9-7bbb-432b-8b24-88c192685fa4",
-	"label": "IAM-ADMIN",
-	"isEnable": true,
-	"isDelete": false,
-	"isAdmin": true,
-	"version": 0
+    "name": "IAM-ADMIN",
+    "icon": "IAM-ADMIN",
+    "appTypeEnum": "PC",
+    "regionId": "15b10cb9-7bbb-432b-8b24-88c192685fa4",
+    "label": "IAM-ADMIN",
+    "isEnable": true,
+    "isDelete": false,
+    "isAdmin": true,
+    "version": 0
 
         orgGenerate
         passwordPolicyGenerate
@@ -1743,11 +1743,11 @@ region不设置
         passwordGenerate
 
 {
-	"appId": "管理端Appid",
-	"type": "jwt",
-	"config": {
-		"service": "http://localhost:8081/jwt/jwtLogin"
-	}
+    "appId": "管理端Appid",
+    "type": "jwt",
+    "config": {
+        "service": "http://localhost:8081/jwt/jwtLogin"
+    }
 }
 port 8001
 JwtConfiguration.SERVICE
@@ -1759,22 +1759,22 @@ SSOconfig
 data-generate需要能配置sample的单点登录地址
 要加入webseal的SSOConfigEntity
 {
-	"_id": "8d6e3c23-6ebe-4085-966e-a60e13701c35",
-	"_class": "com.zrkj.admin.model.entity.sso.SSOConfigEntity",
-	"appId": "139d05da-4e57-4c20-800e-fb1db0cfb6ab",
-	"type": "webseal",
-	"config": {
-		"attributes": [
-			"webseal-userName=user.userName",
-			"webseal-email=user.email",
-			"webseal-xxx=user.extraProps.idNumber"
-		],
-		"sp": "https://wastest.iam.cnpc:8443/test-sp/ssologinnew.jsp",
-		"user": "account.accountName"
-	},
-	"createdDate": ISODate('2018-02-24T12:43:02.853Z'),
-	"lastModifiedDate": ISODate('2018-02-24T13:54:08.021Z'),
-	"version": 3
+    "_id": "8d6e3c23-6ebe-4085-966e-a60e13701c35",
+    "_class": "com.zrkj.admin.model.entity.sso.SSOConfigEntity",
+    "appId": "139d05da-4e57-4c20-800e-fb1db0cfb6ab",
+    "type": "webseal",
+    "config": {
+        "attributes": [
+            "webseal-userName=user.userName",
+            "webseal-email=user.email",
+            "webseal-xxx=user.extraProps.idNumber"
+        ],
+        "sp": "https://wastest.iam.cnpc:8443/test-sp/ssologinnew.jsp",
+        "user": "account.accountName"
+    },
+    "createdDate": ISODate('2018-02-24T12:43:02.853Z'),
+    "lastModifiedDate": ISODate('2018-02-24T13:54:08.021Z'),
+    "version": 3
 }
         orgGenerate
         passwordPolicyGenerate
@@ -1903,10 +1903,26 @@ D:\Users\zrkj08\IdeaProjects\spring-boot\SpringBoot+VusJS
 D:\Users\zrkj08\IdeaProjects\learningvuejs
 
 # DWSurvey
+public class AbstractBaseEntity {
+
+    @Indexed
+    @CreatedDate
+    private Date createdDate;
+
+    @Indexed
+    @LastModifiedDate
+    private Date lastModifiedDate;
+    @Version
+    private Long version = null;
+
+    @Id
+    private String id = UUID.randomUUID().toString();
+}
 
 改包名
 改前端页面
 使用thymlead
+使用Vue
 
 描述前期为毕业设计工作你做了什么准备
 完成情况如何
@@ -1950,8 +1966,9 @@ Pro Spring boot
 
 Web Development with Bootstrap and Vue.JS
 61暂停
-113
+116
 file:///D:/zrkj08/pdf/Vue.js-2-and-Bootstrap-4-Web-Development.pdf
+扒https://github.com/790013438/favorites-web的登录页面
 
 Spring Boot 1.5.9.RELEASE
 
@@ -1959,3 +1976,7 @@ Beginning Progressive Web App Development
 228
 
 servuey collection design user
+
+name, title, queue
+
+http://kaiyuan.hudong.com/download/
