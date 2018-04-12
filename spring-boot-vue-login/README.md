@@ -4,5 +4,69 @@ spring init -d=web,mysql,thymeleaf
 
 * application.properties
 ```application.properties
+# ===============================
+# = DATA SOURCE
+# ===============================
+
+# Set here configurations for the database conneciton
+
+# MySQL: Connection url for the database "pzhu"
+spring.datasource.url = jdbc:mysql://localhost:3306/pzhu
+
+# MySQL: Username and password
+spring.datasource.username = root
+spring.datasource.password = 37934bit
+
+# Keep the connection alive if idle for a long time (needed in production)
+spring.datasource.testWhileIdle = true
+spring.datasource.validationQuery = SELECT 1
+
+# ===============================
+# = JPA / HIBERNATE
+# ===============================
+
+# Use spring.jpa.properties.* for Hibernate native properties (the prefix is
+# stripped before adding them to the entity manager).
+
+# Show or not log for each sql query
+spring.jpa.show-sql = true
+
+# Hibernate ddl auto (create, create-drop, update): with "update" the database
+# schema will be automatically updated accordingly to java entities found in
+# the project
+spring.jpa.testWhileIdle.ddl-auto = create-drop
+
+# Naming strategy
+spring.jpa.hibernate.naming-strategy = org.hibernate.cfg.ImprovedNamingStrategy
+
+# Allows Hibernate to generate SQL optimized for a particular DBMS
+spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQLDialect
+
+
+# ===============================
+# = UTF-8
+# ===============================
+spring.http.encoding.charset=UTF-8
+spring.http.encoding.enabled=true
+spring.http.encoding.force=true
+spring.http.encoding.force-request=true
+spring.http.encoding.force-response=true
+```
+
+* controller
+```java
+@Controller
+@RequestMapping("/")
+public class SpringBootVueLoginController {
+
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+}
+```
+
+* login.html
+```html
 
 ```
