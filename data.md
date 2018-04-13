@@ -1966,7 +1966,7 @@ Pro Spring boot
 
 Web Development with Bootstrap and Vue.JS
 61暂停
-116
+168
 file:///D:/zrkj08/pdf/Vue.js-2-and-Bootstrap-4-Web-Development.pdf
 扒https://github.com/790013438/favorites-web的登录页面
 
@@ -1980,3 +1980,5 @@ servuey collection design user
 name, title, queue
 
 http://kaiyuan.hudong.com/download/
+登录改变可以用这个
+Beginning Spring Boot 2
