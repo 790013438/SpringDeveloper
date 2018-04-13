@@ -1,7 +1,6 @@
 package cn.pzhu.spring.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -10,6 +9,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.authentication.configuration.EnableGlobalAuthentication;
 import org.springframework.security.config.annotation.authentication.configuration.GlobalAuthenticationConfigurerAdapter;
 import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.sql.ResultSet;
@@ -27,8 +27,8 @@ public class JdbcSecurityConfiguration extends GlobalAuthenticationConfigurerAda
 
     @Bean
     public UserDetailsService userDetailService(JdbcTemplate jdbcTemplate) {
-        RowMapper<SecurityProperties.User> userRowMapper = (ResultSet rs, int i) ->
-            new SecurityProperties.User(
+        RowMapper<User> userRowMapper = (ResultSet rs, int i) ->
+                new User(
                     rs.getString("ACCOUNT_NAME"),
                     rs.getString("PASSWORD"),
                     rs.getBoolean("ENABLED"),
