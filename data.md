@@ -402,12 +402,12 @@ qqWW22@@
 
 
 java -Dspring.profiles.active=dev -cp target/admin-web-1.0-SNAPSHOT.jar  com.zrkj.admin.web.WebApplication --spring.config.location=file:config/ --spring.config.name=mycfg-sms
-administration\admin-web
+administration/admin-web
 
 java -Dspring.profiles.active=dev -cp target/authentication-web-1.0-SNAPSHOT.jar com.zrkj.auth.web.AuthWebApplication --spring.config.location=file:config/ --spring.config.name=mycfg-sms
 java -Dspring.profiles.active=dev -cp target/authentication-web-1.0-SNAPSHOT.jar com.zrkj.auth.web.AuthWebApplication --spring.config.location=file:config/ --spring.config.name=mycfg-sms
-java -Dspring.profiles.active=dev -cp target/authentication-web-1.0-SNAPSHOT.jar com.zrkj.auth.web.AuthWebApplication --spring.config.location=D:\programe\eclipse-jee-luna-SR1a-win32-x86_64\idlink\authentication\authentication-web\config\mycfg-sms.properties
---spring.config.location=D:\programe\eclipse-jee-luna-SR1a-win32-x86_64\idlink\authentication\authentication-web\config\mycfg-sms.properties
+java -Dspring.profiles.active=dev -cp target/authentication-web-1.0-SNAPSHOT.jar com.zrkj.auth.web.AuthWebApplication --spring.config.location=D:/programe/eclipse-jee-luna-SR1a-win32-x86_64/idlink/authentication/authentication-web/config/mycfg-sms.properties
+--spring.config.location=D:/programe/eclipse-jee-luna-SR1a-win32-x86_64/idlink/authentication/authentication-web/config/mycfg-sms.properties
 
 idlink
 ├── administration
@@ -1899,8 +1899,8 @@ config:
 
 
 # 毕业设计
-D:\Users\zrkj08\IdeaProjects\spring-boot\SpringBoot+VusJS
-D:\Users\zrkj08\IdeaProjects\learningvuejs
+D:/Users/zrkj08/IdeaProjects/spring-boot/SpringBoot+VusJS
+D:/Users/zrkj08/IdeaProjects/learningvuejs
 
 # DWSurvey
 public class AbstractBaseEntity {
@@ -1962,13 +1962,32 @@ Pivotal Certified Professional Spring Developer Exam.pdf
    近期的进度有点落后，要在保质保量的情况下，将进度提升起来。最后，感谢张老师在百忙之中对我们的督促和教导。
 
 Pro Spring boot
-251
+272
 
 Web Development with Bootstrap and Vue.JS
 61暂停
-168
+263
+
+Vim ctrl + i
+Vim replace
+写视频
+试卷
+文件上传
+忘记密码> permite(/user/)
+保存页面，截图，浏览器打开
+主页动态
+=================================
 file:///D:/zrkj08/pdf/Vue.js-2-and-Bootstrap-4-Web-Development.pdf
-扒https://github.com/790013438/favorites-web的登录页面
+课件信息的管理 2. 不同的文件夹
+=================
+视频点播模块 3.
+=================
+作业管理模块 4. homework文件夹，姓名和学号, 还要有一个学习资料，为共有文件夹
+=================
+在线测试模块 5. 
+=================
+系统管理模块 6. 
+=================
 
 Spring Boot 1.5.9.RELEASE
 
@@ -1982,3 +2001,56 @@ name, title, queue
 http://kaiyuan.hudong.com/download/
 登录改变可以用这个
 Beginning Spring Boot 2
+1. 注册登陆模块。
+2. 课件管理模块：能够将教学资源上传并利于教师浏览使用，给教师提供了一个资源存放和使用的平台，同时也是学生的学习平台。
+3. 视频点播模块：客户终端能够在远程或局域网里随意自由地点播各种流媒体格式的视音频节目。
+4. 作业管理模块：实现教师布置作业、学生上交作业。
+5. 在线测试模块：实现教师出题、学生在线考试。
+6. 系统管理模块。
+名词：
+    老师
+    教师
+    PowerPoint课件
+    代码
+    同学
+    课程
+    作业要求
+    布置
+    完成
+    题目要求
+    编辑器
+    文件
+    答案
+    附件
+    成绩
+    评语
+    课本
+    重点
+动词：
+    上课
+    讲解
+    索要
+    分布
+    登录
+    压缩
+    发布
+    看到
+    打开
+    提交
+    录入
+    批改
+    预习
+
+UserEnttiy
+    SurveyStatusEntity
+SurveyDirectoryEntity
+SurveyAnswerEntity -> survey_id对应SurveyDirectoryEntity
+
+QuestionEntity -> belong_id对应SurveyDirectoryEntity
+QChoiceEntity
+    QMatrixBlankEntity
+QCheckBoxEntity
+
+ChoiceEntity
+BlankEntity
+CheckBoxEntity -> belong_answer_id对应t_survey_answer
