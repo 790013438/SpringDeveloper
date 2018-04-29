@@ -7,7 +7,7 @@ import javax.persistence.Transient;
 import java.util.Date;
 
 @Entity
-@Table(name = "t_user")
+@Table(name = "UserEntity")
 public class UserEntity extends IdEntity{
 
     private String loginName;

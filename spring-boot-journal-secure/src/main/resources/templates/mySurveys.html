@@ -1,49 +1,457 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Login</title>
-    <link rel="stylesheet" type="text/css" media="all" href="css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" media="all" href="css/bootstrap-glyphicons.css"/>
-    <link rel="stylesheet" type="text/css" media="all" href="css/styles.css"/>
-</head>
-<body>
-     <div>
-         <div th:each="survey,status : ${mySurveys}">
-             <li th:attr="class=${status.odd}?'timeline-inverted':''">
-                 <div class="tl-circ"></div>
-                 <div class="timeline-panel">
-                     <div class="tl-heading">
-                         <h4><span th:text="${survey.surveyName}">TITLE</span></h4>
-                         <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i><span th:text="${survey.htmlPath}">CREATED</span></small></p>
-                     </div>
-                     <div class="tl-body">
-                         <p><span th:text="${survey.createDate}">SUMMARY</span></p>
-                     </div>
-                 </div>
-             </li>
-         </div>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>我的试卷&nbsp;&nbsp;试卷</title>
 
-         <div style="padding: 5px;color:#666565; ">
-             <table class="contacts-table" width="100%" cellpadding="0" cellspacing="0">
-                 <tr>
-                     <th style="text-align: center;" width="30"><!-- <input type="checkbox">  --></th>
-                     <th align="left" >问卷</th>
-                     <th align="left" width="100">创建者</th>
-                     <th align="left" width="200">创建时间</th>
-                     <th align="left" width="60">答卷</th>
-                     <th align="left" width="80">状态</th>
-                     <th align="center" width="220" style="padding-left: 10px;">操作</th>
-                 </tr>
-                     <tr th:each="en,status : ${mySurveys}">>
-                         <td align="left" width="100" th:text="${en.userName}"></td>
-                         </td>
-                     </tr>
+    <link href="/js/plugs/jquery-ui-1.10.3.custom/css/mycss/jquery-ui-1.10.3.custom.css" rel="stylesheet"
+                                                                                         type="text/css">
+    <link href="/js/plugs/My97DatePickerBeta/My97DatePicker/skin/WdatePicker.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="/js/plugs/jquery-ui-1.10.3.custom/css/mycss/jquery-ui-1.10.3.custom.css" rel="stylesheet"
+                                                                                         type="text/css">
+    <link href="/js/plugs/font-awesome-4.2.0/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+                           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-             </table>
+    <style type="text/css">
+.surveyLeftBtnGroup a {
+  color: #5A9ECD;
+}
 
-         </div>
-     </div>
+.header {
+  background: #24292C;
+}
+        .btn-group a:hover {
+          background: #317BCF;
+          color: white;
+          border-color: #317BCF;
+        }
 
-     </div>
-</body>
+        .btn-group > .btn:not(:first-child) {
+          margin-left: -1px;
+        }
+
+        .contacts-table tr td {
+          font-size: 16px ! important;
+        }
+
+        .dialogBtn1 {
+          border: none;
+          font-size: 1em;
+          font-weight: bold;
+          cursor: pointer;
+          padding: 8px 10px;
+        }
+
+        .dialogBtn1 .ui-button-text {
+          padding: .4em 1em;
+          display: block;
+          line-height: normal;
+        }
+
+        button {
+          outline: none;
+        }
+
+        .dialogMessage select, .dialogMessage input {
+          padding: 5px;
+          color: #333333;
+          border: 1px solid #98C5C3;
+        }
+    </style>
+
+    <link href="/css/dw-user.css" rel="stylesheet" type="text/css">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  </head>
+  <body>
+    <div class="jumbotron">
+      <div class="container">
+        <div class="container justify-content-center align-items-center">
+          <div class="row float-left">
+            <div class="col-1 header_Item header_logo ">
+              <a href="/"><img alt="试卷" src="/images/logo/LOGO.png" align="middle" height="46"></a>
+            </div>
+            <div class="col-2 header_Item header_menu">
+              <ul>
+                <li><a href="/mySurveys" id="mysurvey" class="active">试卷</a></li>
+              </ul>
+            </div>
+            <div class="col-2 float-left header_Item header_user">
+              <a href="#" class="clickHideUserMenu">
+                <span class="head_use_name" th:value="${mySurveys}"></span>
+              </a>
+            </div>
+          </div>
+          <div style="clear: both;"></div>
+        </div>
+        <div style="clear: both;"></div>
+        <div id="dwBody" style="margin-top: 15px;">
+          <div id="dwBodyContent" class="bodyCenter" style="width: 1189px;">
+            <div id="dwBodyUser">
+              <div class="surveyCollectMiddle">
+                <div class="surveyCollectMiddleContent">
+                  <div style="padding: 25px 45px;overflow: auto;padding-top: 20px;">
+                    <div style="padding: 5px;color: #666565;letter-spacing: 2px;">
+                      所有试卷&nbsp;&nbsp;|&nbsp;&nbsp;
+                      <a href="/mySurveyCreate" id="surveyAdd-a"
+                                                style="outline: none;text-decoration: none;"><i
+                                                class="fa fa-plus " aria-hidden="true"></i>&nbsp;新建试卷</a>
+                    </div>
+                    <form action="/mySurvey" method="post">
+                      <div class="contacts_search" style="padding: 5px;color:#666565;">
+                        <div style="padding-left: 20px;padding-top: 8px;padding-bottom: 8px;">
+                          <span style="font-size: 14px;vertical-align: middle;">状态&nbsp;</span>
+                          <select name="surveyState" style="vertical-align: middle;">
+                            <option value="">不限</option>
+                            <option value="0">设计</option>
+                            <option value="1">发布</option>
+                            <option value="2">结束</option>
+                          </select>
+                          &nbsp;&nbsp;
+                          <span style="font-size: 14px;vertical-align: middle;">名称&nbsp;</span>
+                          <input type="text" class="inputS1" name="surveyName" value="">
+                          <input type="submit" value="查询" class="sbtn25 sbtn25_1"
+                                                              style="font-size: 16px;">
+                        </div>
+                      </div>
+                    </form>
+                    <div class="container" style="margin-top: 15px;">
+                      <div style="padding: 5px;color:#666565; ">
+                        <table class="contacts-table" width="100%" cellpadding="0" cellspacing="0">
+                          <tbody>
+                            <tr>
+                              <th style="text-align: center;" width="30">
+                                <!-- <input type="checkbox">  --></th>
+                              <th align="left">试卷</th>
+                              <th align="left" width="100">创建者</th>
+                              <th align="left" width="200">创建时间</th>
+                              <th align="left" width="60">答卷</th>
+                              <th align="left" width="80">状态</th>
+                              <th align="center" width="220" style="padding-left: 10px;">操作</th>
+                            </tr>
+                            <tr th:each="survey : ${mySurveys}">
+                              <td align="center">
+                                <input type="hidden" name="surveyId" value="${survey.id}"/>
+                              </td>
+                              <td align="left">
+                                <a class="titleTag" target="_blank" th:href="${survey.htmlPath}"
+                                                    th:text="${survey.surveyName}"></a>
+                              </td>
+                              <td align="left" width="100" th:text="${survey.userName}"></td>
+                              <td align="left" th:text="${survey.createDate}"></td>
+                              <td align="left">0&nbsp;</td>
+                              <td align="left">
+                                收集
+                              </td>
+                              <td align="left">
+                                <div class="btn-group surveyLeftBtnGroup">
+                                  <a class="btn btn-default"
+                                     href="/design/my-survey-design.action?surveyId=402880e55cb9c629015cb9d31eff0000"
+                                     title="" data-toggle="tooltip" data-placement="top"
+                                                                    data-original-title="设计"><i
+                                                                    class="fa fa-pencil-square-o"></i></a>
+                                  <a class="btn btn-default"
+                                     href="/design/my-collect.action?surveyId=402880e55cb9c629015cb9d31eff0000"
+                                     title="" data-toggle="tooltip" data-placement="top"
+                                                                    data-original-title="收集答卷"><i
+                                                                    class="fa fa-comments-o"></i></a>
+                                  <a class="btn btn-default"
+                                     href="/da/survey-report!defaultReport.action?surveyId=402880e55cb9c629015cb9d31eff0000"
+                                     title="" data-toggle="tooltip" data-placement="top"
+                                                                    data-original-title="分析报告"><i
+                                                                    class="fa fa-line-chart"></i></a>
+                                  <a class="btn btn-default copySurvey"
+                                     href="#402880e55cb9c629015cb9d31eff0000" title=""
+                                                                              data-toggle="tooltip" data-placement="top"
+                                                                                                    data-original-title="复制一份"><i class="fa fa-files-o"></i></a>
+                                  <a class="btn btn-default deleteSurvey"
+                                     href="/design/my-survey!delete.action?id=402880e55cb9c629015cb9d31eff0000"
+                                     title="" data-toggle="tooltip" data-placement="top"
+                                                                    data-original-title="删除试卷"><i
+                                                                    class="fa fa-trash-o fa-fw"></i></a>
+                                </div>&nbsp;
+                                <div class="btn-group" style="display: none;">
+                                  <!-- <a class="btn btn-default" href="#"><i class="fa fa-eye"></i></a> -->
+                                  <a class="btn btn-default" href="#"><i
+                                                             class="fa fa-trash-o fa-fw"></i></a>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td align="center">
+                                <input type="hidden" name="surveyId"
+                                                     value="402880e55cb9c629015cb9d31eff0000">
+                              </td>
+                              <td align="left"><a target="_blank" href="/wenjuan/2p4tsrc5cvz.html"
+                                                                  class="titleTag">第一份测试试卷</a></td>
+                              <td align="left" width="100">柯远</td>
+                              <td align="left">
+                                2017年06月18日 14:10
+                              </td>
+                              <td align="left">0&nbsp;</td>
+                              <td align="left">
+                                收集
+                              </td>
+                              <td align="left">
+                                <div class="btn-group surveyLeftBtnGroup">
+                                  <a class="btn btn-default"
+                                     href="/design/my-survey-design.action?surveyId=402880e55cb9c629015cb9d31eff0000"
+                                     title="" data-toggle="tooltip" data-placement="top"
+                                                                    data-original-title="设计"><i
+                                                                    class="fa fa-pencil-square-o"></i></a>
+                                  <a class="btn btn-default"
+                                     href="/design/my-collect.action?surveyId=402880e55cb9c629015cb9d31eff0000"
+                                     title="" data-toggle="tooltip" data-placement="top"
+                                                                    data-original-title="收集答卷"><i
+                                                                    class="fa fa-comments-o"></i></a>
+                                  <a class="btn btn-default"
+                                     href="/da/survey-report!defaultReport.action?surveyId=402880e55cb9c629015cb9d31eff0000"
+                                     title="" data-toggle="tooltip" data-placement="top"
+                                                                    data-original-title="分析报告"><i
+                                                                    class="fa fa-line-chart"></i></a>
+                                  <a class="btn btn-default copySurvey"
+                                     href="#402880e55cb9c629015cb9d31eff0000" title=""
+                                                                              data-toggle="tooltip" data-placement="top"
+                                                                                                    data-original-title="复制一份"><i class="fa fa-files-o"></i></a>
+                                  <a class="btn btn-default deleteSurvey"
+                                     href="/design/my-survey!delete.action?id=402880e55cb9c629015cb9d31eff0000"
+                                     title="" data-toggle="tooltip" data-placement="top"
+                                                                    data-original-title="删除试卷"><i
+                                                                    class="fa fa-trash-o fa-fw"></i></a>
+                                </div>&nbsp;
+                                <div class="btn-group" style="display: none;">
+                                  <!-- <a class="btn btn-default" href="#"><i class="fa fa-eye"></i></a> -->
+                                  <a class="btn btn-default" href="#"><i
+                                                             class="fa fa-trash-o fa-fw"></i></a>
+                                </div>
+
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <div style="padding-top: 15px;text-align: center;">
+                          <div class="btn-group">
+                            <a href="//mySurveys?page.pageNo=1" class="btn btn-default"
+                                                                             style="background: #D3DEED;">1</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="dw_foot" style="padding-top:20px;">
+          <div class="dw_footcopy" style="font-size: 16px;color: gray;">
+            <p style="margin-bottom: 6px;">
+            邮箱：keyuan258@gmail.net&nbsp;&nbsp;&nbsp;
+            <a href="/" style="color: gray;font-size: 16px;">京ICP备13050030号-3</a>
+            </p>
+          </div>
+
+          <!-- 必须保留声明 start -->
+          <div class="footer-copyright" style="color: gray;padding-top: 0px;font-size: 16px;padding-bottom: 16px;">
+            Powered by <a href="http://www.dwsurvey.net" style="text-decoration: none;color: gray;">DWSurvey</a>
+            &nbsp;&nbsp;&nbsp;Copyright © 2012-2017
+            <a href="http://www.diaowen.net" style="text-decoration: none;color: rgb(53, 117, 136);">试卷</a>
+          </div>
+          <!-- 必须保留声明 end -->
+        </div>
+
+
+      </div>
+    </div>
+    <script src="/js/bootstrap.js"></script>
+    <script src="//hm.baidu.com/hm.js?ebe23eb396f5a803e26ea4bd102a8b0f"></script>
+    <script src="//hm.baidu.com/hm.js?ebe23eb396f5a803e26ea4bd102a8b0f"></script>
+    <script type="text/javascript" src="/js/plugs/jquery-ui-1.10.3.custom/js/jquery-1.10.1.js"></script>
+    <script type="text/javascript" src="/js/plugs/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.js"></script>
+    <script type="text/javascript" src="/js/dw/responsive-width.js"></script>
+    <script type="text/javascript">
+currentMenu("mysurvey");
+
+$("select[name='surveyState']").val("");
+
+var options = {
+  animation: true,
+  delay: 100,
+  container: "body",
+  trigger: 'hover' //触发tooltip的事件
+};
+$('a[data-toggle=tooltip]').tooltip(options);
+
+//delete
+$(".deleteSurvey").click(function () {
+  if (confirm("确认删除吗？")) {
+    var th = $(this);
+    var url = $(this).attr("href");
+    var data = "";
+    $.ajax({
+      url: url,
+      data: data,
+      type: "post",
+      success: function (msg) {
+        if (msg === "true") {
+          th.parents("tr").hide("slow");
+          th.parents("tr").remove();
+        } else {
+          alert("删除失败，未登录或没有权限！");
+        }
+      }
+    });
+  }
+  return false;
+});
+
+$(".copySurvey").click(function () {
+
+  var surveyId = $(this).parents("tr").find("input[name='surveyId']").val();
+  var titleValue = $(this).parents("tr").find(".titleTag").text();
+  var model_groupId1 = $(this).parents("tr").find("input[name='groupId1']").val();
+  var model_groupId2 = $(this).parents("tr").find("input[name='groupId2']").val();
+
+  $("body").append("<div id=\"myDialogRoot\"><div class='dialogMessage' style='padding-top:40px;margin-left:20px;padding-bottom:0px;'>" +
+      "<div>复制标题：<input id='surTitleTemp' type='text' style='padding:3px;width:320px;color:rgb(14, 136, 158);' value=''></div></div></div>");
+
+  var myDialog = $("#myDialogRoot").dialog({
+    width: 500,
+    height: 220,
+    autoOpen: true,
+    modal: true,
+    position: ["center", "center"],
+    title: "复制试卷、表单",
+    resizable: false,
+    draggable: false,
+    closeOnEscape: false,
+    show: {effect: "blind", direction: "up", duration: 500},
+    hide: {effect: "blind", direction: "left", duration: 200},
+    buttons: {
+      "OK": {
+        text: "确认复制",
+        addClass: 'dialogMessageButton dialogBtn1',
+        click: function () {
+          //执行发布
+          var surveyName = $("#surTitleTemp").val();
+          surveyName = optionValue = escape(encodeURIComponent(surveyName));
+
+          var params = "surveyName=" + surveyName;
+          params += "&fromBankId=" + surveyId;
+          window.location.href = "/mySurveyDesign/CopySurvey?" + params;
+        }
+      },
+      "CENCEL": {
+        text: "取消",
+        addClass: "dialogBtn1 dialogBtn1Cencel",
+        click: function () {
+          $(this).dialog("close");
+        }
+      }
+    },
+    open: function (event, ui) {
+      $(".ui-dialog-titlebar-close").hide();
+      $("#surTitleTemp").val(titleValue + "－副本");
+    },
+    close: function (event, ui) {
+      $("#myDialogRoot").remove();
+    }
+  });
+});
+
+$("#surveyAdd-a").click(function () {
+
+  var surveyId = $(this).parents("tr").find("input[name='surveyId']").val();
+  var titleValue = $(this).parents("tr").find(".titleTag").text();
+
+
+  $("body").append("<div id=\"myDialogRoot\"><div class='dialogMessage' style='padding-top:40px;margin-left:20px;padding-bottom:0px;'>" +
+      "<div>试卷标题：<input id='surTitleTemp' type='text' style='padding:5px;width:320px;color:rgb(14, 136, 158);' value=''></div></div></div>");
+
+  var myDialog = $("#myDialogRoot").dialog({
+    width: 500,
+    height: 220,
+    autoOpen: true,
+    modal: true,
+    position: ["center", "center"],
+    title: "新建试卷、表单",
+    resizable: false,
+    draggable: false,
+    closeOnEscape: false,
+    show: {effect: "blind", direction: "up", duration: 500},
+    hide: {effect: "blind", direction: "left", duration: 200},
+    buttons: {
+      "OK": {
+        text: "确认新建",
+        addClass: 'dialogMessageButton dialogBtn1',
+        click: function () {
+          //执行发布
+          var surveyName = $("#surTitleTemp").val();
+          surveyName = optionValue = escape(encodeURIComponent(surveyName));
+
+          var params = "surveyName=" + surveyName;
+          window.location.href = "/mySurveyCreate?" + params;
+        }
+      },
+      "CENCEL": {
+        text: "取消",
+        addClass: "dialogBtn1 dialogBtn1Cencel",
+        click: function () {
+          $(this).dialog("close");
+        }
+      }
+    },
+    open: function (event, ui) {
+      $(".ui-dialog-titlebar-close").hide();
+      $("#surTitleTemp").val(titleValue + "");
+    },
+    close: function (event, ui) {
+      $("#myDialogRoot").remove();
+    }
+  });
+  return false;
+});
+
+
+function setSelectText(el) {
+  try {
+    window.getSelection().selectAllChildren(el[0]); //全选
+    window.getSelection().collapseToEnd(el[0]); //光标置后
+  } catch (err) {
+    //在此处理错误
+  }
+}
+    </script>
+    <script language="javascript" type="text/javascript"
+                                  src="/js/plugs/My97DatePickerBeta/My97DatePicker/WdatePicker.js"></script>
+    <script type="text/javascript">
+var _hmt = _hmt || [];
+(function () {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?ebe23eb396f5a803e26ea4bd102a8b0f";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+
+
+    </script>
+    <script type="text/javascript">
+var _hmt = _hmt || [];
+(function () {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?ebe23eb396f5a803e26ea4bd102a8b0f";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+    </script>
+
+    <script type="text/javascript">
+resizeBodyWidth();
+    </script>
+
+  </body>
 </html>
