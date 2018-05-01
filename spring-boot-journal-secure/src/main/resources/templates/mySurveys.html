@@ -4,13 +4,13 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>我的试卷&nbsp;&nbsp;试卷</title>
 
-    <link href="/js/plugs/jquery-ui-1.10.3.custom/css/mycss/jquery-ui-1.10.3.custom.css" rel="stylesheet"
+    <link th:href="@{/js/plugs/jquery-ui-1.10.3.custom/css/mycss/jquery-ui-1.10.3.custom.css}" rel="stylesheet"
                                                                                          type="text/css">
-    <link href="/js/plugs/My97DatePickerBeta/My97DatePicker/skin/WdatePicker.css" rel="stylesheet" type="text/css">
+    <link th:href="@{/js/plugs/My97DatePickerBeta/My97DatePicker/skin/WdatePicker.css}" rel="stylesheet" type="text/css">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link href="/js/plugs/jquery-ui-1.10.3.custom/css/mycss/jquery-ui-1.10.3.custom.css" rel="stylesheet"
+    <link th:href="@{/js/plugs/jquery-ui-1.10.3.custom/css/mycss/jquery-ui-1.10.3.custom.css}" rel="stylesheet"
                                                                                          type="text/css">
-    <link href="/js/plugs/font-awesome-4.2.0/css/font-awesome.css" rel="stylesheet">
+    <link th:href="@{/js/plugs/font-awesome-4.2.0/css/font-awesome.css}" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
                            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
@@ -147,7 +147,7 @@
                               <td align="left">
                                 <div class="btn-group surveyLeftBtnGroup">
                                   <a class="btn btn-default"
-                                     href="/design/my-survey-design.action?surveyId=402880e55cb9c629015cb9d31eff0000"
+                                     th:href="@{/design/my-survey-design.action?surveyId=402880e55cb9c629015cb9d31eff0000}"
                                      title="" data-toggle="tooltip" data-placement="top"
                                                                     data-original-title="设计"><i
                                                                     class="fa fa-pencil-square-o"></i></a>
@@ -176,56 +176,6 @@
                                   <a class="btn btn-default" href="#"><i
                                                              class="fa fa-trash-o fa-fw"></i></a>
                                 </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td align="center">
-                                <input type="hidden" name="surveyId"
-                                                     value="402880e55cb9c629015cb9d31eff0000">
-                              </td>
-                              <td align="left"><a target="_blank" href="/wenjuan/2p4tsrc5cvz.html"
-                                                                  class="titleTag">第一份测试试卷</a></td>
-                              <td align="left" width="100">柯远</td>
-                              <td align="left">
-                                2017年06月18日 14:10
-                              </td>
-                              <td align="left">0&nbsp;</td>
-                              <td align="left">
-                                收集
-                              </td>
-                              <td align="left">
-                                <div class="btn-group surveyLeftBtnGroup">
-                                  <a class="btn btn-default"
-                                     href="/design/my-survey-design.action?surveyId=402880e55cb9c629015cb9d31eff0000"
-                                     title="" data-toggle="tooltip" data-placement="top"
-                                                                    data-original-title="设计"><i
-                                                                    class="fa fa-pencil-square-o"></i></a>
-                                  <a class="btn btn-default"
-                                     href="/design/my-collect.action?surveyId=402880e55cb9c629015cb9d31eff0000"
-                                     title="" data-toggle="tooltip" data-placement="top"
-                                                                    data-original-title="收集答卷"><i
-                                                                    class="fa fa-comments-o"></i></a>
-                                  <a class="btn btn-default"
-                                     href="/da/survey-report!defaultReport.action?surveyId=402880e55cb9c629015cb9d31eff0000"
-                                     title="" data-toggle="tooltip" data-placement="top"
-                                                                    data-original-title="分析报告"><i
-                                                                    class="fa fa-line-chart"></i></a>
-                                  <a class="btn btn-default copySurvey"
-                                     href="#402880e55cb9c629015cb9d31eff0000" title=""
-                                                                              data-toggle="tooltip" data-placement="top"
-                                                                                                    data-original-title="复制一份"><i class="fa fa-files-o"></i></a>
-                                  <a class="btn btn-default deleteSurvey"
-                                     href="/design/my-survey!delete.action?id=402880e55cb9c629015cb9d31eff0000"
-                                     title="" data-toggle="tooltip" data-placement="top"
-                                                                    data-original-title="删除试卷"><i
-                                                                    class="fa fa-trash-o fa-fw"></i></a>
-                                </div>&nbsp;
-                                <div class="btn-group" style="display: none;">
-                                  <!-- <a class="btn btn-default" href="#"><i class="fa fa-eye"></i></a> -->
-                                  <a class="btn btn-default" href="#"><i
-                                                             class="fa fa-trash-o fa-fw"></i></a>
-                                </div>
-
                               </td>
                             </tr>
                           </tbody>
