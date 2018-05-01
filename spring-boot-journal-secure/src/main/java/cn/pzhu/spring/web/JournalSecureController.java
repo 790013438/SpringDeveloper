@@ -2,6 +2,7 @@ package cn.pzhu.spring.web;
 
 import cn.pzhu.spring.repository.JournalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,5 +31,10 @@ public class JournalSecureController {
     public ModelAndView login(ModelAndView modelAndView) {
         modelAndView.setViewName(VIEW_LOGIN);
         return modelAndView;
+    }
+
+    @GetMapping("/index")
+    public String indexContent() {
+        return "index";
     }
 }

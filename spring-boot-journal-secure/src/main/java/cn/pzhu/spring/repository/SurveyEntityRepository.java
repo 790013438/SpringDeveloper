@@ -6,6 +6,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.stereotype.Repository;
 
 @Repository
-@RepositoryRestResource(collectionResourceRel = "surveyEntity", path="pzhu")
+@RepositoryRestResource(collectionResourceRel = "surveyEntity", path="university")
 public interface SurveyEntityRepository extends JpaRepository<SurveyEntity, Long> {
 }

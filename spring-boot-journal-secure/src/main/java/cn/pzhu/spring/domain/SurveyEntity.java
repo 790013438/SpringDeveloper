@@ -19,7 +19,7 @@ import org.hibernate.annotations.Formula;
  */
 @Entity
 @Table(name="surveyEntity")
-public class SurveyEntity extends IdEntity{
+public class SurveyEntity extends AbstractEntity {
 
     private String id;
     //回答次数

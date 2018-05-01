@@ -1,5 +1,6 @@
 package cn.pzhu.spring.config;
 
+import cn.pzhu.spring.repository.AccountEntityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,6 +20,12 @@ import java.sql.ResultSet;
 public class JdbcSecurityConfiguration extends GlobalAuthenticationConfigurerAdapter {
 
     private UserDetailsService userDetailsService;
+    private final AccountEntityRepository accountEntityRepository;
+
+    @Autowired
+    public JdbcSecurityConfiguration(AccountEntityRepository accountEntityRepository) {
+        this.accountEntityRepository = accountEntityRepository;
+    }
 
     @Autowired
     public void setUserDetailsService(UserDetailsService userDetailService) {
@@ -28,17 +35,21 @@ public class JdbcSecurityConfiguration extends GlobalAuthenticationConfigurerAda
     @Bean
     public UserDetailsService userDetailService(JdbcTemplate jdbcTemplate) {
         RowMapper<User> userRowMapper = (ResultSet rs, int i) ->
-            new User(
-                    rs.getString("ACCOUNT_NAME"),
-                    rs.getString("PASSWORD"),
-                    rs.getBoolean("ENABLED"),
-                    rs.getBoolean("ENABLED"),
-                    rs.getBoolean("ENABLED"),
-                    rs.getBoolean("ENABLED"),
-                    AuthorityUtils.createAuthorityList("ROLE_USER", "ROLE_ADMIN"));
-        return username ->
-            jdbcTemplate.queryForObject("SELECT * from ACCOUNT where ACCOUNT_NAME = ?",
+                new User(
+                        rs.getString("ACCOUNT_NAME"),
+                        rs.getString("PASSWORD"),
+                        rs.getBoolean("ENABLED"),
+                        rs.getBoolean("ENABLED"),
+                        rs.getBoolean("ENABLED"),
+                        rs.getBoolean("ENABLED"),
+                        AuthorityUtils.createAuthorityList("ROLE_USER", "ROLE_ADMIN"));
+        return username -> {
+            if (accountEntityRepository.findAccountEntitiesByAccountName(username) == null) {
+                throw new IllegalArgumentException("用户名或密码错误");
+            }
+            return jdbcTemplate.queryForObject("SELECT * from ACCOUNT where ACCOUNT_NAME = ?",
                     userRowMapper, username);
+        };
     }
 
     @Override

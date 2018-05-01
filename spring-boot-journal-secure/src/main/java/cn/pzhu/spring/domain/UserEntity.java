@@ -8,10 +8,10 @@ import java.util.Date;
 
 @Entity
 @Table(name = "UserEntity")
-public class UserEntity extends IdEntity{
+public class UserEntity extends AbstractEntity {
 
     private String loginName;
-    private String shaPassword;
+    private String password;
     //用户名
     private String name;//
     //邮箱
@@ -25,11 +25,12 @@ public class UserEntity extends IdEntity{
 
     //2激活 1未激活 0不可用
     private Integer status=1;// 账号状态
-    private Integer version = 1;//1 默认 2测试
     private Date createTime = new Date();
+    private Date lastModifyTime;
     private String createBy = "";
     private Date lastLoginTime;
     private String cellphone;
+    private String profilePicture;
 
     //激活账号CODE
     private String activationCode;
@@ -38,37 +39,7 @@ public class UserEntity extends IdEntity{
     //找回密码最后期限  默认设置一天之内
     private Date findPwdLastDate;
 
-    //加点盐
-    private String salt;
-
-//	private Date tokenTime;
-
-    // Hibernate自动维护的Version字段
-    // @Version
-    public Integer getVersion() {
-        return version;
-    }
-
-    public void setVersion(Integer version) {
-        this.version = version;
-    }
-
     @Column(nullable = false, unique = true)
-    public String getLoginName() {
-        return loginName;
-    }
-
-    public void setLoginName(String loginName) {
-        this.loginName = loginName;
-    }
-
-    public String getShaPassword() {
-        return shaPassword;
-    }
-
-    public void setShaPassword(String shaPassword) {
-        this.shaPassword = shaPassword;
-    }
 
     public String getName() {
         return name;
@@ -82,10 +53,25 @@ public class UserEntity extends IdEntity{
         return email;
     }
 
+    public Date getLastModifyTime() {
+        return lastModifyTime;
+    }
+
+    public void setLastModifyTime(Date lastModifyTime) {
+        this.lastModifyTime = lastModifyTime;
+    }
+
+    public String getProfilePicture() {
+        return profilePicture;
+    }
+
+    public void setProfilePicture(String profilePicture) {
+        this.profilePicture = profilePicture;
+    }
+
     public void setEmail(String email) {
         this.email = email;
     }
-
 
     public Integer getStatus() {
         return status;
@@ -119,14 +105,29 @@ public class UserEntity extends IdEntity{
         this.cellphone = cellphone;
     }
 
+    public String getLoginName() {
+        return loginName;
+    }
 
-	/*public Long getOrganId() {
-		return organId;
-	}
+    public void setLoginName(String loginName) {
+        this.loginName = loginName;
+    }
 
-	public void setOrganId(Long organId) {
-		this.organId = organId;
-	}*/
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(String roleId) {
+        this.roleId = roleId;
+    }
 
     public Date getBirthday() {
         return birthday;
@@ -166,14 +167,6 @@ public class UserEntity extends IdEntity{
 
     public void setActivationCode(String activationCode) {
         this.activationCode = activationCode;
-    }
-
-    public String getSalt() {
-        return salt;
-    }
-
-    public void setSalt(String salt) {
-        this.salt = salt;
     }
 
     public String getFindPwdCode() {
@@ -225,7 +218,5 @@ public class UserEntity extends IdEntity{
     public void setFindPwdUrl(String findPwdUrl) {
         this.findPwdUrl = findPwdUrl;
     }
-
-
 
 }
