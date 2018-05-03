@@ -14,33 +14,19 @@ import java.io.Serializable;
 public class CollectEntity extends AbstractEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Column(nullable = false)
+
     private String userId;
-    @Column(nullable = false)
     private Long favoritesId;
-    @Column(nullable = false)
     private String url;
-    @Column(nullable = false)
     private String title;
-    @Column(nullable = true, length = 65535, columnDefinition = "Text")
     private String description;
-    @Column(nullable = true)
     private String logoUrl;
-    @Column(nullable = true)
     private String charset;
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = true)
     private CollectType type;
-    @Column(nullable = true)
     private String remark;
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
     private IsDelete isDelete = IsDelete.NO;
-    @Column(nullable = false)
     private Long createTime;
-    @Column(nullable = false)
     private Long lastModifyTime;
-    @Column(nullable = true)
     private String category;
     @Transient
     private String collectTime;
@@ -51,6 +37,7 @@ public class CollectEntity extends AbstractEntity implements Serializable {
         return serialVersionUID;
     }
 
+    @Column(nullable = false)
     public String getUserId() {
         return userId;
     }
@@ -59,6 +46,7 @@ public class CollectEntity extends AbstractEntity implements Serializable {
         this.userId = userId;
     }
 
+    @Column(nullable = false)
     public Long getFavoritesId() {
         return favoritesId;
     }
@@ -67,6 +55,7 @@ public class CollectEntity extends AbstractEntity implements Serializable {
         this.favoritesId = favoritesId;
     }
 
+    @Column(nullable = false)
     public String getUrl() {
         return url;
     }
@@ -75,6 +64,7 @@ public class CollectEntity extends AbstractEntity implements Serializable {
         this.url = url;
     }
 
+    @Column(nullable = false)
     public String getTitle() {
         return title;
     }
@@ -83,6 +73,7 @@ public class CollectEntity extends AbstractEntity implements Serializable {
         this.title = title;
     }
 
+    @Column(nullable = true, length = 65535, columnDefinition = "Text")
     public String getDescription() {
         return description;
     }
@@ -91,6 +82,7 @@ public class CollectEntity extends AbstractEntity implements Serializable {
         this.description = description;
     }
 
+    @Column(nullable = true)
     public String getLogoUrl() {
         return logoUrl;
     }
@@ -99,6 +91,7 @@ public class CollectEntity extends AbstractEntity implements Serializable {
         this.logoUrl = logoUrl;
     }
 
+    @Column(nullable = true)
     public String getCharset() {
         return charset;
     }
@@ -107,6 +100,8 @@ public class CollectEntity extends AbstractEntity implements Serializable {
         this.charset = charset;
     }
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = true)
     public CollectType getType() {
         return type;
     }
@@ -115,6 +110,7 @@ public class CollectEntity extends AbstractEntity implements Serializable {
         this.type = type;
     }
 
+    @Column(nullable = true)
     public String getRemark() {
         return remark;
     }
@@ -123,6 +119,8 @@ public class CollectEntity extends AbstractEntity implements Serializable {
         this.remark = remark;
     }
 
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     public IsDelete getIsDelete() {
         return isDelete;
     }
@@ -131,15 +129,17 @@ public class CollectEntity extends AbstractEntity implements Serializable {
         this.isDelete = isDelete;
     }
 
+    @Column(nullable = false)
+    @JsonSerialize(using=JsonDateSerializer.class)
     public Long getCreateTime() {
         return createTime;
     }
 
-    @JsonSerialize(using=JsonDateSerializer.class)
     public void setCreateTime(Long createTime) {
         this.createTime = createTime;
     }
 
+    @Column(nullable = false)
     public Long getLastModifyTime() {
         return lastModifyTime;
     }
@@ -148,6 +148,7 @@ public class CollectEntity extends AbstractEntity implements Serializable {
         this.lastModifyTime = lastModifyTime;
     }
 
+    @Column(nullable = true)
     public String getCategory() {
         return category;
     }

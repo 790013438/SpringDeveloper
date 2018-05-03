@@ -5,8 +5,6 @@ import cn.pzhu.spring.domain.UserEntity;
 import cn.pzhu.spring.repository.AccountEntityRepository;
 import cn.pzhu.spring.repository.UserEntityRepository;
 import cn.pzhu.spring.service.EmailService;
-import cn.pzhu.spring.web.response.ExceptionMsg;
-import cn.pzhu.spring.web.response.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,15 +14,20 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @RestController
 public class UserController {
@@ -37,22 +40,16 @@ public class UserController {
     private PasswordEncoder passwordEncoder;
     @Autowired
     private EmailService emailService;
-    @Autowired
-    private String LOGIN_SESSION_KEY;
     @Value("${server.port}")
     private String serverPort;
 
     private static final String VIEW_REGISTER = "register";
+    private static final String VIEW_CONFIRM = "confirm";
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @GetMapping("/forgotPassword")
     public String forgotPassword() {
         return "forgotPassword";
-    }
-
-    @PostMapping("/login")
-    public Response login() {
-        return new Response(ExceptionMsg.EmailUsed);
     }
 
     // Return registration form template
@@ -80,16 +77,16 @@ public class UserController {
             // new userEntity so we create userEntity and send confirmation e-mail
 
             // Disable userEntity util they click on confirmation link in email
+            userEntity.setConfirmationToken(UUID.randomUUID().toString());
+            userEntity = userEntityRepository.save(userEntity);
             AccountEntity emailAccountEntity = new AccountEntity();
             emailAccountEntity.setEnabled(false);
             emailAccountEntity.setUserEntityId(userEntity.getId());
             emailAccountEntity.setAccountName(userEntity.getEmail());
-            emailAccountEntity.setConfirmationToken(UUID.randomUUID().toString());
             AccountEntity userNameAccountEntity = new AccountEntity();
             userNameAccountEntity.setEnabled(false);
             userNameAccountEntity.setUserEntityId(userEntity.getId());
             userNameAccountEntity.setAccountName(userEntity.getName());
-            userNameAccountEntity.setConfirmationToken(UUID.randomUUID().toString());
 
             accountEntityRepository.save(emailAccountEntity);
             accountEntityRepository.save(userNameAccountEntity);
@@ -109,38 +106,46 @@ public class UserController {
         return modelAndView;
     }
 
-    @PostMapping("/user/register")
-    public Response create(UserEntity userEntity) {
-        try {
-            UserEntity registerUser = userEntityRepository.findByEmail(userEntity.getEmail());
-            if (null != registerUser) {
-                return new Response(ExceptionMsg.EmailUsed);
-            }
-            UserEntity userNameUser = userEntityRepository.findByName(userEntity.getName());
-            if (null != userNameUser) {
-                return new Response(ExceptionMsg.UserNameUsed);
-            }
-            userEntity.setPassword(passwordEncoder.encode(userEntity.getPassword()));
-            userEntity.setLastModifiedDate(new Date());
-            userEntity.setProfilePicture("img/favicon.png");
-            userEntityRepository.save(userEntity);
+    @GetMapping("/confirm")
+    public ModelAndView confirm(ModelAndView modelAndView, @RequestParam("token") String token) {
+        UserEntity userEntity = userEntityRepository.findByConfirmationToken(token);
 
-            AccountEntity accountEntity = new AccountEntity();
-            accountEntity.setAccountName(userEntity.getName());
-            accountEntity.setPassword(passwordEncoder.encode(userEntity.getPassword()));
-            accountEntity.setUserEntityId(userEntity.getId());
-            accountEntityRepository.save(accountEntity);
-
-            // 添加默认属性设置
-//            configService.saveConfig(userEntity.getId(), String.valueOf(favorites.getId()));
-            ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
-                    .getRequest()
-                    .getSession()
-                    .setAttribute(LOGIN_SESSION_KEY, userEntity);
-        } catch (Exception e) {
-            logger.error("create userEntity failed, ", e);
-            return new Response(ExceptionMsg.FAILED);
+        if (userEntity == null) {
+            // No token found in DB
+            modelAndView.addObject("invalidToken", "哎呀！ 这是一个无效的确认链接。");
+        } else {
+            // Token found
+            modelAndView.addObject("confirmationToken", userEntity.getConfirmationToken());
         }
-        return new Response();
+
+        modelAndView.setViewName(VIEW_CONFIRM);
+        return modelAndView;
+    }
+
+    // Process confirmation link
+    @RequestMapping(value="/confirm", method = RequestMethod.POST)
+    public ModelAndView confirmRegistration(ModelAndView modelAndView, BindingResult bindingResult, @RequestParam Map<String, String> requestParams, RedirectAttributes redir) {
+        modelAndView.setViewName(VIEW_CONFIRM);
+
+        // 找到与重置令牌关联的用户
+        UserEntity userEntity = userEntityRepository.findByConfirmationToken(requestParams.get("token"));
+
+        // 设置新密码, 将用户account设置为启用
+        userEntity.setPassword(passwordEncoder.encode(requestParams.get("password")));
+        List<AccountEntity> accountEntityList = accountEntityRepository.findByUserEntityId(userEntity.getId())
+                .parallelStream()
+                .peek(e -> {
+                    e.setPassword(passwordEncoder
+                            .encode(requestParams
+                                    .get("password")));
+                    e.setEnabled(true);
+                }).collect(Collectors.toList());
+
+        // 保存用户> 账号
+        userEntityRepository.save(userEntity);
+        accountEntityRepository.saveAll(accountEntityList);
+
+        modelAndView.addObject("successMessage", "您的密码设置成功！");
+        return modelAndView;
     }
 }

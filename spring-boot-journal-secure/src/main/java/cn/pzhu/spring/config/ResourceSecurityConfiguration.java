@@ -15,6 +15,7 @@ public class ResourceSecurityConfiguration extends WebSecurityConfigurerAdapter 
         httpSecurity.authorizeRequests()
             .antMatchers("/").permitAll()
             .antMatchers("/register").permitAll()
+            .antMatchers("/confirm").permitAll()
             .antMatchers("/api/**").authenticated()
             .and()
             .formLogin().loginPage("/login").permitAll()

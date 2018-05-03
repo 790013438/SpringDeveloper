@@ -8,23 +8,18 @@ import java.io.Serializable;
 public class FavoritesEntity extends AbstractEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Column(nullable = false)
     private String userId;
-    @Column(nullable = false)
     private String name;
-    @Column(nullable = false)
     private Long count;
-    @Column(nullable = false)
     private Long createTime;
-    @Column(nullable = false)
     private Long lastModifyTime;
-    @Column(nullable = false)
     private Long publicCount;
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }
 
+    @Column(nullable = false)
     public String getUserId() {
         return userId;
     }
@@ -33,6 +28,7 @@ public class FavoritesEntity extends AbstractEntity implements Serializable {
         this.userId = userId;
     }
 
+    @Column(nullable = false)
     public String getName() {
         return name;
     }
@@ -41,6 +37,7 @@ public class FavoritesEntity extends AbstractEntity implements Serializable {
         this.name = name;
     }
 
+    @Column(nullable = false)
     public Long getCount() {
         return count;
     }
@@ -49,14 +46,17 @@ public class FavoritesEntity extends AbstractEntity implements Serializable {
         this.count = count;
     }
 
+    @Column(nullable = false)
     public Long getCreateTime() {
         return createTime;
     }
 
+    @Column(nullable = false)
     public void setCreateTime(Long createTime) {
         this.createTime = createTime;
     }
 
+    @Column(nullable = false)
     public Long getLastModifyTime() {
         return lastModifyTime;
     }

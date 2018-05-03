@@ -11,5 +11,6 @@ import javax.transaction.Transactional;
 public interface UserEntityRepository extends JpaRepository<UserEntity, String>{
 
     UserEntity findByEmail(String email);
-    UserEntity findByName(String userName);
+
+    UserEntity findByConfirmationToken(String token);
 }

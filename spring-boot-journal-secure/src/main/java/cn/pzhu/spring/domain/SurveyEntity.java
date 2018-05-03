@@ -1,24 +1,25 @@
 package cn.pzhu.spring.domain;
-import java.util.Date;
-import java.util.List;
-
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import org.hibernate.annotations.Formula;
 
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+import java.util.Date;
+import java.util.List;
 
 
 /**
  * 试卷目录及试卷
+ *
  * @author keyuan
  * @author Floyd
- *
+ * <p>
  * https://github.com/790013438/DWSurvey
  */
 @Entity
-@Table(name="surveyEntity")
+@Table(name = "surveyEntity")
 public class SurveyEntity extends AbstractEntity {
 
     private String id;
@@ -35,7 +36,7 @@ public class SurveyEntity extends AbstractEntity {
     //试卷下面有多少题目数
     private Integer surveyQuestionNum;
     //试卷状态  0默认设计状态  1执行中 2结束
-    private Integer surveyStatus=0;
+    private Integer surveyStatus = 0;
 
     // 表中没有的用户名
     private String userName;
@@ -44,11 +45,14 @@ public class SurveyEntity extends AbstractEntity {
     public String getUserName() {
         return userName;
     }
+
     public void setUserName(String userName) {
         this.userName = userName;
     }
 
-    private List<QuestionEntity> questions=null;
+    // 表中没有List,QuestionEntity
+    private List<QuestionEntity> questions = null;
+
     @Transient
     public List<QuestionEntity> getQuestions() {
         return questions;

@@ -3,167 +3,85 @@
 
 <head>
     <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content=""/>
-    <meta name="author" content=""/>
-
-    <title>PzhUniversity | 确定密码</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <meta name="description" content="Bootstrap Admin App + jQuery"/>
+    <meta name="keywords" content="app, responsive, jquery, bootstrap, dashboard, admin"/>
+    <title>Pzh University | 确定密码</title>
+    <link rel="icon" href="https://github.com/fluidicon.png" type="image/x-icon"/>
+    <link rel="stylesheet" th:href="@{/vendor/fontawesome/css/font-awesome.min.css}"/>
+    <link rel="stylesheet" th:href="@{/vendor/simple-line-icons/css/simple-line-icons.css}"/>
     <!-- Bootstrap core CSS -->
     <link
             href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
             rel="stylesheet"
             integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-            crossorigin="anonymous"/>
+            crossorigin="anonymous" />
+    <link rel="stylesheet" th:href="@{/media/css/app.css}"/>
+    <link rel="stylesheet" th:href="@{/media/css/theme-i.css}"/>
 
 </head>
-
-<body class="gray-bg">
-
-<div class="middle-box text-center loginscreen animated fadeInDown">
-    <div>
-
-        <hr/>
-        <h4>Set Your Password</h4>
-
-        <div th:if="${successMessage}" class="alert alert-success"
-             role="alert" th:text=${successMessage}></div>
-
-        <div th:if="${errorMessage}" class="alert alert-danger"
-             role="alert" th:text=${errorMessage}></div>
-
-        <div th:if="${invalidToken}" class="alert alert-danger"
-             role="alert" th:text=${invalidToken}></div>
-
-        <form th:if="!${invalidToken}" class="m-t" id="passwordForm" role="form" action="#"
-              th:object="${setPassword}" th:action="@{/confirm}" method="post">
-
-            <input type="hidden" name="token" th:value=${confirmationToken}>
-
-            <div class="form-group input-group">
-          <span class="input-group-addon">
-            <span class="glyphicon glyphicon-lock"></span>
-          </span>
-                <input name="password" type="password" id="password"
-                       placeholder="Password" class="form-control" required/>
-                <span class="glyphicon"
-                      aria-hidden="true"></span>
+<body>
+<div class="wrapper">
+    <div class="block-center mt-xl wd-xl">
+        <div class="panel panel-dark panel-flat">
+            <div class="panel-heading text-center">
+                <a href="/index">
+                    <svg height="32" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="32" aria-hidden="true"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg>
+                </a>
             </div>
+            <div class="panel-body" id="registPage">
+                <p class="text-center pv">设置你的密码</p>
 
-            <div class="form-group input-group has-feedback">
-          <span class="input-group-addon">
-            <span class="glyphicon glyphicon-lock"></span>
-          </span>
-                <input type="password" class="form-control" id="signup-password-confirm" placeholder="Confirm Password"
-                       name="ConfirmPassword" data-fv-notempty="true"
-                       data-fv-notempty-message="Please confirm password"
-                       data-fv-identical="true"
-                       data-fv-identical-field="password"
-                       data-fv-identical-message="Both passwords must be identical"/>
+                <div th:if="${successMessage}" class="alert alert-success"
+                     role="alert" th:text=${successMessage}></div>
 
-                <div class="help-block with-errors"></div>
+                <div th:if="${invalidToken}" class="alert alert-danger"
+                     role="alert" th:text=${invalidToken}></div>
+
+                <form  id="passwordForm" autocomplete="off"  role="form"
+                      th:action="@{/confirm}" action="#"
+                      th:if="!${invalidToken}"
+                      data-parsley-validate="true" method="post">
+
+                    <input type="hidden" name="token"
+                           th:value="${confirmationToken}"/>
+
+                    <div class="form-group has-feedback">
+                        <label for="password" class="text-muted">密码</label>
+                        <input name="password" id="password" type="password" placeholder="密码" class="form-control"
+                               required="required" data-parsley-required-message="请输入密码"
+                               data-parsley-pattern-message="请输入6-20位字母数字组合"/>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input id="signup-password-confirm" type="password" placeholder="确认密码" class="form-control"
+                               name="ConfirmPassword" required="required" data-parsley-required-message="请输入密码"
+                               data-parsley-pattern-message="请输入6-20位字母数字组合"
+                               data-fv-notempty="true"
+                               data-fv-notempty-message="请确认密码"
+                               data-fv-identical-field="password"
+                               data-fv-identical-message="两个密码必须相同"/>
+                        <span class="fa fa-lock form-control-feedback text-muted"></span>
+                    </div>
+                    <button type="submit" class="btn btn-block btn-primary mt-lg">保存</button>
+                </form>
             </div>
-
-
-            <button type="submit"
-                    class="btn btn-primary block full-width m-b">Save
-            </button>
-
-        </form>
-
-
+        </div>
+        <div class="p-lg text-center">
+            <span>&copy;</span>
+            <span>2016</span>
+            <span>-</span>
+            <span>2018</span>
+            <br/>
+            <span>790013438@qq.com</span>
+        </div>
     </div>
 </div>
-
-<!-- jQuery-->
-<script
-        src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
 <!-- Bootstrap -->
 <script
         src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
+</body>
 
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js"></script>
-
-<script th:src="@{js/fv.min.js}"></script>
-<script>
-    $(document).ready(function () {
-        $('#passwordForm').formValidation({
-            framework: 'bootstrap',
-            icon: {
-                valid: 'glyphicon glyphicon-ok',
-                invalid: 'glyphicon glyphicon-remove',
-                validating: 'glyphicon glyphicon-refresh'
-            },
-            fields: {
-
-                password: {
-                    validators: {
-                        notEmpty: {
-                            message: 'The password is required'
-                        },
-                        callback: {
-                            callback: function (value, validator, $field) {
-                                var password = $field.val();
-                                if (password == '') {
-                                    return true;
-                                }
-
-                                var result = zxcvbn(password),
-                                    score = result.score,
-                                    message = result.feedback.warning || 'The password is weak';
-
-                                // Update the progress bar width and add alert class
-                                var $bar = $('#strengthBar');
-                                switch (score) {
-                                    case 0:
-                                        $bar.attr('class', 'progress-bar progress-bar-danger')
-                                            .css('width', '1%');
-                                        break;
-                                    case 1:
-                                        $bar.attr('class', 'progress-bar progress-bar-danger')
-                                            .css('width', '25%');
-                                        break;
-                                    case 2:
-                                        $bar.attr('class', 'progress-bar progress-bar-danger')
-                                            .css('width', '50%');
-                                        break;
-                                    case 3:
-                                        $bar.attr('class', 'progress-bar progress-bar-warning')
-                                            .css('width', '75%');
-                                        break;
-                                    case 4:
-                                        $bar.attr('class', 'progress-bar progress-bar-success')
-                                            .css('width', '100%');
-                                        break;
-                                }
-
-                                // We will treat the password as an invalid one if the score is less than 3
-                                if (score < 3) {
-                                    return {
-                                        valid: false,
-                                        message: message
-                                    }
-                                }
-
-                                return true;
-                            }
-                        }
-                    }
-                }
-            }
-        });
-    });
-</script>
-});
-</script>
-
-<
-/body>
-
-< /html>
+</html>

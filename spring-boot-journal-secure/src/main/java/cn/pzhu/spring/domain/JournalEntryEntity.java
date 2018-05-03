@@ -18,8 +18,6 @@ import java.util.Date;
 @Table(name = "entry")
 public class JournalEntryEntity {
 
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
     private String title;
     private Date created;
@@ -36,6 +34,8 @@ public class JournalEntryEntity {
 
     JournalEntryEntity(){}
 
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     public Long getId() {
         return id;
     }
@@ -70,6 +70,7 @@ public class JournalEntryEntity {
     }
 
     @JsonIgnore
+    @Transient
     public String getCreatedAsShort() {
         return simpleDateFormat.format(created);
     }
