@@ -1,6 +1,5 @@
 package cn.pzhu.spring.domain;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -10,37 +9,21 @@ import java.util.Date;
 @Table(name = "UserEntity")
 public class UserEntity extends AbstractEntity {
 
-    private String loginName;
     private String password;
     //用户名
-    private String name;//
+    private String name;
     //邮箱
     private String email;
     //出生年月
     private Date birthday;
-    //最高学历
-    private Integer eduQuali;
-    //性别
-    private Integer sex;
+
+    private String confirmationToken;
 
     //2激活 1未激活 0不可用
     private Integer status=1;// 账号状态
-    private Date createTime = new Date();
-    private Date lastModifyTime;
-    private String createBy = "";
     private Date lastLoginTime;
     private String cellphone;
     private String profilePicture;
-
-    //激活账号CODE
-    private String activationCode;
-    //找回密码code   ""或null表示没有激活找回密码功能
-    private String findPwdCode;
-    //找回密码最后期限  默认设置一天之内
-    private Date findPwdLastDate;
-
-    @Column(nullable = false, unique = true)
-
     public String getName() {
         return name;
     }
@@ -53,12 +36,12 @@ public class UserEntity extends AbstractEntity {
         return email;
     }
 
-    public Date getLastModifyTime() {
-        return lastModifyTime;
+    public String getConfirmationToken() {
+        return confirmationToken;
     }
 
-    public void setLastModifyTime(Date lastModifyTime) {
-        this.lastModifyTime = lastModifyTime;
+    public void setConfirmationToken(String confirmationToken) {
+        this.confirmationToken = confirmationToken;
     }
 
     public String getProfilePicture() {
@@ -81,36 +64,12 @@ public class UserEntity extends AbstractEntity {
         this.status = status;
     }
 
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public String getCreateBy() {
-        return createBy;
-    }
-
-    public void setCreateBy(String createBy) {
-        this.createBy = createBy;
-    }
-
     public String getCellphone() {
         return cellphone;
     }
 
     public void setCellphone(String cellphone) {
         this.cellphone = cellphone;
-    }
-
-    public String getLoginName() {
-        return loginName;
-    }
-
-    public void setLoginName(String loginName) {
-        this.loginName = loginName;
     }
 
     public String getPassword() {
@@ -137,22 +96,6 @@ public class UserEntity extends AbstractEntity {
         this.birthday = birthday;
     }
 
-    public Integer getEduQuali() {
-        return eduQuali;
-    }
-
-    public void setEduQuali(Integer eduQuali) {
-        this.eduQuali = eduQuali;
-    }
-
-    public Integer getSex() {
-        return sex;
-    }
-
-    public void setSex(Integer sex) {
-        this.sex = sex;
-    }
-
     public Date getLastLoginTime() {
         return lastLoginTime;
     }
@@ -160,31 +103,6 @@ public class UserEntity extends AbstractEntity {
     public void setLastLoginTime(Date lastLoginTime) {
         this.lastLoginTime = lastLoginTime;
     }
-
-    public String getActivationCode() {
-        return activationCode;
-    }
-
-    public void setActivationCode(String activationCode) {
-        this.activationCode = activationCode;
-    }
-
-    public String getFindPwdCode() {
-        return findPwdCode;
-    }
-
-    public void setFindPwdCode(String findPwdCode) {
-        this.findPwdCode = findPwdCode;
-    }
-
-    public Date getFindPwdLastDate() {
-        return findPwdLastDate;
-    }
-
-    public void setFindPwdLastDate(Date findPwdLastDate) {
-        this.findPwdLastDate = findPwdLastDate;
-    }
-
 
     private String plainPassword;
     @Transient

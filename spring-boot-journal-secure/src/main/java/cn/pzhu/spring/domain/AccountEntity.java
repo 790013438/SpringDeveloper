@@ -9,6 +9,7 @@ public class AccountEntity extends AbstractEntity {
     private String password;
     private Boolean enabled;
     private String userEntityId;
+    private String confirmationToken;
 
     public String getPassword() {
         return password;
@@ -28,6 +29,14 @@ public class AccountEntity extends AbstractEntity {
 
     public Boolean getEnabled() {
         return enabled;
+    }
+
+    public String getConfirmationToken() {
+        return confirmationToken;
+    }
+
+    public void setConfirmationToken(String confirmationToken) {
+        this.confirmationToken = confirmationToken;
     }
 
     public void setEnabled(Boolean enabled) {
