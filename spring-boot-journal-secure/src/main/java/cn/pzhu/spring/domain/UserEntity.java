@@ -19,8 +19,6 @@ public class UserEntity extends AbstractEntity {
 
     private String confirmationToken;
 
-    //2激活 1未激活 0不可用
-    private Integer status=1;// 账号状态
     private Date lastLoginTime;
     private String cellphone;
     private String profilePicture;
@@ -56,14 +54,6 @@ public class UserEntity extends AbstractEntity {
         this.email = email;
     }
 
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
     public String getCellphone() {
         return cellphone;
     }
@@ -80,14 +70,6 @@ public class UserEntity extends AbstractEntity {
         this.password = password;
     }
 
-    public String getRoleId() {
-        return roleId;
-    }
-
-    public void setRoleId(String roleId) {
-        this.roleId = roleId;
-    }
-
     public Date getBirthday() {
         return birthday;
     }
@@ -102,39 +84,6 @@ public class UserEntity extends AbstractEntity {
 
     public void setLastLoginTime(Date lastLoginTime) {
         this.lastLoginTime = lastLoginTime;
-    }
-
-    private String plainPassword;
-    @Transient
-    public String getPlainPassword() {
-        return plainPassword;
-    }
-
-    public void setPlainPassword(String plainPassword) {
-        this.plainPassword = plainPassword;
-    }
-
-    private String pwd;
-
-    @Transient
-    public String getPwd() {
-        return pwd;
-    }
-
-    public void setPwd(String pwd) {
-        this.pwd = pwd;
-    }
-
-    private String roleId;
-
-    private String findPwdUrl="";
-    @Transient
-    public String getFindPwdUrl() {
-        return findPwdUrl;
-    }
-
-    public void setFindPwdUrl(String findPwdUrl) {
-        this.findPwdUrl = findPwdUrl;
     }
 
 }

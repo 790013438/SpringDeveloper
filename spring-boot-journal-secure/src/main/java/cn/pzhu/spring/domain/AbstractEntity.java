@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Version;
 import java.util.Date;
+import java.util.UUID;
 
 /**
  * 统一定义id的entity基类.
@@ -21,7 +22,7 @@ import java.util.Date;
 @MappedSuperclass
 public abstract class AbstractEntity {
 
-    private String id;
+    private String id = UUID.randomUUID().toString();
 
     @Id
     @GeneratedValue(generator = "system-uuid")

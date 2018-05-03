@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 public class JournalSecureController {
 
-    private static final String VIEW_INDEX = "index";
+    private static final String VIEW_INDEX = "mySurveys";
     private static final String VIEW_LOGIN = "login";
     private final JournalRepository repo;
 

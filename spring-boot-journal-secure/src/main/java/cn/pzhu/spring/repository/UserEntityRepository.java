@@ -7,7 +7,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import javax.transaction.Transactional;
 
 @Transactional
-@RepositoryRestResource(collectionResourceRel = "user", path="university")
+@RepositoryRestResource(collectionResourceRel = "userEntity", path="university")
 public interface UserEntityRepository extends JpaRepository<UserEntity, String>{
 
     UserEntity findByEmail(String email);

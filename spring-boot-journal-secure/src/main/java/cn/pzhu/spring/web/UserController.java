@@ -15,10 +15,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -61,7 +58,7 @@ public class UserController {
     // Return registration form template
     @GetMapping("/register")
     public ModelAndView register(ModelAndView modelAndView, UserEntity userEntity) {
-        modelAndView.addObject("user", userEntity);
+        modelAndView.addObject("userEntity", userEntity);
         modelAndView.setViewName(VIEW_REGISTER);
         return modelAndView;
     }
@@ -70,20 +67,19 @@ public class UserController {
     @PostMapping("/register")
     public ModelAndView processRegistrationForm(ModelAndView modelAndView, @Valid UserEntity userEntity, BindingResult bindResult, HttpServletRequest httpServletRequest) {
         modelAndView.setViewName(VIEW_REGISTER);
-        // Lookup user in database by e-mail
+        // Lookup userEntity in database by e-mail
         UserEntity userExists = userEntityRepository.findByEmail(userEntity.getEmail());
+        AccountEntity accountExists = accountEntityRepository.findAccountEntitiesByAccountName(userEntity.getEmail());
 
-        System.out.println(userExists);
-
-        if (userExists != null) {
+        if (userExists != null || accountExists != null) {
             modelAndView.addObject("alreadyRegisteredMessage", "哎呀！ 邮箱已存在，换个邮箱试试或者尝试登录");
             bindResult.reject("email");
         }
 
         if (!bindResult.hasErrors()) {
-            // new user so we create user and send confirmation e-mail
+            // new userEntity so we create userEntity and send confirmation e-mail
 
-            // Disable user util they click on confirmation link in email
+            // Disable userEntity util they click on confirmation link in email
             AccountEntity emailAccountEntity = new AccountEntity();
             emailAccountEntity.setEnabled(false);
             emailAccountEntity.setUserEntityId(userEntity.getId());
@@ -92,7 +88,7 @@ public class UserController {
             AccountEntity userNameAccountEntity = new AccountEntity();
             userNameAccountEntity.setEnabled(false);
             userNameAccountEntity.setUserEntityId(userEntity.getId());
-            userNameAccountEntity.setAccountName(userEntity.getEmail());
+            userNameAccountEntity.setAccountName(userEntity.getName());
             userNameAccountEntity.setConfirmationToken(UUID.randomUUID().toString());
 
             accountEntityRepository.save(emailAccountEntity);
@@ -136,13 +132,13 @@ public class UserController {
             accountEntityRepository.save(accountEntity);
 
             // 添加默认属性设置
-//            configService.saveConfig(user.getId(), String.valueOf(favorites.getId()));
+//            configService.saveConfig(userEntity.getId(), String.valueOf(favorites.getId()));
             ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
                     .getRequest()
                     .getSession()
                     .setAttribute(LOGIN_SESSION_KEY, userEntity);
         } catch (Exception e) {
-            logger.error("create user failed, ", e);
+            logger.error("create userEntity failed, ", e);
             return new Response(ExceptionMsg.FAILED);
         }
         return new Response();

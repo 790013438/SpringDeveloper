@@ -16,6 +16,7 @@ public class SpringBootJournalsecureApplicationTests {
         PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
         System.out.println(passwordEncoder.encode("isawesome"));
         System.out.println(passwordEncoder.encode("isawesometoo"));
+        System.out.println(passwordEncoder.encode("1"));
     }
 
 }
