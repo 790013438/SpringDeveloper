@@ -11,11 +11,10 @@
     <link rel="stylesheet" th:href="@{/vendor/fontawesome/css/font-awesome.min.css}"/>
     <link rel="stylesheet" th:href="@{/vendor/simple-line-icons/css/simple-line-icons.css}"/>
     <!-- Bootstrap core CSS -->
-    <link
-            href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-            crossorigin="anonymous" />
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
     <link rel="stylesheet" th:href="@{/media/css/app.css}"/>
     <link rel="stylesheet" th:href="@{/media/css/theme-i.css}"/>
 
@@ -32,16 +31,19 @@
             <div class="panel-body" id="registPage">
                 <p class="text-center pv">设置你的密码</p>
 
-                <div th:if="${successMessage}" class="alert alert-success"
-                     role="alert" th:text=${successMessage}></div>
+                <div class="alert alert-success"
+                     role="alert"
+                     th:if="${successMessage}"
+                     th:text="${successMessage}"></div>
 
-                <div th:if="${invalidToken}" class="alert alert-danger"
-                     role="alert" th:text=${invalidToken}></div>
+                <div class="alert alert-danger"
+                     role="alert"
+                     th:if="${invalidToken}"
+                     th:text="${invalidToken}"></div>
 
-                <form  id="passwordForm" autocomplete="off"  role="form"
+                <form  id="passwordForm" autocomplete="off"  role="form" method="post"
                       th:action="@{/confirm}" action="#"
-                      th:if="!${invalidToken}"
-                      data-parsley-validate="true" method="post">
+                      th:if="!${invalidToken}">
 
                     <input type="hidden" name="token"
                            th:value="${confirmationToken}"/>
@@ -49,20 +51,23 @@
                     <div class="form-group has-feedback">
                         <label for="password" class="text-muted">密码</label>
                         <input name="password" id="password" type="password" placeholder="密码" class="form-control"
-                               required="required" data-parsley-required-message="请输入密码"
-                               data-parsley-pattern-message="请输入6-20位字母数字组合"/>
+                               required="required"
+                               data-parsley-required-message="请输入密码"/>
                     </div>
                     <div class="form-group has-feedback">
                         <input id="signup-password-confirm" type="password" placeholder="确认密码" class="form-control"
                                name="ConfirmPassword" required="required" data-parsley-required-message="请输入密码"
-                               data-parsley-pattern-message="请输入6-20位字母数字组合"
                                data-fv-notempty="true"
                                data-fv-notempty-message="请确认密码"
                                data-fv-identical-field="password"
                                data-fv-identical-message="两个密码必须相同"/>
                         <span class="fa fa-lock form-control-feedback text-muted"></span>
                     </div>
-                    <button type="submit" class="btn btn-block btn-primary mt-lg">保存</button>
+                    <button type="submit" class="btn btn-block btn-primary mt-lg"
+                            th:if="!${successMessage}">保存</button>
+                    <a type="link" class="btn btn-block btn-link bt-lg"
+                       th:if="${successMessage}"
+                       th:href="@{/login}">登录</a>
                 </form>
             </div>
         </div>
@@ -76,12 +81,40 @@
         </div>
     </div>
 </div>
-<!-- Bootstrap -->
-<script
-        src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+<!-- bootstrap 对jQuery的依赖 -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<script th:src="@{js/fv.min.js}"></script>
+<script>
+    $(document).ready(function () {
+        $('#passwordForm').formValidation({
+            fields: {
+                password: {
+                    validators: {
+                        identical: {
+                            field: 'confirmPassword',
+                            message: '两个密码必须相同'
+                        }
+                    }
+                },
+                ConfirmPassword: {
+                    validators: {
+                        identical: {
+                            field: 'password',
+                            message: '两个密码必须相同'
+                        }
+                    }
+                }
+            }
+        });
+    })
+</script>
 </body>
-
-
 </html>

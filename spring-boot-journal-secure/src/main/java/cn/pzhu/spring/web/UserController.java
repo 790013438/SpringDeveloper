@@ -142,8 +142,13 @@ public class UserController {
                 }).collect(Collectors.toList());
 
         // 保存用户> 账号
-        userEntityRepository.save(userEntity);
-        accountEntityRepository.saveAll(accountEntityList);
+        try {
+            userEntityRepository.save(userEntity);
+            accountEntityRepository.saveAll(accountEntityList);
+        } finally {
+            userEntity.setConfirmationToken("");
+            userEntityRepository.save(userEntity);
+        }
 
         modelAndView.addObject("successMessage", "您的密码设置成功！");
         return modelAndView;
