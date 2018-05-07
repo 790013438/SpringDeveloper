@@ -23,6 +23,7 @@ public class CountryController {
     public ModelAndView showPage(ModelAndView modelAndView, @RequestParam(defaultValue = "0")Integer page) {
         modelAndView.setViewName(VIEW_INDEX);
         modelAndView.addObject("data", countryRepository.findAll(PageRequest.of(page, 4)));
+        modelAndView.addObject("currentPage", page);
         return modelAndView;
     }
 
