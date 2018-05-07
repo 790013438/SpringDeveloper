@@ -35,16 +35,17 @@ public class CountryController {
     }
 
     @GetMapping("/delete")
-    public String delete(Integer country) {
-        countryRepository.deleteById(country);
+    public String delete(Integer id) {
+        countryRepository.deleteById(id);
 
         return "redirect:/";
     }
 
     @GetMapping("/findOne")
     @ResponseBody
-    public Country findOne(Integer country) {
-        return countryRepository.findById(country)
-                .orElse(null);
+    public Country findOne(@RequestParam(name="id") Integer id) {
+        return countryRepository.findById(id)
+                .orElseThrow(() ->
+                        new IllegalArgumentException("请求的资源不存在（id不存在TODO）"));
     }
 }
