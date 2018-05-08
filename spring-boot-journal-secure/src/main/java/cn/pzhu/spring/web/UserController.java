@@ -66,11 +66,17 @@ public class UserController {
         modelAndView.setViewName(VIEW_REGISTER);
         // Lookup userEntity in database by e-mail
         UserEntity userExists = userEntityRepository.findByEmail(userEntity.getEmail());
-        AccountEntity accountExists = accountEntityRepository.findAccountEntitiesByAccountName(userEntity.getEmail());
 
-        if (userExists != null || accountExists != null) {
+        if (userExists != null) {
             modelAndView.addObject("alreadyRegisteredMessage", "哎呀！ 邮箱已存在，换个邮箱试试或者尝试登录");
             bindResult.reject("email");
+        }
+        //
+        AccountEntity accountExists = accountEntityRepository.findAccountEntitiesByAccountName(userEntity.getEmail());
+
+        if (accountExists != null) {
+            modelAndView.addObject("alreadyRegisteredMessage", "哎呀！ 用户名已存在，换个用户名试试或者尝试登录");
+            bindResult.reject("userName");
         }
 
         if (!bindResult.hasErrors()) {

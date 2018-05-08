@@ -1,5 +1,7 @@
 package cn.pzhu.spring.domain;
 
+import cn.pzhu.spring.utils.JsonDateSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -44,6 +46,7 @@ public abstract class AbstractEntity {
     @Version
     private Long version = null;
 
+    @JsonSerialize(using = JsonDateSerializer.class)
     public Date getCreatedDate() {
         return createdDate;
     }

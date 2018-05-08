@@ -9,7 +9,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import javax.transaction.Transactional;
 
 @Transactional
-@RepositoryRestResource(collectionResourceRel = "collect", path="university")
+@RepositoryRestResource(collectionResourceRel = "collect", path="collection")
 public interface CollectEntityRepository extends JpaRepository<CollectEntity, String> {
 
     Long countByFavoritesIdAndTypeAndIsDelete(String id, CollectType aPublic, IsDelete no);

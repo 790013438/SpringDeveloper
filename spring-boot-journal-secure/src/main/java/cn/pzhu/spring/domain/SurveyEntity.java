@@ -2,11 +2,9 @@ package cn.pzhu.spring.domain;
 
 import org.hibernate.annotations.Formula;
 
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-import java.util.Date;
 import java.util.List;
 
 
@@ -27,8 +25,6 @@ public class SurveyEntity extends AbstractEntity {
     private Integer answerNumber;
     // 创建者Id
     private String UserEntity_id;
-    //创建时间
-    private Date createDate;
     private String htmlPath;
     //用于短链接的ID
     private String sid;
@@ -86,14 +82,6 @@ public class SurveyEntity extends AbstractEntity {
 
     public void setUserEntity_id(String userEntity_id) {
         UserEntity_id = userEntity_id;
-    }
-
-    public Date getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
     }
 
     public String getHtmlPath() {

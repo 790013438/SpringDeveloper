@@ -9,6 +9,6 @@ import javax.transaction.Transactional;
 
 @Repository
 @Transactional
-@RepositoryRestResource(collectionResourceRel = "surveyEntity", path="university")
+@RepositoryRestResource(collectionResourceRel = "surveyEntity", path="survey")
 public interface SurveyEntityRepository extends JpaRepository<SurveyEntity, Long> {
 }
