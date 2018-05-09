@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 
 <html lang="en">
-<html lang="en">
-<head>
+  <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
     <meta name="renderer" content="webkit" />
@@ -11,158 +10,221 @@
     <meta http-equiv="Cache-Control" content="no-siteapp" />
     <meta name="keywords" />
     <meta name="description" />
-    <link rel="shortcut icon" href="/user/img/favicon.png" />
-    <link rel="apple-touch-icon" href="/user/img/apple-touch-icon.png;" />
-    <title>首页 - My Blog</title>
-    <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.9.0/styles/xcode.min.css" />
-    <link rel="stylesheet" href="/user/css/style.min.css" />
-    <script src="//cdn.bootcss.com/jquery/2.2.3/jquery.min.js"></script>
+    <link rel="shortcut icon" th:href="/user/img/favicon.png" href="./user/img/favicon.png" />
+    <link rel="apple-touch-icon" th:href="/user/img/apple-touch-icon.png" href="./user/img/apple-touch-icon.png" />
+    <title>首页</title>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/highlight.js/9.9.0/styles/xcode.min.css" />
+    <link rel="stylesheet" th:href="/user/css/style.min.css" href="./user/css/style.min.css" />
+    <script src="http://cdn.bootcss.com/jquery/2.2.3/jquery.min.js"></script>
 
     <!--[if lt IE 9]>
-    <script src="//cdn.bootcss.com/html5shiv/r29/html5.min.js"></script>
-    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+      <script src="//cdn.bootcss.com/html5shiv/r29/html5.min.js"></script>
+      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-</head>
-<body gtools_scp_screen_capture_injected="true" class="bg-grey">
-<!--[if lt IE 8]>
-<div class="browsehappy" role="dialog">
-    当前网页 <strong>不支持</strong> 你正在使用的浏览器. 为了正常的访问, 请 <a href="http://browsehappy.com/" target="_blank">升级你的浏览器</a>。
-</div>
-<![endif]-->
-<header id="header" class="header bg-white">
-    <div class="navbar-container">
-        <a class="navbar-logo" href="">
-            <img alt="首页" src="/user/img/logo.png" />
-        </a>
-        <div class="navbar-menu">
+  </head>
+    <body gtools_scp_screen_capture_injected="true" class="bg-grey">
+      <!--[if lt IE 8]>
+        <div class="browsehappy" role="dialog">
+        当前网页 <strong>不支持</strong> 你正在使用的浏览器. 为了正常的访问, 请 <a href="http://browsehappy.com/" target="_blank">升级你的浏览器</a>。
+        </div>
+      <![endif]-->
+      <header id="header" class="header bg-white">
+        <div class="navbar-container">
+          <a class="navbar-logo" href="">
+            <img alt="首页" th:src="/user/img/logo.png" src="./user/img/logo.png" />
+          </a>
+          <div class="navbar-menu">
             <a href="/archives">归档</a>
             <a href="/links">友链</a>
             <a href="/about">关于</a>
-        </div>
-        <div class="navbar-search" onclick="">
+          </div>
+          <div class="navbar-search" onclick="">
             <span class="icon-search"></span>
             <form role="search" onsubmit="return false;">
-                <span class="search-box">
-                    <input type="text" id="search-inp" class="input" placeholder="搜索..." maxlength="30" autocomplete="off" />
-                </span>
+              <span class="search-box">
+                <input type="text" id="search-inp" class="input" placeholder="搜索..." maxlength="30" autocomplete="off" />
+              </span>
             </form>
-        </div>
-        <div class="navbar-mobile-menu" onclick="">
+          </div>
+          <div class="navbar-mobile-menu" onclick="">
             <span class="icon-menu cross"><span class="middle"></span></span>
             <ul>
-                <li><a href="/archives">归档</a></li>
-                <li><a href="/links">友链</a></li>
-                <li><a href="/about">关于</a></li>
+              <li><a href="/archives">归档</a></li>
+              <li><a href="/links">友链</a></li>
+              <li><a href="/about">关于</a></li>
             </ul>
+          </div>
         </div>
-    </div>
-</header>
-</body>
-</html>
-<body>
-<div class="main-content index-page clearfix">
-    <div class="post-lists">
+      </header>
+    </body>
+  </html>
+  <body>
+    <div class="main-content index-page clearfix">
+      <div class="post-lists">
         <div class="post-lists-body">
-            <div class="post-list-item">
-                <div class="post-list-item-container">
-                    <a class="item-thumb  bg-deepgrey" href="/article/2" style="background-image:url(/user/img/rand/2.jpg);">
-                        <dir class="item-desc"></dir>
-                    </a>
-                    <div class="item-slant reverse-slant &lt; bg-deepgrey"></div>
-                    <div class="item-slant"></div>
-                    <div class="item-label">
-                        <div class="item-title"><a href="/article/2">Hello My Blog</a>
-                        </div>
-                        <div class="item-meta clearfix">
-                            <div class="item-meta-ico bg-ico-note" style="background: url(/user/img/bg-ico.png);no-repeat;background-size: 40px auto;"></div>
-                            <div class="item-meta-cat"><a href="/category/default">default</a></div>
-                        </div>
-                    </div>
+          <div class="post-list-item">
+            <div class="post-list-item-container">
+              <a class="item-thumb  bg-deepgrey" href="/article/2" th:style="background-image:url(/user/img/rand/1.jpg);" style="background-image:url(./user/img/rand/1.jpg);">
+                <dir class="item-desc"></dir>
+              </a>
+              <div class="item-slant reverse-slant &lt; bg-deepgrey"></div>
+              <div class="item-slant"></div>
+              <div class="item-label">
+                <div class="item-title"><a href="/article/2">课件信息的管理</a>
                 </div>
+                <div class="item-meta clearfix">
+                  <div class="item-meta-ico bg-ico-note" th:style="background: url(/user/img/bg-ico.png);no-repeat;background-size: 40px auto;" style="background: url(./user/img/bg-ico.png);no-repeat;background-size: 40px auto;"></div>
+                  <div class="item-meta-cat"><a href="/category/default">default</a></div>
+                </div>
+              </div>
             </div>
+          </div>
+          <div class="post-list-item">
+            <div class="post-list-item-container">
+              <a class="item-thumb  bg-deepgrey" href="/article/2" th:style="background-image:url(/user/img/rand/2.jpg);" style="background-image:url(./user/img/rand/2.jpg);">
+                <dir class="item-desc"></dir>
+              </a>
+              <div class="item-slant reverse-slant &lt; bg-deepgrey"></div>
+              <div class="item-slant"></div>
+              <div class="item-label">
+                <div class="item-title"><a href="/article/2">视频点播模块</a>
+                </div>
+                <div class="item-meta clearfix">
+                  <div class="item-meta-ico bg-ico-note" th:style="background: url(/user/img/bg-ico.png);no-repeat;background-size: 40px auto;" style="background: url(./user/img/bg-ico.png);no-repeat;background-size: 40px auto;"></div>
+                  <div class="item-meta-cat"><a href="/category/default">default</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="post-list-item">
+            <div class="post-list-item-container">
+              <a class="item-thumb  bg-deepgrey" href="/article/2" th:style="background-image:url(/user/img/rand/3.jpg);" style="background-image:url(./user/img/rand/3.jpg);">
+                <dir class="item-desc"></dir>
+              </a>
+              <div class="item-slant reverse-slant &lt; bg-deepgrey"></div>
+              <div class="item-slant"></div>
+              <div class="item-label">
+                <div class="item-title"><a href="/article/2">作业管理模块</a>
+                </div>
+                <div class="item-meta clearfix">
+                  <div class="item-meta-ico bg-ico-note" th:style="background: url(/user/img/bg-ico.png);no-repeat;background-size: 40px auto;" style="background: url(./user/img/bg-ico.png);no-repeat;background-size: 40px auto;"></div>
+                  <div class="item-meta-cat"><a href="/category/default">default</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="post-list-item">
+            <div class="post-list-item-container">
+              <a class="item-thumb  bg-deepgrey" href="/article/2" th:style="background-image:url(/user/img/rand/4.jpg);" style="background-image:url(./user/img/rand/4.jpg);">
+                <dir class="item-desc"></dir>
+              </a>
+              <div class="item-slant reverse-slant &lt; bg-deepgrey"></div>
+              <div class="item-slant"></div>
+              <div class="item-label">
+                <div class="item-title"><a href="/article/2">在线测试模块</a>
+                </div>
+                <div class="item-meta clearfix">
+                  <div class="item-meta-ico bg-ico-note" th:style="background: url(/user/img/bg-ico.png);no-repeat;background-size: 40px auto;" style="background: url(./user/img/bg-ico.png);no-repeat;background-size: 40px auto;"></div>
+                  <div class="item-meta-cat"><a href="/category/default">default</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="post-list-item">
+            <div class="post-list-item-container">
+              <a class="item-thumb  bg-deepgrey" href="/article/2" th:style="background-image:url(/user/img/rand/5.jpg);" style="background-image:url(./user/img/rand/5.jpg);">
+                <dir class="item-desc"></dir>
+              </a>
+              <div class="item-slant reverse-slant &lt; bg-deepgrey"></div>
+              <div class="item-slant"></div>
+              <div class="item-label">
+                <div class="item-title"><a href="/article/2">系统管理模块</a>
+                </div>
+                <div class="item-meta clearfix">
+                  <div class="item-meta-ico bg-ico-note" th:style="background: url(/user/img/bg-ico.png);no-repeat;background-size: 40px auto;" style="background: url(./user/img/bg-ico.png);no-repeat;background-size: 40px auto;"></div>
+                  <div class="item-meta-cat"><a href="/category/default">default</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-    </div>
-    <div class="lists-navigator clearfix">
+      </div>
+      <div class="lists-navigator clearfix">
         <ol class="page-navigator">
-        <li class="current"><a href="/page/1">1</a></li>
-</ol>
+          <li class="current"><a href="/page/1">1</a></li>
+        </ol>
+      </div>
     </div>
-</div>
-</body>
-<html lang="en">
-<body>
-<footer class="footer bg-white">
-    <div class="footer-social">
-        <div class="footer-container clearfix">
+      <footer class="footer bg-white">
+        <div class="footer-social">
+          <div class="footer-container clearfix">
             <div class="social-list"></div>
+          </div>
         </div>
-    </div>
-    <div class="footer-meta">
-        <div class="footer-container">
+        <div class="footer-meta">
+          <div class="footer-container">
             <div class="meta-item meta-copyright">
-                <div class="meta-copyright-info">
-                    <div class="info-text">
-                        <a href="http://blog.hanshuai.xin" style="display: block;margin: 0 auto;" class="info-logo">
-                            <img style="display: block;margin: 0 auto;" src="/user/img/logo.png" />
-                        </a>
-                        <br />
-                        <p>&copy; 版权所有  保留一切权利
-                        </p>
-                        <br />
-                        
-                    </div>
+              <div class="meta-copyright-info">
+                <div class="info-text">
+                  <a href="http://blog.hanshuai.xin" style="display: block;margin: 0 auto;" class="info-logo">
+                    <img style="display: block;margin: 0 auto;" th:src="/user/img/logo.png" src="./user/img/logo.png" />
+                  </a>
+                  <br />
+                  <p>&copy; 版权所有  保留一切权利
+                  </p>
+                  <br />
+
                 </div>
+              </div>
             </div>
 
+          </div>
         </div>
-    </div>
-</footer>
+      </footer>
 
-
-
-<script src="//cdn.bootcss.com/headroom/0.9.1/headroom.min.js"></script>
-<script src="//cdn.bootcss.com/highlight.js/9.9.0/highlight.min.js"></script>
-<script src="//cdn.bootcss.com/instantclick/3.0.1/instantclick.min.js"></script>
-<script>
-    /*<![CDATA[*/
-    var isOk = null;
-    if (isOk) {
-        var postDirectory = new Headroom(document.getElementById("directory-content"), {
-            tolerance: 0,
-            offset: 100,
-            classes: {
-                initial: "initial",
-                pinned: "pinned",
-                unpinned: "unpinned"
-            }
-        });
+      <script src="http://cdn.bootcss.com/headroom/0.9.1/headroom.min.js"></script>
+      <script src="http://cdn.bootcss.com/highlight.js/9.9.0/highlight.min.js"></script>
+      <script src="http://cdn.bootcss.com/instantclick/3.0.1/instantclick.min.js"></script>
+      <script>
+        /*<![CDATA[*/
+        var isOk = null;
+if (isOk) {
+  var postDirectory = new Headroom(document.getElementById("directory-content"), {
+    tolerance: 0,
+    offset: 100,
+    classes: {
+      initial: "initial",
+      pinned: "pinned",
+      unpinned: "unpinned"
     }
+  });
+}
 
 
-    var header = new Headroom(document.getElementById("header"), {
-        tolerance: 10,
-        offset: 80,
-        classes: {
-            initial: "animated",
-            pinned: "slideDown",
-            unpinned: "slideUp"
-        }
-    });
-    header.init();
-    $('#search-inp').keypress(function (e) {
-        var key = e.which; //e.which是按键的值
-        if (key == 13) {
-            var q = $(this).val();
-            if (q && q != '') {
-                window.location.href = '/search/' + q;
-            }
-        }
-    });
-    /*]]>*/
-</script>
-<script data-no-instant="">
-    /*<![CDATA[*/
-    InstantClick.on('change', function (isInitialLoad) {
+var header = new Headroom(document.getElementById("header"), {
+  tolerance: 10,
+  offset: 80,
+  classes: {
+    initial: "animated",
+    pinned: "slideDown",
+    unpinned: "slideUp"
+  }
+});
+header.init();
+$('#search-inp').keypress(function (e) {
+  var key = e.which; //e.which是按键的值
+  if (key == 13) {
+    var q = $(this).val();
+    if (q && q != '') {
+      window.location.href = '/search/' + q;
+    }
+  }
+});
+/*]]>*/
+      </script>
+      <script data-no-instant="">
+        /*<![CDATA[*/
+        InstantClick.on('change', function (isInitialLoad) {
         var blocks = document.querySelectorAll('pre code');
         for (var i = 0; i < blocks.length; i++) {
             hljs.highlightBlock(blocks[i]);
@@ -173,7 +235,6 @@
     });
     InstantClick.init('mousedown');
     /*]]>*/
-</script>
-</body>
-</html>
-</html>
+      </script>
+    </body>
+  </html>
