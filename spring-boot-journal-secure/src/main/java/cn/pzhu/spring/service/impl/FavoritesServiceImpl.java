@@ -1,9 +1,9 @@
 package cn.pzhu.spring.service.impl;
 
 import cn.pzhu.spring.domain.CollectEntity;
-import cn.pzhu.spring.domain.CollectType;
 import cn.pzhu.spring.domain.FavoritesEntity;
-import cn.pzhu.spring.domain.IsDelete;
+import cn.pzhu.spring.domain.enumerate.CollectType;
+import cn.pzhu.spring.domain.enumerate.IsDelete;
 import cn.pzhu.spring.repository.CollectEntityRepository;
 import cn.pzhu.spring.repository.FavoritesEntityRepository;
 import cn.pzhu.spring.service.FavoritesService;
@@ -38,7 +38,7 @@ public class FavoritesServiceImpl implements FavoritesService {
         favoritesEntity.setName(collectEntity.getNewFavorites());
         favoritesEntity.setUserId(collectEntity.getUserId());
         favoritesEntity.setCount(1L);
-        if (CollectType.PUBLIC.equals(collectEntity.getType())) {
+        if (CollectType.PUBLIC == collectEntity.getType()) {
             favoritesEntity.setPublicCount(1L);
         } else {
             favoritesEntity.setPublicCount(10L);

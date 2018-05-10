@@ -1,8 +1,8 @@
 package cn.pzhu.spring.repository;
 
 import cn.pzhu.spring.domain.CollectEntity;
-import cn.pzhu.spring.domain.CollectType;
-import cn.pzhu.spring.domain.IsDelete;
+import cn.pzhu.spring.domain.enumerate.CollectType;
+import cn.pzhu.spring.domain.enumerate.IsDelete;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 

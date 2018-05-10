@@ -2,8 +2,11 @@ package cn.pzhu.spring.web;
 
 import cn.pzhu.spring.domain.AccountEntity;
 import cn.pzhu.spring.domain.UserEntity;
+import cn.pzhu.spring.domain.UserRoleEntity;
+import cn.pzhu.spring.domain.enumerate.RoleEnum;
 import cn.pzhu.spring.repository.AccountEntityRepository;
 import cn.pzhu.spring.repository.UserEntityRepository;
+import cn.pzhu.spring.repository.UserRoleEntityRepository;
 import cn.pzhu.spring.service.EmailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,6 +39,8 @@ public class UserController {
     private UserEntityRepository userEntityRepository;
     @Autowired
     private AccountEntityRepository accountEntityRepository;
+    @Autowired
+    private UserRoleEntityRepository userRoleEntityRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
     @Autowired
@@ -72,7 +77,7 @@ public class UserController {
             bindResult.reject("email");
         }
         //
-        AccountEntity accountExists = accountEntityRepository.findAccountEntitiesByAccountName(userEntity.getEmail());
+        AccountEntity accountExists = accountEntityRepository.findAccountEntitiesByAccountName(userEntity.getName());
 
         if (accountExists != null) {
             modelAndView.addObject("alreadyRegisteredMessage", "哎呀！ 用户名已存在，换个用户名试试或者尝试登录");
@@ -146,11 +151,15 @@ public class UserController {
                                     .get("password")));
                     e.setEnabled(true);
                 }).collect(Collectors.toList());
+        UserRoleEntity userRoleEntity = new UserRoleEntity();
+        userRoleEntity.setRole(RoleEnum.STUDENT);
+        userRoleEntity.setUserEntityId(userEntity.getId());
 
         // 保存用户> 账号
         try {
             userEntityRepository.save(userEntity);
             accountEntityRepository.saveAll(accountEntityList);
+            userRoleEntityRepository.save(userRoleEntity);
         } finally {
             userEntity.setConfirmationToken("");
             userEntityRepository.save(userEntity);

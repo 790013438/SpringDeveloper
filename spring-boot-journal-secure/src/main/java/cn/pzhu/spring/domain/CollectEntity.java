@@ -1,5 +1,7 @@
 package cn.pzhu.spring.domain;
 
+import cn.pzhu.spring.domain.enumerate.CollectType;
+import cn.pzhu.spring.domain.enumerate.IsDelete;
 import cn.pzhu.spring.utils.JsonDateSerializer;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 

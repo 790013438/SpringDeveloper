@@ -3,8 +3,10 @@ package cn.pzhu.spring.domain;
 import cn.pzhu.spring.utils.JsonDateSerializer;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -22,6 +24,7 @@ import java.util.UUID;
  */
 //JPA Entity基类的标识
 @MappedSuperclass
+@EnableJpaAuditing
 public abstract class AbstractEntity {
 
     private String id = UUID.randomUUID().toString();
@@ -38,8 +41,7 @@ public abstract class AbstractEntity {
         this.id = id;
     }
 
-    @CreatedDate
-    private Date createdDate;
+    private Date createdDate = new Date();
 
     @LastModifiedDate
     private Date lastModifiedDate;
@@ -47,6 +49,7 @@ public abstract class AbstractEntity {
     private Long version = null;
 
     @JsonSerialize(using = JsonDateSerializer.class)
+    @CreatedDate
     public Date getCreatedDate() {
         return createdDate;
     }

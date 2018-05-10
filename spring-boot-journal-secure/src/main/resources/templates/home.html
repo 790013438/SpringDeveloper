@@ -5,23 +5,23 @@
 <div class="main-content index-page clearfix">
   <div class="post-lists">
     <div class="post-lists-body">
-      <div class="post-list-item" each="">
+      <div class="post-list-item" th:each="app : ${apps.content}">
         <div class="post-list-item-container">
-          <a href="#" class="item-thumb  bg-deepgrey"
-             style="#">
-            <div class="item-desc" th:text="￥替换"></div>
+          <a target="view_window" href="#" class="item-thumb  bg-deepgrey" style="background-image:url(./user/img/rand/1.jpg);"
+             th:href="${app.appLink}"
+             th:style="'background-image:url(/user/img/rand/' + ${app.appImage} + '.jpg);'">
+            <div class="item-desc" th:text="${app.appName}"></div>
           </a>
           <div class="item-slant reverse-slant &lt; bg-deepgrey"></div>
           <div class="item-slant"></div>
           <div class="item-label">
-            <div class="item-title"><a href=""
-                                       th:text="￥替换"></a>
+            <div class="item-title"><a href="#"
+                                       th:href="${app.appLink}"
+                                       th:text="${app.appName}"></a>
             </div>
             <div class="item-meta clearfix">
-              <div th:class="￥替换"
+              <div class="item-meta-ico bg-ico-note"
                    th:style="'background: url('+@{/user/img/bg-ico.png}+');no-repeat;background-size: 40px auto;' "></div>
-              <div class="item-meta-cat" th:utext="￥替换">
-              </div>
             </div>
           </div>
         </div>
@@ -29,7 +29,7 @@
     </div>
   </div>
   <div class="lists-navigator clearfix">
-    <div th:replace="comm/macros::pageNav(${app},'←','→','page')"></div>
+    <div th:replace="comm/macros::pageNav(${apps},'←','→','page')"></div>
   </div>
 </div>
 </body>

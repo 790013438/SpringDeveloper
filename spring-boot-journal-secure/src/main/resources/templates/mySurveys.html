@@ -185,7 +185,9 @@
                         <hr>
                         <ul class="nav nav-pills">
                           <li class="nav-item" th:each="i : ${#numbers.sequence(1, mySurveys.totalPages)}">
-                            <a class="nav-link" th:href="@{/mySurveys/(page=${i - 1})}" th:text="${i}" th:classappend="${currentPage} == ${i - 1} ? 'active' : ''"></a>
+                            <a class="nav-link"
+                               th:href="@{/mySurveys/(page=${i - 1})}"
+                               th:text="${i}" th:classappend="${currentPage} == ${i - 1} ? 'active' : ''"></a>
                           </li>
                         </ul>
                       </div>

@@ -1,8 +1,10 @@
 package cn.pzhu.spring.domain;
 
+import cn.pzhu.spring.domain.enumerate.RoleEnum;
+import org.hibernate.annotations.Formula;
+
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import java.util.Date;
 
 @Entity
@@ -12,6 +14,8 @@ public class UserEntity extends AbstractEntity {
     private String password;
     //用户名
     private String name;
+    // 显示的用户真实名字
+    private String displayName;
     //邮箱
     private String email;
     //出生年月
@@ -22,6 +26,26 @@ public class UserEntity extends AbstractEntity {
     private Date lastLoginTime;
     private String cellphone;
     private String profilePicture;
+    // 表中没有role
+    private RoleEnum role;
+
+    @Formula("(select o.role from user_role_entity o where o.user_entity_id = id)")
+    public RoleEnum getRole() {
+        return role;
+    }
+
+    public void setRole(RoleEnum role) {
+        this.role = role;
+    }
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
+
     public String getName() {
         return name;
     }

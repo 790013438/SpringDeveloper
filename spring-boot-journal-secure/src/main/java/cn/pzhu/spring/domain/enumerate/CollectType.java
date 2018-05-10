@@ -1,4 +1,4 @@
-package cn.pzhu.spring.domain;
+package cn.pzhu.spring.domain.enumerate;
 
 public enum CollectType {
     PUBLIC,
