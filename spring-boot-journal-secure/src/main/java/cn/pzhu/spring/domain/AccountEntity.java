@@ -15,8 +15,20 @@ public class AccountEntity extends AbstractEntity {
     private String userEntityId;
     private String userName;
     private RoleEnum userRole;
+    private String teacherName;
 
-    @Formula("(select o.role from user_role_entity o where o.user_entity_id = user_entity_id)")
+    @Formula("(select o.name from user_entity o where o.id =" +
+            "(select p.teacher_entity_id from lesson_entity p where p.student_entity_id = user_entity_id))")
+    public String getTeacherName() {
+        return teacherName;
+    }
+
+    public void setTeacherName(String teacherName) {
+        this.teacherName = teacherName;
+    }
+
+    @Formula("(select o.role from user_role_entity o " +
+            " where o.user_entity_id = user_entity_id)")
     public RoleEnum getUserRole() {
         return userRole;
     }

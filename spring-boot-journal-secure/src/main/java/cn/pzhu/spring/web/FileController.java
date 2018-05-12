@@ -83,8 +83,15 @@ public class FileController {
                 dirFile = new File(ROOT);
             }
             if (RoleEnum.STUDENT == accountEntity.getUserRole()) {
-                dirFile = new File(ROOT + File.separator + "homework"
-                +accountEntity.getUserName());
+                if (accountEntity.getTeacherName() == null) {
+                    throw new IllegalStateException("学生没有选课");
+                }
+                dirFile = new File(ROOT + File.separator
+                        + accountEntity.getTeacherName()
+                        + File.separator
+                        + "homework"
+                        + File.separator
+                        + accountEntity.getUserName());
                 if (!dirFile.exists()) {
                     logger.info("创建用户（学生作业文件夹，管理课件）> " + dirFile.mkdirs());
                     logger.info("创建用户（学生作业文件夹，管理课件）路径> " + dirFile.getAbsolutePath());

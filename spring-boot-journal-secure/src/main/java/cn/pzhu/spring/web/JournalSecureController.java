@@ -1,6 +1,7 @@
 package cn.pzhu.spring.web;
 
 import cn.pzhu.spring.domain.AccountEntity;
+import cn.pzhu.spring.domain.enumerate.RoleEnum;
 import cn.pzhu.spring.repository.AccountEntityRepository;
 import cn.pzhu.spring.repository.JournalRepository;
 import cn.pzhu.spring.repository.UserEntityRepository;
@@ -22,6 +23,7 @@ public class JournalSecureController {
     private static final String VIEW_INDEX = "home";
     private static final String VIEW_LOGIN = "login";
     private static final String VIEW_POWER_POINT = "file";
+    private static final String VIEW_SHARE = "share";
 
     private final JournalRepository repo;
     private final UserEntityRepository userEntityRepository;
@@ -68,6 +70,28 @@ public class JournalSecureController {
     @GetMapping("/file")
     public ModelAndView file(ModelAndView modelAndView) {
         modelAndView.setViewName(VIEW_POWER_POINT);
+
+        // 获取当前用户名
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String name = authentication.getName();
+        AccountEntity accountEntity = accountEntityRepository.findAccountEntitiesByAccountName(name);
+
+        if (RoleEnum.STUDENT == accountEntity.getUserRole()) {
+            modelAndView.addObject("title","上交作业");
+        }
+        if (RoleEnum.TEACHER == accountEntity.getUserRole()) {
+            modelAndView.addObject("title", "课件 | 学生作业");
+        }
+
+        return modelAndView;
+    }
+
+    /**
+     * 共享学习资源
+     */
+    public ModelAndView share(ModelAndView modelAndView) {
+        modelAndView.setViewName(VIEW_SHARE);
+
         return modelAndView;
     }
 }
