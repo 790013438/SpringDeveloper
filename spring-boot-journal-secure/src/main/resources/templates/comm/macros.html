@@ -7,7 +7,7 @@
     <!--</th:block>-->
 
 
-    <th:block th:each="navIndex :${ pageInfo.totalPages}">
+    <th:block th:each="navIndex :${#numbers.sequence(0, pageInfo.totalPages - 1)}">
         <li
             th:class="${currentPage} == ${navIndex}?'current':''">
             <a th:href="@{/app/(page=${navIndex})}"
