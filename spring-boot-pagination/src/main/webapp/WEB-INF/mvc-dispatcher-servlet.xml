@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http//www.springframework.org/schema/beans"
-  xmlns:xsi="http//www.w3.org/2001/XMLSchema-instance"
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:p="http://www.springframework.org/schema/p"
   xmlns:context="http://www.springframework.org/schema/context"
   xmlns:mvc="http://www.springframework.org/schema/mvc"
@@ -14,14 +14,14 @@
                       http://www.springframework.org/schema/data/jpa
                       http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
-  <context:component-scan base-package="cn.pzhu.spring.web"></context:component-scan>
+  <context:component-scan base-package="cn.pzhu.spring.web"/>
 
   <jpa:repositories base-package="cn.pzhu.spring.repository"/>
 
   <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-    <property name="prefix" value="/WEB-INF/jsp/"></property>
-    <property name="suffix" value=".jsp"></property>
+    <property name="prefix" value="/WEB-INF/jsp/"/>
+    <property name="suffix" value=".jsp"/>
   </bean>
 
-  <mvc:annotation-driver/>
+  <mvc:annotation-driven/>
 </beans>
