@@ -2,12 +2,18 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <body>
 <ol class="page-navigator" th:fragment="pageNav(pageInfo, prevText, nextText, prefix)">
-    <!--<th:block th:if="${(org.springframework.data.domain.Chunk)pageInfo.hasPrevious}">-->
-        <!--<li class="prev"><a th:href="@{'/' + ${prefix} + '/' + ${pageInfo.getNumber}}" th:text="${prevText}"></a></li>-->
-    <!--</th:block>-->
+    <th:block
+        th:class="${pageInfo.number eq 0} ? 'disable' : ''">
+        <li class="prev">
+            <a
+                th:if="${not pageInfo.first}"
+                th:href="@{/app/(page=${pageInfo.number - 1},size=${pageInfo.size})}"
+                th:text="${prevText}"></a>
+        </li>
+    </th:block>
 
 
-    <th:block th:each="navIndex :${ pageInfo.totalPages}">
+    <th:block th:each="navIndex :${#numbers.sequence(0, pageInfo.totalPages - 1)}">
         <li
             th:class="${currentPage} == ${navIndex}?'current':''">
             <a th:href="@{/app/(page=${navIndex})}"
@@ -15,9 +21,15 @@
     </th:block>
 
 
-    <!--<th:block th:if="${pageInfo.content.get(${pageInfo.content.length} - 1).hasNext}">-->
-        <!--<li class="next"><a th:href="@{'/' + ${prefix} + '/' + ${pageInfo.content.get(${pageInfo.content.length} - 1)}" th:text="${nextText}"></a></li>-->
-    <!--</th:block>-->
+    <th:block
+        th:class="${pageInfo.number + 1 ge pageInfo.size} ? 'disable' : ''">
+        <li class="next">
+            <a
+                th:if="${not pageInfo.last}"
+                th:href="@{/app/(page=${pageInfo.number + 1},size=${pageInfo.size})}"
+                th:text="${nextText}"></a>
+        </li>
+    </th:block>
 
 </ol>
 

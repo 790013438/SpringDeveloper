@@ -5,6 +5,7 @@ import org.hibernate.annotations.Formula;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 import java.util.Date;
 
 @Entity
@@ -54,6 +55,7 @@ public class UserEntity extends AbstractEntity {
         this.name = name;
     }
 
+    @Email(message = "请提供有效的电子邮件")
     public String getEmail() {
         return email;
     }

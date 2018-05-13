@@ -45,6 +45,10 @@ public class JournalSecureController {
         // 获取当前用户
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String name = authentication.getName();
+        if ("anonymousUser".equals(name)) {
+            modelAndView.setViewName("redirect:/login");
+            return modelAndView;
+        }
         AccountEntity accountEntity = accountEntityRepository.findAccountEntitiesByAccountName(name);
 
         modelAndView.addObject("apps", userEntityRepository.getApp(accountEntity.getUserRole(), PageRequest.of(page, size, new Sort(Sort.Direction.ASC, "id"))));
