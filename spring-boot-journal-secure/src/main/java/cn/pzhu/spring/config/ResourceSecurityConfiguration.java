@@ -20,6 +20,7 @@ public class ResourceSecurityConfiguration extends WebSecurityConfigurerAdapter 
                 .antMatchers("/file").authenticated()
                 .antMatchers("/api/**").authenticated()
                 .antMatchers("/app").authenticated()
+                .antMatchers("/share").authenticated()
                 .antMatchers("/").authenticated()
                 .and()
                 .formLogin().loginPage("/login").permitAll()

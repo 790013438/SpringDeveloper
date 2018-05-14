@@ -15,18 +15,59 @@ public class AccountEntity extends AbstractEntity {
     private String password;
     private Boolean enabled;
     private String userEntityId;
-    private String userName;
+    private String displayName;
+    private String studentId;
     private RoleEnum userRole;
-    private String teacherName;
+    private String teacherDisplayName;
+    private String teacherId;
 
-    @Formula("(select o.name from user_entity o where o.id =" +
-            "(select p.teacher_entity_id from lesson_entity p where p.student_entity_id = user_entity_id))")
-    public String getTeacherName() {
-        return teacherName;
+    @Transient
+    public String getTeacherDirectory() {
+        return getTeacherDisplayName() + getTeacherId();
     }
 
-    public void setTeacherName(String teacherName) {
-        this.teacherName = teacherName;
+    /* 取名是student_id 对于教师用户存的是工号 */
+    @Formula("(select o.student_id from user_entity o where o.id = " +
+            "(select p.teacher_entity_id from lesson_entity p where p.student_entity_id = user_entity_id))")
+    private String getTeacherId() {
+        return teacherId;
+    }
+
+    @Formula("(select o.display_name from user_entity o where o.id =" +
+            "(select p.teacher_entity_id from lesson_entity p where p.student_entity_id = user_entity_id))")
+    private String getTeacherDisplayName() {
+        return teacherDisplayName;
+    }
+
+    public void setTeacherDisplayName(String teacherDisplayName) {
+        this.teacherDisplayName = teacherDisplayName;
+    }
+
+    public void setTeacherId(String teacherId) {
+        this.teacherId = teacherId;
+    }
+
+    @Transient
+    public String getPersonalDirectory() {
+        return getDisplayName() + getStudentId();
+    }
+
+    @Formula("(select o.display_name from user_entity o where o.id = user_entity_id)")
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
+
+    @Formula("(select o.student_id from user_entity o where o.id = user_entity_id)")
+    private String getStudentId() {
+        return studentId;
+    }
+
+    private void setStudentId(String studentId) {
+        this.studentId = studentId;
     }
 
     @Formula("(select o.role from user_role_entity o " +
@@ -41,13 +82,6 @@ public class AccountEntity extends AbstractEntity {
     }
 
     @Formula("(select o.name from user_entity o where o.id = user_entity_id)")
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
 
     public String getPassword() {
         return password;

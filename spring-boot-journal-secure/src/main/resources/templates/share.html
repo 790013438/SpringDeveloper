@@ -3,7 +3,7 @@
 <head>
   <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
   <meta charset="utf-8">
-  <title th:text="${title}}">课件 | 作业</title>
+  <title th:text="${title}">课件 | 作业</title>
 
   <!-- 第三方插件 -->
   <script src="webjars/angularjs/1.5.0/angular.min.js"></script>
@@ -21,21 +21,21 @@
       angular.module('FileManagerApp').config(['fileManagerConfigProvider', function (config) {
           var defaults = config.$get();
           config.set({
-              appName: '课件管理 | 学生作业管理',
+              appName: '共享文件夹',
               defaultLang: 'zh',
-              listUrl: '/fileManager/list/',
-              uploadUrl: '/fileManager/upload/',
-              downloadFileUrl: '/fileManager/preview/',
-              createFolderUrl: '/fileManager/createFolder/',
-              permissionsUrl: '/fileManager/changePermissions/',
-              copyUrl: '/fileManager/copy/',
-              moveUrl: '/fileManager/move/',
-              removeUrl: '/fileManager/remove/',
-              renameUrl: '/fileManager/rename/',
-              getContentUrl: '/fileManager/getContent/',
-              editUrl: '/fileManager/edit/',
-              compressUrl: '/fileManager/compress/',
-              extractUrl: '/fileManager/extract/',
+              listUrl: '/share/list/',
+              uploadUrl: '/share/upload/',
+              downloadFileUrl: '/share/preview/',
+              createFolderUrl: '/share/createFolder/',
+              permissionsUrl: '/share/changePermissions/',
+              copyUrl: '/share/copy/',
+              moveUrl: '/share/move/',
+              removeUrl: '/share/remove/',
+              renameUrl: '/share/rename/',
+              getContentUrl: '/share/getContent/',
+              editUrl: '/share/edit/',
+              compressUrl: '/share/compress/',
+              extractUrl: '/share/extract/',
               documentViewUrl: '/office/',
               pickCallback: function (item) {
                   var msg = 'Picked %s "%s" for external use'

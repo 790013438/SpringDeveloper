@@ -93,6 +93,7 @@ public class JournalSecureController {
     /**
      * 共享学习资源
      */
+    @GetMapping("/share")
     public ModelAndView share(ModelAndView modelAndView) {
         modelAndView.setViewName(VIEW_SHARE);
 
