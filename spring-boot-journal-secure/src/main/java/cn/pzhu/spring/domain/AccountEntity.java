@@ -4,6 +4,8 @@ import cn.pzhu.spring.domain.enumerate.RoleEnum;
 import org.hibernate.annotations.Formula;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Transient;
 
 @Entity(name = "account")
@@ -29,6 +31,7 @@ public class AccountEntity extends AbstractEntity {
 
     @Formula("(select o.role from user_role_entity o " +
             " where o.user_entity_id = user_entity_id)")
+    @Enumerated(EnumType.STRING)
     public RoleEnum getUserRole() {
         return userRole;
     }

@@ -8,6 +8,10 @@ import cn.pzhu.spring.repository.AccountEntityRepository;
 import cn.pzhu.spring.repository.UserEntityRepository;
 import cn.pzhu.spring.repository.UserRoleEntityRepository;
 import cn.pzhu.spring.service.EmailService;
+import cn.pzhu.spring.web.response.ExceptionMsg;
+import cn.pzhu.spring.web.response.Response;
+import org.apache.tomcat.util.security.MD5Encoder;
+import org.aspectj.bridge.MessageUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +30,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.util.ArrayList;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -50,11 +55,41 @@ public class UserController {
 
     private static final String VIEW_REGISTER = "register";
     private static final String VIEW_CONFIRM = "confirm";
+    private static final String VIEW_FORGET_PASSWORD = "forgetPassword";
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-    @GetMapping("/forgotPassword")
-    public String forgotPassword() {
-        return "forgotPassword";
+    @GetMapping("/forgetPassword")
+    public ModelAndView forgetPassword(ModelAndView modelAndView) {
+        modelAndView.setViewName(VIEW_FORGET_PASSWORD);
+
+        return modelAndView;
+    }
+
+    @PostMapping("/forgetPassword")
+    public Response forgetPasswordMail(String email, HttpServletRequest httpServletRequest) {
+        try {
+            UserEntity userExits = userEntityRepository.findByEmail(email);
+            if (null == userExits) {
+                return new Response(ExceptionMsg.EmailNotRegister);
+            }
+            userExits.setConfirmationToken(UUID.randomUUID().toString());
+            userExits.setOutDate(new Date(System.currentTimeMillis() + 1800000)); // 30分钟后过期
+            userExits = userEntityRepository.save(userExits);
+
+            String appUrl = httpServletRequest.getScheme() + "://" + httpServletRequest.getServerName();
+
+            SimpleMailMessage registrationEmail = new SimpleMailMessage();
+            registrationEmail.setTo(userExits.getEmail());
+            registrationEmail.setSubject("修改密码");
+            registrationEmail.setText("请点击以下连接修改密码：\n"
+                    + appUrl + ":" + serverPort + "/confirm?token=" + userExits.getConfirmationToken());
+
+            emailService.sendEmail(registrationEmail);
+        } catch (Exception e) {
+            logger.error("sendForgotPasswordEmail failed, ", e);
+            return new Response(ExceptionMsg.FAILED);
+        }
+        return new Response();
     }
 
     // Return registration form template
@@ -134,7 +169,7 @@ public class UserController {
     }
 
     // Process confirmation link
-    @RequestMapping(value="/confirm", method = RequestMethod.POST)
+    @RequestMapping(value = "/confirm", method = RequestMethod.POST)
     public ModelAndView confirmRegistration(ModelAndView modelAndView, BindingResult bindingResult, @RequestParam Map<String, String> requestParams, RedirectAttributes redir) {
         modelAndView.setViewName(VIEW_CONFIRM);
 
@@ -151,7 +186,10 @@ public class UserController {
                                     .get("password")));
                     e.setEnabled(true);
                 }).collect(Collectors.toList());
-        UserRoleEntity userRoleEntity = new UserRoleEntity();
+        UserRoleEntity userRoleEntity = userRoleEntityRepository.findByUserEntityId(userEntity.getId());
+        if (userRoleEntity == null) {
+            userRoleEntity = new UserRoleEntity();
+        }
         userRoleEntity.setRole(RoleEnum.STUDENT);
         userRoleEntity.setUserEntityId(userEntity.getId());
 

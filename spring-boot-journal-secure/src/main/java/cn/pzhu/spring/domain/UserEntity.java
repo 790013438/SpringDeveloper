@@ -4,6 +4,8 @@ import cn.pzhu.spring.domain.enumerate.RoleEnum;
 import org.hibernate.annotations.Formula;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import java.util.Date;
@@ -24,19 +26,29 @@ public class UserEntity extends AbstractEntity {
 
     private String confirmationToken;
 
-    private Date lastLoginTime;
+    private Date outDate;
+
     private String cellphone;
     private String profilePicture;
     // 表中没有role
     private RoleEnum role;
 
     @Formula("(select o.role from user_role_entity o where o.user_entity_id = id)")
+    @Enumerated(EnumType.STRING)
     public RoleEnum getRole() {
         return role;
     }
 
     public void setRole(RoleEnum role) {
         this.role = role;
+    }
+
+    public Date getOutDate() {
+        return outDate;
+    }
+
+    public void setOutDate(Date outDate) {
+        this.outDate = outDate;
     }
 
     public String getDisplayName() {
@@ -102,14 +114,6 @@ public class UserEntity extends AbstractEntity {
 
     public void setBirthday(Date birthday) {
         this.birthday = birthday;
-    }
-
-    public Date getLastLoginTime() {
-        return lastLoginTime;
-    }
-
-    public void setLastLoginTime(Date lastLoginTime) {
-        this.lastLoginTime = lastLoginTime;
     }
 
 }
