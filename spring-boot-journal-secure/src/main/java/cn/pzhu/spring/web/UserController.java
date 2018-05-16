@@ -10,8 +10,6 @@ import cn.pzhu.spring.repository.UserRoleEntityRepository;
 import cn.pzhu.spring.service.EmailService;
 import cn.pzhu.spring.web.response.ExceptionMsg;
 import cn.pzhu.spring.web.response.Response;
-import org.apache.tomcat.util.security.MD5Encoder;
-import org.aspectj.bridge.MessageUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +28,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -102,7 +99,8 @@ public class UserController {
 
     // Process form input data
     @PostMapping("/register")
-    public ModelAndView processRegistrationForm(ModelAndView modelAndView, @Valid UserEntity userEntity, BindingResult bindResult, HttpServletRequest httpServletRequest) {
+    public ModelAndView processRegistrationForm(ModelAndView modelAndView, @Valid UserEntity userEntity,
+                                                BindingResult bindResult, HttpServletRequest httpServletRequest) {
         modelAndView.setViewName(VIEW_REGISTER);
         // Lookup userEntity in database by e-mail
         UserEntity userExists = userEntityRepository.findByEmail(userEntity.getEmail());

@@ -7,16 +7,18 @@
         <li class="prev">
             <a
                 th:if="${not pageInfo.first}"
-                th:href="@{/app/(page=${pageInfo.number - 1},size=${pageInfo.size})}"
+                th:href="@{/{prefix}/(page=${pageInfo.number - 1}, size=${pageInfo.size}, prefix=${prefix})}"
                 th:text="${prevText}"></a>
         </li>
     </th:block>
 
 
-    <th:block th:each="navIndex :${#numbers.sequence(0, pageInfo.totalPages - 1)}">
+    <th:block
+        th:if="${pageInfo.totalPages} > 1"
+        th:each="navIndex :${#numbers.sequence(0, pageInfo.totalPages - 1)}">
         <li
-            th:class="${currentPage} == ${navIndex}?'current':''">
-            <a th:href="@{/app/(page=${navIndex})}"
+            th:class="${currentPage} == ${navIndex} ? 'current' : ''">
+            <a th:href="@{/{prefix}/(page=${navIndex}, prefix=${prefix})}"
                th:text="${navIndex} + 1"></a></li>
     </th:block>
 
@@ -26,7 +28,7 @@
         <li class="next">
             <a
                 th:if="${not pageInfo.last}"
-                th:href="@{/app/(page=${pageInfo.number + 1},size=${pageInfo.size})}"
+                th:href="@{/{prefix}/(page=${pageInfo.number + 1}, size=${pageInfo.size}, prefix=${prefix})}"
                 th:text="${nextText}"></a>
         </li>
     </th:block>

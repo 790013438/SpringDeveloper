@@ -44,6 +44,7 @@ public abstract class AbstractEntity {
     private Date createdDate = new Date();
 
     @LastModifiedDate
+    @JsonSerialize(using = JsonDateSerializer.class)
     private Date lastModifiedDate;
     @Version
     private Long version = null;

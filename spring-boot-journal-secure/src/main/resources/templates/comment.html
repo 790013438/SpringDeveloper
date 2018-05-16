@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="comments">
+  <head>
+    <div th:replace="themes/default/header::header(null,null)"></div>
+  </head>
+  <body>
+
+    <div class="main-content post-page"></div>
+    <div class="comment-container">
+      <div id="comments" class="clearfix">
+        <div>
+          <span class="response">
+            <th:block th:if="${session.login_user}">
+              Hi，<a th:href="${session.login_user.homeUrl}" data-no-instant=""
+                                                             th:text="${session.login_user.username}"></a>
+              如果你想 <a href="/logout" title="注销" data-no-instant="">注销</a> ?
+            </th:block>
+          </span>
+
+          <!--th:action="@{/comment}"-->
+          <form method="post" id="comment-form" class="comment-form" role="form"
+                th:object="${commentEntity}"
+                onsubmit="return TaleComment.subComment();">
+            <input type="hidden" name="coid" id="coid"/>
+            <input type="hidden" name="userEntityId"
+                   th:field="*{userEntityId}"/>
+            <textarea name="text" id="textarea" class="form-control" placeholder="评论不能为空哦!"
+                      required="required" minlength="5"
+                      maxlength="2000"
+                      th:field="*{content}"></textarea>
+            <button type="submit" class="submit" id="misubmit">提交</button>
+          </form>
+        </div>
+
+        <div>
+          <ol class="comment-list">
+            <th:block th:each="commentEntity :${comments.content}">
+              <li th:id="'li-comment-'+${commentEntity.id}" class="comment-body comment-parent comment-odd">
+                <div th:id="'comment-'+${commentEntity.id}">
+                  <div class="comment-view" onclick="">
+                    <div class="comment-header">
+                      <!--设置get请求的参数-->
+                      <img class="avatar"
+                           th:src="@{{imgUrl}(imgUrl = ${commentEntity.imgUrl})}"
+                           th:title="${commentEntity.userName}"
+                           width="80" height="80"/>
+                      <span class="comment-author">
+                        <a href="##" rel="external nofollow"
+                                     th:text="${commentEntity.userName}"></a>
+                      </span>
+                    </div>
+                    <div class="comment-content">
+                      <span class="comment-author-at"></span>
+                      <p th:utext="${commentEntity.content}"></p>
+                    </div>
+                    <div class="comment-meta">
+                      <time class="comment-time" th:text="${commentEntity.createdDate}"></time>
+                      <span class="comment-reply">
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </th:block>
+          </ol>
+          <div class="lists-navigator clearfix">
+            <ol class="page-navigator">
+              <th:block th:replace="comm/macros::pageNav(${comments},'←','→','comment')"/>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div th:replace="comm/tale_comment::tale_comment"></div>
+    <div th:replace="themes/default/footer::footer"></div>
+  </body>
+</html>

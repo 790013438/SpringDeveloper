@@ -24,7 +24,9 @@
             </div>
             <div class="panel-body" id="registPage">
                 <p class="text-center pv">快速注册新用户</p>
-                <form id="form" autocomplete="off" th:action="@{/register}" action="#" th:object="${userEntity}" data-parsley-validate="true" method="post">
+                <form id="form" autocomplete="off" data-parsley-validate="true" method="post" action="#"
+                      th:action="@{/register}"
+                      th:object="${userEntity}">
                     <div th:if="${confirmationMessage}" class="alert alert-success"
                          role="alert" th:text="${confirmationMessage}"></div>
 
