@@ -1,5 +1,7 @@
 package cn.pzhu.spring.config;
 
+import cn.pzhu.spring.domain.AccountEntity;
+import cn.pzhu.spring.domain.enumerate.RoleEnum;
 import cn.pzhu.spring.repository.AccountEntityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -34,7 +36,7 @@ public class JdbcSecurityConfiguration extends GlobalAuthenticationConfigurerAda
 
     @Bean
     public UserDetailsService userDetailService(JdbcTemplate jdbcTemplate) {
-        RowMapper<User> userRowMapper = (ResultSet rs, int i) ->
+        RowMapper<User> teacherRowMapper = (ResultSet rs, int i) ->
                 new User(
                         rs.getString("ACCOUNT_NAME"),
                         rs.getString("PASSWORD"),
@@ -43,12 +45,26 @@ public class JdbcSecurityConfiguration extends GlobalAuthenticationConfigurerAda
                         rs.getBoolean("ENABLED"),
                         rs.getBoolean("ENABLED"),
                         AuthorityUtils.createAuthorityList("ROLE_USER", "ROLE_ADMIN"));
+        RowMapper<User> studentRowMapper = (ResultSet rs, int i) ->
+                new User(
+                        rs.getString("ACCOUNT_NAME"),
+                        rs.getString("PASSWORD"),
+                        rs.getBoolean("ENABLED"),
+                        rs.getBoolean("ENABLED"),
+                        rs.getBoolean("ENABLED"),
+                        rs.getBoolean("ENABLED"),
+                        AuthorityUtils.createAuthorityList("ROLE_USER"));
         return username -> {
-            if (accountEntityRepository.findAccountEntitiesByAccountName(username) == null) {
+            AccountEntity existAccountEntity = accountEntityRepository.findAccountEntitiesByAccountName(username);
+            if (existAccountEntity == null) {
                 throw new IllegalArgumentException("用户名或密码错误");
             }
+            if (RoleEnum.STUDENT == existAccountEntity.getUserRole()) {
+                return jdbcTemplate.queryForObject("SELECT * from ACCOUNT where ACCOUNT_NAME = ?",
+                        studentRowMapper, username);
+            }
             return jdbcTemplate.queryForObject("SELECT * from ACCOUNT where ACCOUNT_NAME = ?",
-                    userRowMapper, username);
+                    teacherRowMapper, username);
         };
     }
 

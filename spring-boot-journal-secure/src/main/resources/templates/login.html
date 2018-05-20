@@ -15,8 +15,6 @@
   </head>
   <body>
   <div class="wrapper">
-    <p th:if="${param.logout}" class="alert">You have bean logged out</p>
-    <p th:if="${param.error}" class="alert alert-error">There was an error, please try again</p>
     <div class="block-center mt-xl wd-xl">
       <div class="panel panel-dark panel-flat">
         <div class="panel-heading text-center">
@@ -26,6 +24,8 @@
         </div>
         <div class="panel-body" id="loginPage">
           <p class="text-center pv">请登录</p>
+          <p th:if="${param.logout}" class="alert alert-success" role="alert">You have bean logged out</p>
+          <p th:if="${param.error}" class="alert alert-danger" role="alert">用户名或密码错误</p>
           <form id="form" th:action="@{/login}" action="/login" method="POST" data-parsley-validate="true">
             <div class="form-group has-feedback">
               <input type="text" name="username" placeholder="邮箱地址或登录名称" class="form-control" data-parsley-error-message="请输入邮箱地址或登录名称" required="required" />

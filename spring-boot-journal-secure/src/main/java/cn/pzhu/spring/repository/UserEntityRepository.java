@@ -20,11 +20,15 @@ public interface UserEntityRepository extends JpaRepository<UserEntity, String> 
 
     UserEntity findByConfirmationToken(String token);
 
-    @Query("select o.appName as appName, o.appLink as appLink, o.appImage as appImage from UserAppEntity o where o.role = ?1")
-    Page<AppView> getApp(RoleEnum role, Pageable pageable);
+    @Query("select o.appName as appName, o.appLink as appLink, o.appImage as appImage " +
+            " from UserAppEntity o where o.role = ?1 and o.appName LIKE ?2")
+    Page<AppView> getApp(RoleEnum role, String appName, Pageable pageable);
 
     @Modifying(clearAutomatically = true)
     @Transactional
-    @Query("update UserEntity set outDate=:outDate, confirmationToken=:validateCode where email=:email")
-    int setOutDateAndValidateCode(@Param("outDate") Date outDate, @Param("validateCode") String validateCode, @Param("email") String email);
+    @Query("update UserEntity set outDate=:outDate, confirmationToken=:validateCode " +
+            " where email=:email")
+    int setOutDateAndValidateCode(@Param("outDate") Date outDate,
+                                  @Param("validateCode") String validateCode,
+                                  @Param("email") String email);
 }

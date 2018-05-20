@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{comm/main_layout}">
+<head>
+  <title>视频点播</title>
+  <link href="http://vjs.zencdn.net/5.5.3/video-js.css" rel="stylesheet">
+  <script src="http://vjs.zencdn.net/ie8/1.1.1/videojs-ie8.min.js"></script>
+</head>
+<body>
+
+<div class="main-content index-page clearfix">
+  <div class="container"
+       layout:fragment="content">
+    <a href="/manageVideo" class="btn btn-success nBtn" target="view_window"
+       th:href="@{/manageVideo}"
+       th:if="${isAdmin}">管理视频</a>
+    <div class="card">
+      <div class="card card-body">
+
+        <div class="modal-body row justify-content-center">
+          <video id="my-video" class="video-js justify-content-center" controls preload="auto" width="640" height="300"
+                 poster="http://ppt.downhot.com/d/file/p/2014/08/12/9d92575b4962a981bd9af247ef142449.jpg"
+                 data-setup="{}">
+            <source src="'rtmp://localhost:1935/playback/' + ${name}" type="rtmp/flv"
+            th:src="'rtmp://localhost:1935/playback/' + ${name}">
+            <!-- 如果上面的rtmp流无法播放，就播放hls流 -->
+            <!-- <source src="http://10.10.5.119/live/livestream.m3u8" type='application/x-mpegURL'> -->
+            <p class="vjs-no-js">播放视频需要启用 JavaScript，推荐使用支持HTML5的浏览器访问。
+              To view this video please enable JavaScript, and consider upgrading to a web browser that
+              <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+            </p>
+          </video>
+          <script src="http://vjs.zencdn.net/5.5.3/video.js"></script>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../static/js/main.js" th:src="@{/js/main.js}"></script>
+  </div>
+</div>
+</body>
+</html>

@@ -90,7 +90,8 @@ public class FileService {
      * 文件上传
      */
     @RequestMapping("upload")
-    public Object upload(@RequestParam("destination") String destination, HttpServletRequest httpServletRequest) {
+    public Object upload(@RequestParam("destination") String destination,
+                         HttpServletRequest httpServletRequest) {
 
         try {
             // Servlet3.0方式上传文件

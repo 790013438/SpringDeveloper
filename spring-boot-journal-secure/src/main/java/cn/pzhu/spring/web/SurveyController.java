@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 @RestController
-public class MySurveyController {
+public class SurveyController {
 
     private static final String VIEW_SURVEY = "mySurveys";
     private static final String VIEW_SURVEY_CREATE = "mySurveyCreate";
@@ -20,7 +20,7 @@ public class MySurveyController {
     @Autowired
     private SurveyEntityRepository surveyEntityRepository;
 
-    @GetMapping("mySurveys")
+    @GetMapping("surveys")
     public ModelAndView mySurveys(ModelAndView modelAndView, @RequestParam(defaultValue = "0") Integer page) {
         modelAndView.setViewName(VIEW_SURVEY);
         modelAndView.addObject(VIEW_SURVEY, surveyEntityRepository.findAll(PageRequest.of(page, 4)));
@@ -28,7 +28,7 @@ public class MySurveyController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/mySurveyCreate", method = RequestMethod.GET)
+    @GetMapping("mySurveyCreate")
     public ModelAndView mySurveyCreate(ModelAndView modelAndView, @RequestParam("surveyName") String surveyName) {
         if (surveyName == null || "".equals(surveyName.trim())) {
             surveyName = "请输入问卷标题";

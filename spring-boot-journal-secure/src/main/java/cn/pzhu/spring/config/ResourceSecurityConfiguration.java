@@ -15,14 +15,18 @@ public class ResourceSecurityConfiguration extends WebSecurityConfigurerAdapter 
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .authorizeRequests()
-                .antMatchers("/register").permitAll()
-                .antMatchers("/confirm").permitAll()
-                .antMatchers("/file").authenticated()
-                .antMatchers("/api/**").authenticated()
-                .antMatchers("/app").authenticated()
-                .antMatchers("/share").authenticated()
-                .antMatchers("/comment").authenticated()
-                .antMatchers("/").authenticated()
+                .antMatchers("/register",
+                        "/confirm").permitAll()
+                .antMatchers(
+                        "/file",
+                        "/api/**",
+                        "/app",
+                        "/share",
+                        "/comment",
+                        "/surveys",
+                        "/mySurveyCreate",
+                        "/manageVideo",
+                        "/").authenticated()
                 .and()
                 .formLogin().loginPage("/login").permitAll()
                 .and()

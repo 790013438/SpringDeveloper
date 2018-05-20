@@ -24,6 +24,7 @@ public class JournalSecureController {
     private static final String VIEW_LOGIN = "login";
     private static final String VIEW_POWER_POINT = "file";
     private static final String VIEW_SHARE = "share";
+    private static final String VIEW_MANAGE_VIDEO = "uploadVideo";
 
     private final JournalRepository repo;
     private final UserEntityRepository userEntityRepository;
@@ -38,6 +39,7 @@ public class JournalSecureController {
 
     @RequestMapping(value = {"/app", "/"}, method = RequestMethod.GET)
     public ModelAndView index(ModelAndView modelAndView,
+                              @RequestParam(value="appName", defaultValue="") String appName,
                               @RequestParam(value = "page", defaultValue = "0") Integer page,
                               @RequestParam(value = "size", defaultValue = "6") Integer size) {
         modelAndView.setViewName(VIEW_INDEX);
@@ -51,7 +53,10 @@ public class JournalSecureController {
         }
         AccountEntity accountEntity = accountEntityRepository.findAccountEntitiesByAccountName(name);
 
-        modelAndView.addObject("apps", userEntityRepository.getApp(accountEntity.getUserRole(), PageRequest.of(page, size, new Sort(Sort.Direction.ASC, "id"))));
+        modelAndView.addObject("apps",
+                userEntityRepository.getApp(accountEntity.getUserRole(),
+                        appName + "%",
+                        PageRequest.of(page, size, new Sort(Sort.Direction.ASC, "id"))));
         return modelAndView;
     }
 
@@ -96,7 +101,15 @@ public class JournalSecureController {
     @GetMapping("/share")
     public ModelAndView share(ModelAndView modelAndView) {
         modelAndView.setViewName(VIEW_SHARE);
+        return modelAndView;
+    }
 
+    /**
+     * 视频管理
+     */
+    @GetMapping("/manageVideo")
+    public ModelAndView video(ModelAndView modelAndView) {
+        modelAndView.setViewName(VIEW_MANAGE_VIDEO);
         return modelAndView;
     }
 }

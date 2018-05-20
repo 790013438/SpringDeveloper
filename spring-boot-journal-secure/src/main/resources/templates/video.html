@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{comm/main_layout}">
+<head>
+  <title>视频列表</title>
+  <link href="http://vjs.zencdn.net/5.5.3/video-js.css" rel="stylesheet">
+  <script src="http://vjs.zencdn.net/ie8/1.1.1/videojs-ie8.min.js"></script>
+</head>
+<body>
+
+<div class="main-content index-page clearfix">
+  <div class="container"
+       layout:fragment="content">
+    <a href="/manageVideo" class="btn btn-success nBtn" target="view_window"
+       th:href="@{/manageVideo}"
+       th:if="${isAdmin}">管理视频</a>
+    <div class="card">
+      <div class="card card-body">
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th>视频名字</th>
+            <th>上传时间</th>
+            <th>播放</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="video : ${videos}">
+            <td th:text="${video.name}"></td>
+            <td th:text="${video.createdDate}"></td>
+            <td>
+              <a class="btn btn-primary eBtn"
+                 th:href="@{/video/play/(name=${video.name})}">播放</a>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="lists-navigator clearfix">
+      <div th:replace="comm/macros::pageNav(${videos},'←','→','video/play')"></div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
+
