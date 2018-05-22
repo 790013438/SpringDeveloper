@@ -27,17 +27,25 @@ public class TaskEntity {
     public TaskEntity() {
     }
 
-    public TaskEntity(String date, String startTime, String description) {
+    public TaskEntity(@NotEmpty String date, @NotEmpty String startTime, @NotEmpty String stopTime) {
         this.date = date;
         this.startTime = startTime;
-        this.description = description;
+        this.stopTime = stopTime;
     }
 
-    public TaskEntity(String date, String startTime, String description, UserEntity userEntity) {
+    public TaskEntity(@NotEmpty String date, @NotEmpty String startTime, @NotEmpty String stopTime, String description, UserEntity userEntity) {
         this.date = date;
         this.startTime = startTime;
+        this.stopTime = stopTime;
         this.description = description;
         this.userEntity = userEntity;
+    }
+
+    public TaskEntity(@NotEmpty String date, @NotEmpty String startTime, @NotEmpty String stopTime, String description) {
+        this.date = date;
+        this.startTime = startTime;
+        this.stopTime = stopTime;
+        this.description = description;
     }
 
     public String getStopTime() {
