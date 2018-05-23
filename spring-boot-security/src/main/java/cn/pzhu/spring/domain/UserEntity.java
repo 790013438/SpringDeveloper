@@ -23,7 +23,7 @@ public class UserEntity {
     private String email;
     @NotEmpty
     private String name;
-    @Size(min = 4)
+    @Size(min = 4, max=512)
     private String password;
     @OneToMany(mappedBy = "userEntity", cascade = CascadeType.ALL)
     private List<TaskEntity> tasks;

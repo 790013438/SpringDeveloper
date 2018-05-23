@@ -44,4 +44,9 @@ public class UserService {
     public UserEntity findOne(String email) {
         return userEntityRepository.findByEmail(email);
     }
+
+    public boolean isUserPresent(String email) {
+      UserEntity userEntity = userEntityRepository.findByEmail(email);
+        return userEntity != null;
+    }
 }

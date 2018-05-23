@@ -10,4 +10,9 @@ public class IndexController {
     public String showIndexPage() {
         return "index";
     }
+
+    @GetMapping("paragraph")
+    public String paragraph() {
+        return "fragments/paragraph";
+    }
 }
