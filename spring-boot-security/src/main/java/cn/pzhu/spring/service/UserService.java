@@ -49,4 +49,8 @@ public class UserService {
       UserEntity userEntity = userEntityRepository.findByEmail(email);
         return userEntity != null;
     }
+
+    public List<UserEntity> findByNameContains(String name) {
+        return userEntityRepository.findByNameContains(name);
+    }
 }
