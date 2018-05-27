@@ -24,9 +24,13 @@ public class ResourceSecurityConfiguration extends WebSecurityConfigurerAdapter 
                         "/share",
                         "/comment",
                         "/surveys",
-                        "/mySurveyCreate",
-                        "/manageVideo",
                         "/").authenticated()
+                .antMatchers("/admin",
+                        "/deleteUser",
+                        "/admin/comments",
+                        "/deleteComment",
+                        "/manageVideo",
+                        "/mySurveyCreate").hasRole("ADMIN")
                 .and()
                 .formLogin().loginPage("/login").permitAll()
                 .and()

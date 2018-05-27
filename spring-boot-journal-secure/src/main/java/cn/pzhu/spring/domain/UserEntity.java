@@ -32,6 +32,7 @@ public class UserEntity extends AbstractEntity {
     private String profilePicture;
     // 表中没有role
     private RoleEnum role;
+    private String studentId;
 
     @Formula("(select o.role from user_role_entity o where o.user_entity_id = id)")
     @Enumerated(EnumType.STRING)
@@ -41,6 +42,14 @@ public class UserEntity extends AbstractEntity {
 
     public void setRole(RoleEnum role) {
         this.role = role;
+    }
+
+    public String getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(String studentId) {
+        this.studentId = studentId;
     }
 
     public Date getOutDate() {

@@ -55,6 +55,15 @@ public class UserController {
     private static final String VIEW_FORGET_PASSWORD = "forgetPassword";
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
+    @GetMapping("/deleteUser")
+    public ModelAndView delete(ModelAndView modelAndView,
+                               @RequestParam(value = "id") String id) {
+        modelAndView.setViewName("redirect:/admin");
+        userEntityRepository.deleteById(id);
+        return modelAndView;
+    }
+
+
     @GetMapping("/forgetPassword")
     public ModelAndView forgetPassword(ModelAndView modelAndView) {
         modelAndView.setViewName(VIEW_FORGET_PASSWORD);

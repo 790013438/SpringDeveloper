@@ -14,6 +14,11 @@ public class SortOrResponseBeanConfiguration {
     }
 
     @Bean
+    Sort displayASCSort() {
+        return new Sort(Sort.Direction.ASC, "displayName");
+    }
+
+    @Bean
     JSONObject failJSONObject() {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("success", false);

@@ -1,6 +1,7 @@
 package cn.pzhu.spring.domain;
 
 import cn.pzhu.spring.domain.enumerate.RoleEnum;
+import cn.pzhu.spring.utils.Commons;
 import org.hibernate.annotations.Formula;
 
 import javax.persistence.Entity;
@@ -20,6 +21,7 @@ public class AccountEntity extends AbstractEntity {
     private RoleEnum userRole;
     private String teacherDisplayName;
     private String teacherId;
+    private String email;
 
     @Transient
     public String getTeacherDirectory() {
@@ -50,6 +52,20 @@ public class AccountEntity extends AbstractEntity {
     @Transient
     public String getPersonalDirectory() {
         return getDisplayName() + getStudentId();
+    }
+
+    @Transient
+    public String getImgUrl() {
+        return Commons.gravatar(getEmail());
+    }
+
+    @Formula("(select o.email from user_entity o where o.id = user_entity_id)")
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Formula("(select o.display_name from user_entity o where o.id = user_entity_id)")

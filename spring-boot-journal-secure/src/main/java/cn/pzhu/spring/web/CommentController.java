@@ -37,6 +37,14 @@ public class CommentController {
     @Autowired
     private Sort idASCSort;
 
+    @GetMapping("/deleteComment")
+    public ModelAndView delete(ModelAndView modelAndView,
+                               @RequestParam(value = "id") String id) {
+        modelAndView.setViewName("redirect:/admin/comments");
+        commentEntityRepository.deleteById(id);
+        return modelAndView;
+    }
+
     @GetMapping("/comment")
     public ModelAndView comment(ModelAndView modelAndView, CommentEntity commentEntity,
                                 @RequestParam(value = "page", defaultValue = "0") Integer page,

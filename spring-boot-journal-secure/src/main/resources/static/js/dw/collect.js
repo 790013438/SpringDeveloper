@@ -6,7 +6,7 @@
  * @author: keyuan（@keyuan, keyuan258@gmail.com）
  * @github: https://github.com/wkeyuan/DWSurvey
  *
- * Copyright 2012, 2017 调问试卷(DWSurvey,http://dwsurvey.net)
+ * Copyright 2012, 2018 调问试卷(DWSurvey,http://dwsurvey.net)
  *
  */
 $(document).ready(function(){

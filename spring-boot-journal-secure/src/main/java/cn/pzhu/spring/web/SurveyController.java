@@ -28,8 +28,10 @@ public class SurveyController {
         return modelAndView;
     }
 
-    @GetMapping("mySurveyCreate")
-    public ModelAndView mySurveyCreate(ModelAndView modelAndView, @RequestParam("surveyName") String surveyName) {
+    @GetMapping("/mySurveyCreate")
+    public ModelAndView mySurveyCreate(ModelAndView modelAndView,
+                                       @RequestParam(value = "surveyName",
+                                       defaultValue = "") String surveyName) {
         if (surveyName == null || "".equals(surveyName.trim())) {
             surveyName = "请输入问卷标题";
         }
