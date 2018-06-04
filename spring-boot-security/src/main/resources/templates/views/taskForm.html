@@ -11,11 +11,11 @@
       layout:fragment="content">
       <form method="post"
         th:action="@{/addTask}"
-        th:objects="${task}">
+        th:object="${task}">
 
         <div class="form-group">
           <label for="Date" class="form-control-label">Date</label>
-          <input type="Date" class="form-control" id="date"
+          <input type="date" class="form-control" id="date"
                              th:field="*{date}"/>
           <div class="text text-danger"
             th:if="${#fields.hasErrors('date')}"
