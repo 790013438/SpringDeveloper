@@ -87,7 +87,7 @@ public class FileController {
                 dirFile = new File(ROOT + File.separator
                         + accountEntity.getTeacherDirectory()
                         + File.separator
-                        + "homework"
+                        + "学生作业"
                         + File.separator
                         + accountEntity.getPersonalDirectory());
                 if (!dirFile.exists()) {

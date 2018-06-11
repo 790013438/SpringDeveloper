@@ -79,8 +79,8 @@ public class CommentController {
             return failJSONObject;
         }
 
-        if (commentEntity.getContent().length() > 200) {
-            failJSONObject.put("msg", "请输入200个字符以内的评论");
+        if (commentEntity.getContent().length() > 400) {
+            failJSONObject.put("msg", "请输入400个字符以内的评论");
             failJSONObject.put("timestamp", System.currentTimeMillis() / 1000);
             return failJSONObject;
         }

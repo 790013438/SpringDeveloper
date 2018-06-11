@@ -17,6 +17,7 @@ public class SpringBootJournalsecureApplicationTests {
         System.out.println(passwordEncoder.encode("isawesome"));
         System.out.println(passwordEncoder.encode("isawesometoo"));
         System.out.println(passwordEncoder.encode("1"));
+        System.out.println(passwordEncoder.encode("123456"));
     }
 
 }

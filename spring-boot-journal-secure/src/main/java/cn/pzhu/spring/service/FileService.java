@@ -140,11 +140,11 @@ public class FileService {
      * 文件下载/预览
      */
     @RequestMapping("preview")
-    public void preview(HttpServletResponse response, String path) throws IOException {
+    public void preview(HttpServletResponse httpServletResponse, String path) throws IOException {
 
         File file = new File(ROOT, path);
         if (!file.exists()) {
-            response.sendError(HttpServletResponse.SC_NOT_FOUND, "Resource Not Found");
+            httpServletResponse.sendError(HttpServletResponse.SC_NOT_FOUND, "Resource Not Found");
             return;
         }
 
@@ -156,12 +156,12 @@ public class FileService {
             mimeType = "application/octet-stream";
         }
 
-        response.setContentType(mimeType);
-        response.setHeader("Content-disposition", String.format("attachment; filename=\"%s\"", URLEncoder.encode(file.getName(), "UTF-8")));
-        response.setContentLength((int) file.length());
+        httpServletResponse.setContentType(mimeType);
+        httpServletResponse.setHeader("Content-disposition", String.format("attachment; filename=\"%s\"", URLEncoder.encode(file.getName(), "UTF-8")));
+        httpServletResponse.setContentLength((int) file.length());
 
         try (InputStream inputStream = new BufferedInputStream(new FileInputStream(file))) {
-            FileCopyUtils.copy(inputStream, response.getOutputStream());
+            FileCopyUtils.copy(inputStream, httpServletResponse.getOutputStream());
         }
     }
 
