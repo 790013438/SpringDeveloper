@@ -1,4 +1,6 @@
-package xin.floyd;
+package xin.floyd.javaconcurrency;
+
+import xin.floyd.javascheduling.SimpleScheduler;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -15,5 +17,8 @@ public class Application {
     ExecutorService workStealingPool = Executors.newWorkStealingPool();
     SimpleTaskExecutor executorSlow = new SimpleTaskExecutor(workStealingPool, EXEC_COUNT);
     executorSlow.executeTask();
+
+    SimpleScheduler simpleScheduler = new SimpleScheduler();
+    simpleScheduler.scheduleTask();
   }
 }

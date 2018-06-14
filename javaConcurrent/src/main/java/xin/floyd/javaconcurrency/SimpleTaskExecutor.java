@@ -1,4 +1,4 @@
-package xin.floyd;
+package xin.floyd.javaconcurrency;
 
 import java.util.ArrayList;
 import java.util.Collection;
