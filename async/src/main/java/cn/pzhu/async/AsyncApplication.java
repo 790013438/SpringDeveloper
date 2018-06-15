@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -19,6 +20,8 @@ import java.util.concurrent.Executors;
 @SpringBootApplication
 public class AsyncApplication {
 
+  private static final int EXEC_COUNT = 10;
+
   @Autowired
   public AsyncApplication(Caller caller) {
     this.caller = caller;
@@ -26,7 +29,9 @@ public class AsyncApplication {
 
   @Bean
   public Executor customTaskExecutor() {
-    return Executors.newWorkStealingPool();
+    ThreadPoolTaskExecutor threadPoolTaskExecutor = new ThreadPoolTaskExecutor();
+    threadPoolTaskExecutor.setCorePoolSize(EXEC_COUNT);
+    return threadPoolTaskExecutor;
   }
 
   public static void main(String[] args) {
