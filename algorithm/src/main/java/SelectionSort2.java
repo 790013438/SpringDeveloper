@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Date;
 
 public class SelectionSort2 {
 
@@ -7,28 +8,28 @@ public class SelectionSort2 {
         int[] newArr = new int[arr.length];
 
         for (int i = 0; i < newArr.length; ++i) {
-            int smallestIndex = findSamllest(arr);
+            int smallestIndex = findSmallest(arr);
             newArr[i] = arr[smallestIndex];
 
-            arr = getNewArrWithoutSamllest(arr, smallestIndex);
+            arr = getNewArrWithoutSmallest(arr, smallestIndex);
         }
 
         return newArr;
     }
 
-    private static int[] getNewArrWithoutSamllest(int[] arr, int smallestIndex) {
+    private static int[] getNewArrWithoutSmallest(int[] arr, int smallestIndex) {
         int[] newArrayWithoutSmallest = new int[arr.length - 1];
         for (int i = 0; i < arr.length && smallestIndex != 0; ++i) {
             if (i < smallestIndex) {
                 newArrayWithoutSmallest[i] = arr[i];
-            } else {
+            } else if (i > smallestIndex){
                 newArrayWithoutSmallest[i - 1] = arr[i];
             }
         }
         return newArrayWithoutSmallest;
     }
 
-    private static int findSamllest(int[] arr) {
+    private static int findSmallest(int[] arr) {
         int smallest = arr[0];
         int smallestIndex = 0;
         for (int i = 0; i < arr.length; i++) {
