@@ -5,8 +5,10 @@ public class Countdown {
     }
 
     private static void countdown(int i) {
-        if (i > 0) {
-            System.out.println(i);
+        System.out.println(i);
+        if (i <= 0) {
+            return;
+        } else {
             countdown(i - 1);
         }
     }
