@@ -6,9 +6,7 @@ public class Countdown {
 
     private static void countdown(int i) {
         System.out.println(i);
-        if (i <= 0) {
-            return;
-        } else {
+        if (i > 0) {
             countdown(i - 1);
         }
     }
