@@ -1968,26 +1968,128 @@ Web Development with Bootstrap and Vue.JS
 61暂停
 263
 
+Grokking Algorithms
+85
+
+Vue JS 2 - The Complete Guide (incl. Vuex)
+21
+
+微信上看到的要看的书
+测试面试题的sql语句，在GitHub上
+男为1，女为0
+undo 'git commit --amend'
+git reflog
+git reset --soft ${提交的id}
+查看京东售后
+
+先序：abdgcefh
+中序：dgbaechf
+
+先序：abdgcefh -> a bdgcefh
+中序：dgbaechf -> dgb a echf
+
+先序：bdgcefh -> b dgcefh
+中序：dgb -> dg b
+
+先序：gcefh -> g cefh
+中序：dg -> d g
+
+先序：cefh -> c efh
+中序：echf -> e c hf
+
+先序：fh ->  fh
+中序：hf ->  h f
+                    a
+            b               c
+        d               e       f
+            g               h
+
+后序：gdbehfca
+中序：dgbaechf
+
+后序：gdbehfca -> gdbehfc a
+中序：dgbaechf -> dgb a echf
+
+后序：gdbehfca -> gdbehfc a
+中序：dgbaechf -> dgb a echf
+
+后序：gdbehfca -> gdbehf c
+中序：dgbaechf -> dgb a |  e c hf
+
+后序：gdbehfca -> gdbeh f
+中序：dgbaechf -> dgb a |  e c | hf
+
+                    a
+            b               c
+        d               e       f
+            g               h
+Pivotal Certified Spring Enterprise Integration Specialist Exam
+129
+
+实习生 （实习）
+知人科技有限公司 IT服务/系统集成
+
+使用visual paradigm画序列图，流程图，提升了对软件流程的认知；
+使用Spring Boot向mongoDB中填充数据，模拟生成的一百万数据符合开发测试需求。编写简单单元测试，完善代码覆盖率。
+成功申请Apple Id开发者公司账号，向苹果应用商店推送app。
+
+照着文思海辉的要求写一个投递
+会jquery，ajax
+照着久远银海的要求写一个投递
+jQuery
+32
+EasyUI
+MySql
+Redis
+Axure
+PowerDesigner
+Rational Rose
+Together
+多线程编程
+这些要写进去    JS、JQuery、HTML、CSS、HTML5    Linux服务器操作系统
+JVM性能调优
+
+Spring Cloud
+ElasticSearch
+
+
+存在普遍的问题我在这给大家提出，希望所有同学按要求写。
+一、论文中所有语句不能有语法错误，内容必须多读读，不能有不合理的地方；
+二、注意文章排版，必须按学校要求进行；
+三、“系统详细设计实现”部分应当对每个模块的主要功能进行详细描述，这部分在论文中占主要部分，篇幅不低于12页（最好15页以上），每部分的描述主要从五个方面进行：1、本功能的文字描述（至少1个段落）；2、设计流程图；3、设计运行截图；4、核心代码（最核心的12-15行代码）；5、如需要，说明设计的亮点或特点；
+四、“系统测试”部分可能测试用例不当，应该有关与系统运行中相关操作的测试，比如使用某些输入数据验证输出结果正确否？
+五、“总结”部分不能写成 心得体会！应当是你对本次设计过程的总结。比如，你的设计过程、如何设计主要的部分、那些部分设计的好、那些部分没有完成、对未完成部分的计划、今后有机会如何改进设计等等。
+六、“参考文献”不能都是教材参考书，必须有相关的外文资料（3篇）、有与题目相关的期刊发表的设计文章（6篇）（我给你的参考文献中有部分），格式必须按学校要求排版。
+
+[1]王爱华,汪琼.精品课程与国外开放课程共享利用的对比研究[J];中国远程教育;2010年06期
+[2]胥旭,徐恩芹,张桂娟.国内精品课程与MITOCW网络教学资源的对比分析[J];中国教育信息化;2012年05期
+[3]王艳梅.精品课程的网络资源建设研究与实践[D];上海师范大学;2012年
+[4]刘乃琦,王冲.《JSP应用开发与实践》;人民邮电出版社;2016年
+[5]朱珍,张琳霞.《PHP网站开发技术》;电子工业出版社;2014.8
+
+启动mysql, redis,关360
+
 Vim ctrl + i
 Vim replace
+测试
 写视频
+管理
 试卷
-文件上传
-忘记密码> permite(/user/)
-保存页面，截图，浏览器打开
-主页动态
+=================================
+课件信息的管理 2. 不同的文件夹
 =================================
 file:///D:/zrkj08/pdf/Vue.js-2-and-Bootstrap-4-Web-Development.pdf
-课件信息的管理 2. 不同的文件夹
-=================
+
 视频点播模块 3.
 =================
 作业管理模块 4. homework文件夹，姓名和学号, 还要有一个学习资料，为共有文件夹
-=================
+
 在线测试模块 5. 
 =================
 系统管理模块 6. 
 =================
+留言板       7. 
+
 
 Spring Boot 1.5.9.RELEASE
 

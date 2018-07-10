@@ -1,0 +1,69 @@
+Módulo Empresarial para la Validación Formal de Ejercicios aplicado a la Programación Concurrente en Java.
+P. Basanta-Val* , M. García-Valls, I. Estévez-Ayres y M. J. Martin-Gutiérrez.
+Departamento de Ingeniería Telemática, Universidad Carlos III de Madrid, Avda. de la Universidad nº 30, 28911, (Leganés) Madrid, España..
+Resumen.
+La utilización de herramientas que permitan detectar problemas de programación es de utilidad tanto para el docente, el cual puede probar de una forma más exhaustiva las prácticas entregadas, como para el discente, el cual puede utilizar dichas herramientas. En muchos casos, existen herramientas previas utilizadas en el desarrollo software, que pueden ser adaptadas para ser utilizadas en un entorno formativo. Este trabajo aporta la integración de una herramienta de validación formal de sistemas concurrentes Java, la cual garantiza la no existencia de defectos como son el abrazo mortal y las condiciones de carrera, en un entorno Web abierto. Más concretamente, la herramienta que se ha escogido es denominada JPF (Java Path Finder) y se la ha dotado de interfaces dentro de un servidor Java EE (Enterprise Edition), lo que facilita la utilización de servicios propios de la plataforma Java EE y la interoperabilidad entre estos con el módulo diseñado. El artículo trata aspectos tecnológicos derivados de dicha integración como son el diseño de una arquitectura que da soporte a la validación vía web. También detalla una serie de experimentos relativos al rendimiento de la plataforma realizados sobre un curso real, lo que permite medir costes computacionales y su utilidad en la evaluación. Copyright © 2012 CEA.  Publicado por Elsevier España, S.L. Todos los derechos reservados.
+Palabras Clave:
+Herramientas, Informática Industrial, Validación Formal, Sistemas Concurrentes, Educación, Java. 
+
+1837/5000
+适用于Java中的并发编程的练习形式验证业务模块。
+P. Basanta-Val *，M.García-Valls，I.Estévez-Ayres和M. J. Martin-Gutiérrez。
+卡洛斯三世马德里大学Avda。De la Universidad n 30，28911，（Leganés）西班牙马德里信息通信工程系。
+摘要。
+使用允许检测编程问题的工具对教师来说非常有用，他们可以以更彻底的方式证明所提供的实践以及可以使用这些工具的学生。在许多情况下，软件开发中使用了以前的工具，可以在培训环境中使用这些工具。这项工作提供了并行Java系统的正式验证工具的集成，它保证了在开放的Web环境中没有诸如致命拥抱和职业条件等缺陷。更具体地说，已经选择的工具被称为JPF（Java Path Finder），并且已经在Java EE服务器（企业版）内提供了接口，该接口便于使用来自Java EE平台和这些与设计模块之间的互操作性。本文讨论从这种集成中派生出来的技术方面，例如支持Web验证的体系结构的设计。它还详细介绍了一系列关于真实课程平台性能的实验，这些实验允许测量计算成本及其在评估中的实用性。版权所有©2012年CEA。由ElsevierEspaña出版，S.L.保留所有权利。
+关键词：
+工具，工业计算，正式验证，并行系统，教育，Java。
+
+1. Introducción.
+Dentro del currículum de los sistemas embebidos y de tiempo real (Caspi, et al., 2005) (Henzinger, T.A and Sifakis, J., 2007) aparecen los sistemas concurrentes como habilidad necesaria para el discente. Dicha habilidad requiere saber programar sin que se produzcan abrazos mortales (deadlock) ni condiciones de carrera (race conditions). Los primeros hacen referencia a que varias entidades concurrentes se queden bloqueadas a la espera de un recurso poseyendo otros requeridos por otras entidades concurrentes. Los segundos se refieren a que el proceso de lectura y escritura de una variable de dos o más entidades concurrentes se intercalen en el tiempo.
+Comprobar que tanto la condición de carrera como el abrazo mortal no se dan en una aplicación es complejo, utilizándose para tal fin las herramientas de validación formal. Diversas herramientas existentes para lenguajes de programación como C (Volanski, 2008), Ada (Guaspari, Marceau, Polak 1990) o Java (Visser, Pireanu, Khurshid 2004) permiten garantizar formalmente la no existencia de condiciones de carrera ni de abrazo mortal. En esencia dicha comprobación se hace recorriendo todos los estados de un programa verificando si se  cumple alguna de invariante que garantice que no hay condición de carrera ni abrazo mortal. Por lo general dicha exploración acaba derivando en una explosión de estados que hace que no sea posible validar totalmente una aplicación.
+Aunque estas herramientas tradicionalmente se han utilizado para validar software concurrente, otro tipo de aplicaciones a las que pueden ser adaptadas es el de la enseñanza de la concurrencia propiamente dicha. Así, de la misma forma que un compilador puede dar información sobre si un programa está bien codificado o no, las herramientas de validación formal pueden informar sobre si el programa es seguro (i.e., si potencialmente puede causar condiciones de carrera o/y abrazos mortales) desde un punto de la óptica de un sistema concurrente. Dicha información puede ser utilizada tanto por un docente, en el proceso de evaluación, como por un discente, que pretenda verificar el correcto funcionamiento de su programa.
+A la hora de abogar por el uso de técnicas de validación formal en la enseñanza de la concurrencia se debe de tener en cuenta, al menos, dos aspectos importantes. El primero es referente al coste del desarrollo de la validación de las aplicaciones y su complejidad. Por lo general, en entornos académicos la complejidad de los ejemplos desarrollados es menor que en sistemas reales con el fin de facilitar su comprensión. Eso en principio es una ventaja pues implica que los tiempos de validación presumiblemente serán más bajos en ejercicios académicos que en una aplicación del mundo industrial. El segundo aspecto de importancia es que los ejercicios pueden ser modificados para reducir su complejidad de validación; lo que es más difícil de conseguir en software tradicional atado a requisitos de cliente. De esta manera, muchas de las prácticas pueden ser modificadas para evitar la explosión de estados típica de los validadores formales.
+
+1.介绍
+内的嵌入式系统和实时的课程（卡斯皮，等人，2005）（Henzinger，T. A和Sifakis，J.，2007）并发系统作为一个discente必要技能出现。这种能力需要知道如何进行编程而没有致命的拥抱（死锁）或竞态条件。前者是指几个并发实体在拥有其他并发实体所需的资源之前保持被阻塞的事实。第二个是指读写两个或多个并发实体的变量的过程。
+为了验证职业条件和致命拥抱在应用程序中都没有发生，这很复杂，为此使用了正式的验证工具。对于编程语言，如C（Volanski，2008年），阿达（Guaspari，玛索，波拉克1990）或Java（维瑟，Pireanu，2004年卡苏）现有的各种工具，允许正式保证竞争条件或致命拥抱的不存在。实质上，这种检查是通过检查程序的所有状态来验证是否
+ 它履行了一些不变的保证没有职业或凡人拥抱的条件。一般来说，这种探索最终会导致状态爆发，导致无法完全验证应用程序。
+虽然这些工具传统上被用来验证并发软件，但是他们可以适应的另一种类型的应用程序本身就是并发教导。因此，在同样的方式，编译器，可以提供有关程序是否以及编码信息与否，正式验证的工具可以报告的程序是否安全（即，如果它有可能导致竞争条件和/或死锁）从一个并发系统的角度来看。这些信息既可以由老师使用，也可以在评估过程中使用，也可以由想要验证程序正确运行的学生使用。
+当提倡在竞争教学中使用正式验证技术时，必须考虑至少两个重要方面。第一个涉及应用程序验证开发的成本及其复杂性。总体而言，在学术环境中，为了便于理解，开发实例的复杂程度低于实际系统。原则上这是一个优势，因为它意味着在学术练习中验证时间可能会低于工业世界的应用。第二个重要方面是可以修改练习以减少验证的复杂性;传统的软件与客户需求相关联时要做到更加困难。通过这种方式，可以对许多实践进行修改，以避免形式验证者典型的状态爆炸。
+
+Sin embargo, el coste de la validación formal es mucho más alto que el de compilación. Mientras un programa puede compilar en pocos segundos, es fácil que su validación pueda consumir minutos u horas. Por tanto, la existencia de cierta infraestructura (plataforma) que controle el proceso de validación y optimice el uso de recursos puede resultar de interés. También es de utilidad una arquitectura desacoplada que permita la comunicación asíncrona entre el usuario y la herramienta de validación.
+En la plataforma descrita en este artículo, el lenguaje validado es Java y la librería de validación específica utilizada para ese fin es Java Path Finder (JPF) (JPF, 2011) (Visser, Pireanu, Khurshid, 2004). JPF permite la detección de condiciones de carrera y abrazo mortal en aplicaciones Java tradicionales. Está escrita en Java y su código es modificable y adaptable a las necesidades específicas de un escenario concreto como es un curso de programación Java concurrente. En tándem con ella se ha utilizado Java EE (Enterprise Edition) (JavaEE, 2011). Dicha tecnología permite el desarrollo de módulos empresariales (Enterprise Java Beans) que reciben de la infraestructura una serie de servicios genéricos (autenticación, balanceo de carga, nombramiento y gestión de concurrencia) que simplifican el desarrollo de aplicaciones empresariales. Sobre esta tecnología se asienta un módulo que permite validar ejercicios sobre concurrencia en Java.
+Aunque la arquitectura descrita ha sido diseñada para la validación de ejercicios en Java (basados en los escenarios descritos en (Estevez-Ayres, Basanta-Val, García-Valls, 2004)), se puede extender para validar otros lenguajes de programación.  Puede ser, por ejemplo, aplicado a la enseñanza de programas escritos en C o Ada. Lo que conlleva que los validadores ya existentes (e.g., Vestal (Tomas, Gomez, Perez, 1991)) puedan beneficiarse del modulo desarrollado para gestionar la comunicación con el usuario.
+A fin de explicar tanto la arquitectura del sistema de validación como su posterior aplicación, el resto de este artículo se ha estructurado tal y como sigue. La Sección 2 introduce las principales características de la herramienta de validación utilizada (JPF). La Sección 3 describe la estructura del módulo empresarial desarrollado y detalles de su implementación sobre un servidor de aplicaciones. Haciendo uso de una implementación de esta arquitectura, la Sección 4 presenta un estudio de campo asociado a dicha arquitectura en un curso real, con un ejercicio tipo. La Sección 5 conecta el artículo con otras alternativas identificadas en el estado del arte. Finaliza el artículo en la Sección 6 con las conclusiones y líneas futuras derivadas del módulo empresarial implementado.
+
+但是，正式验证的成本远高于编译成本。虽然程序可以在几秒钟内完成编译，但它的验证很容易耗费几分钟或几小时。因此，控制验证过程并优化资源使用的特定基础设施（平台）的存在可能是有意义的。允许用户和验证工具之间进行异步通信的非耦合架构也很有用。
+在这篇文章中所描述的平台，Java语言进行了验证，并用于这一目的的具体验证库是Java的路径查找器（JPF）（JPF，2011）（维瑟，Pireanu卡苏，2004）。 JPF允许在传统Java应用程序中检测竞态条件并致命拥抱。它是用Java编写的，它的代码是可修改的，并且适应特定场景的特定需求，例如并发Java编程课程。与此同时，Java EE（企业版）已被使用（JavaEE，2011）。这种技术使业务模块（企业Java Bean）的基础设施接收一定数量的简化企业应用开发的通用服务（认证，负载均衡，任命和并发管理）的发展。在这个技术中，有一个模块允许验证Java中的并发练习。
+（基于（埃斯特韦斯 - 艾尔斯，巴桑塔-VAL，加西亚 - 瓦尔斯，2004年）中描述的场景），尽管描述的架构是专为Java中的验证工作，它可以扩展到验证其他编程语言。例如，它可以应用于以C或Ada编写的程序的教学。这意味着现有的验证器（例如Vestal（Tomas，Gomez，Perez，1991））可以从开发用于管理与用户的通信的模块中受益。
+为了解释验证系统的体系结构及其后续应用，本文的其余部分的结构如下。第2节介绍了所用验证工具（JPF）的主要特性。第3节描述了开发的业务模块的结构以及在应用程序服务器上的实现细节。利用这种体系结构的实现，第4部分通过一个典型的练习，在实际课程中介绍了与所述体系结构相关的现场研究。第5部分将该文章与现有技术中确定的其他替代方案连接起来。结束第6部分的文章，其中包含来自已实施业务模块的结论和未来路线
+
+2. JavaPathfinder.
+JPF es un software de validación formal para código Java.  Básicamente es una máquina virtual de Java (JVM) que ejecuta un programa no sólo una vez, sino teóricamente en todos sus posibles caminos, buscando defectos o errores de ejecución como abrazos mortales o excepciones no manejadas a lo largo de todos los caminos potenciales, además de propiedades que se quieran observar. Cada vez JPF encuentra un fallo, indica la ejecución que ha llevado hasta el mismo. Dicha traza es importante cuando el objetivo es el de arreglar un problema o para comprobar la naturaleza del código generado.
+Un inconveniente de JPF es que está implementado en Java, lo que lastra el rendimiento de dicha herramienta. Esto es debido a que una máquina virtual se encuentra ejecutándose sobre otra que se encuentra validando un programa en Java.
+Una limitación de JPF es que no puede ejecutar código nativo.  Esta limitación de JPF impide que las llamadas al sistema para escribir un archivo sean fácilmente deshechas. Con lo cual, JPF no sirve para validar programas escritos en C/C++. 
+
+2.JavaPathfinder。
+JPF是用于Java代码的正式验证软件。基本上，它是一个Java虚拟机（JVM），它不仅执行一次程序，而且在理论上以所有可能的方式执行程序，此外还寻找缺陷或执行错误，例如所有潜在路径上的致命拥抱或非托管异常您想要观察的属性。每次JPF发现故障时，它都会指示导致它发生的执行。当目标是解决问题或检查生成的代码的性质时，此跟踪非常重要。
+JPF的一个缺点是它是用Java实现的，这阻碍了该工具的性能。这是因为虚拟机正在运行另一个正在验证Java中的程序。
+JPF的限制是它不能执行本机代码。 JPF的这种限制阻止了系统调用写入文件，使其很容易被撤消。有了这个，JPF不会验证用C / C ++编写的程序。
+try (DirectoryStream<Path> directoryStream = Files.newDirectoryStream(Paths.get(ROOT, path))) {
+
+    String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DATE_FORMAT);
+    for (Path pathObj : directoryStream) {
+        // 获取文件基本属性
+        BasicFileAttributes basicFileAttributes = Files.readAttributes(pathObj, BasicFileAttributes.class);
+
+        // 封装返回JSON数据
+        JSONObject fileItem = new JSONObject();
+        fileItem.put("name", pathObj.getFileName().toString());
+        fileItem.put("date", simpleDateFormat.format(new Date(basicFileAttributes.lastModifiedTime().toMillis())));
+        fileItem.put("size", basicFileAttributes.size());
+        fileItem.put("type", basicFileAttributes.isDirectory() ? "dir" : "file");
+        fileItems.add(fileItem);
+    }
+} catch (IOException e) {
+    e.printStackTrace();
+}
+
