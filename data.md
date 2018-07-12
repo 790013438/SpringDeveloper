@@ -26,6 +26,8 @@ myeclipse
 复制到d盘，再打开
 本机装Oracle11g
 最后关门
+youtube oracle
+all about vue
 
 一天mybatis
 8.3  8.4     sql
@@ -146,5 +148,28 @@ public void commitTransaction() throws SQLException
 public void endTransaction() throws SQLException
 ```
 每个线程只能开启一个事务
+repository sqlMap-XXX.xml id
 
 192.168.16.28:1521 orl库 ta312 ta312
+
+Window->Preferences->General ->Content Type->Text->JSP 最下面设置为UTF-8
+
+Window->Preferences->General->Workspace 面板Text file encoding 选择UTF-8
+
+Window->Preferences->Web->JSP Files 面板选择 ISO 10646/Unicode(UTF-8)
+https://zhuanlan.zhihu.com/p/24986821
+
+General > Editors > Text Editors. Check “Insert spaces for tabs”
+Java > Code Style > Formatter. Create a new profile. Go to the Indentation tab and set “Tab policy” to “Spaces only”
+Ant > Editor > Formatter. Uncheck "Use tab character instead of spaces"
+https://stackoverflow.com/questions/40214092/eclipse-spaces-instead-of-tabs-project-file
+
+实例 = 后台进程 + 内存结构
+数据库 = 数据文件 + 控制文件 + 重做日志文件
+一个实例只能打开一个数据库
+PGA 私有全局区
+REVOKE {privilege}
+ON object
+FROM {user}
+[CASCADE CONSTRAINTS 将用户付出去的收回]
+
