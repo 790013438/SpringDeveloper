@@ -11,7 +11,7 @@ methord   ->               是这个属性吗
 写dao
 不能获取申请人名字
 陈艳      陈姐
-张磊
+张雷
 圆圆
 信息部      张磊         网络
 云平台 冯科 http://192.168.16.25/Citrix/DesktopWeb/site/directLaunch.aspx
@@ -61,17 +61,16 @@ myeclipse
 潘俊      都敏君的军
 城阳
 黄胜      攀枝花
-梁红菊      免费导游，有眼镜
+梁红菊   免费导游，有眼镜
 元慧泉
-袁世凯      成都事业部         内江师范学院   软件工程
+袁世凯   成都事业部   内江师范学院   软件工程
 杨寅杰
-陈玉婷
-四川乐山
-扬丝岩      住房公积金
-唐瑞国      湖北         武汉   事业部   家甘肃
-涂      湖北事业部
+陈玉婷   四川乐山
+扬丝岩   住房公积金
+唐瑞国   湖北   武汉   事业部   家甘肃
+涂   湖北事业部
 北京事业部
-熊凯      遂宁
+熊凯   遂宁
 空调2701
 杜孝飞      成都事业部         广安
 
@@ -82,3 +81,70 @@ myeclipse
 执行力强，创新中心银海大学
 
 user015/111111
+
+# ibatis
+> * SqlMapConfig.xml
+> * 映射文件
+> * java实体 pojo
+
+> 插入
+1. SqlMapConfig.xml
+2. SqlClientBuilder对象
+3. SqlMapClient对象
+4. API
+$$读取classpath的配置文件$$
+## 1. SqlMapConfig.xml
+> * <settings> 元素
+> * <datasource>
+```xml
+
+```
+> * <sqlMap>
+<!-- CLASSPATH RESOURCES -->
+<sqlMap resource=""></sqlMap>
+<!-- url RESOURCES -->
+<sqlMap url=""></sqlMap>
+
+## 2. SqlMap.xml
+> * <statement> 元素
+> * <procedure> 元素
+> * <insert> 元素 通过配置可以返回主键，但是标签里没有属性
+> * <> 特殊符号 转义
+```xml
+<![CDATA[
+    SELECT from
+]]
+```
+> * parameterClass
+全包名
+<statement id="insertProduct" parameterClass="java.lang.Integer">
+    select * from PRODUCT where PRO__ID = #value#
+</statement>
+> * resultClass
+```xml
+<statement id="getPerson" parameterClass="int" resultClass="example.domain.Person">
+    SELECT RER_ID as id,
+    PER_FIRST_NAME
+</statement>
+```
+取别名和成员字段对应
+
+## 3. SqlMapClientBuilder
+读取SqlMapConfig.xml
+## 3. SqlMapClient
+queryForObject()
+两个参数的返回查询结果，三个参数，第三个参数获得结果, 4个参数分页
+```java
+sqlMap.startTransaction();
+Custom
+```
+事务
+```java
+public void statTransaction() throws SQLException
+Item item = (Item) sqlMap.
+public void commitTransaction() throws SQLException
+public void endTransaction() throws SQLException
+```
+每个线程只能开启一个事务
+
+192.168.16.28:1521 orl库 ta312 ta312
