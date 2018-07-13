@@ -215,6 +215,17 @@ from emp;
 
 > * 处理空
 nvl(comm, 0)
+nvl2(判断条件, 如果不为空, 空)
+nvl2(判断条件, 判断条件1, 否则)
+nullif(comm, 1400)如果是1400，那么给null,否则自己.
+    如果是多少，给空
+数字字符串自动转换
+```sql
+select comm,
+    nvl(comm, 0),
+    nvl2(comm, comm, 0),
+    nullif(comm, 1400)
+```
 
 scott
 1. 查询scott用户下的所有表
@@ -392,3 +403,40 @@ from dual;
 > replace(字段, 被替换字符串, 新字符串)
 > substr(字段, 从1开始数的位置, 数多少个字符)替换
 > length()求长度
+
+> abs(int) 求绝对值
+> ceil(float) 向上取，加0.5取整
+> floor(float) 向下取，减0.5取整
+> power(value, exponent) 指数，value的多少次方
+> round(value, 精度的位数) round(12.568, -1) 得10，小数点前一位，参与四舍五入
+                           round(12.568, 0) 得13，不保留小数位
+                           round(12.568, 1) 得12.6
+
+> 日日-月月-年年
+> add_months(hiredate, 2) 增加一个月
+> last_day(hiredate) 求所在月得最后一天的日期
+> months_between(sysdate, hiberdate) 中间隔多少月
+> next_day(sysdate, '星期一') 之后是星期一的日期
+> sysdate 系统时间
+> current_timestamp 时间戳
+> round(sysdate) 四舍五入，默认按照日期
+> trunc(sysdate) 截断，只能截取单个，年，月，日
+> extract(year from sysdate) 提取年
+> to_char(sysdate, 'mm') 两位的月，转成字符串
+4个YYYY  2个YY  MONTH,  MON  2个月MM
+4位年    2位年
+
+> to__char(date, 'format') 将日期转换成指定格式
+```sql
+```
+```sql
+select to_char(023.450), to_number('1.34')
+from dual
+```
+不包含数字的0
+```sql
+select to_char(13857.760, '$99,999.0000'), to_number('12.34')
+from dual;
+```
+9代表数字，0代表没有保留零
+>
