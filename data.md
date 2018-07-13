@@ -378,3 +378,17 @@ and salary not in (2500, 3500, 7000);
 select last_name, salary, commission_pct
 from employees
 where commission_pct = 0.2
+
+> * 函数
+> chr(integer) 把整数换成ASCII码对应的字母，char
+select chr(65)
+from dual;
+> initcap(字段)将单词换成第一个字母大写，init capital
+> lower(字段)全小写
+> upper(字段)全大写
+> LPAD(string, length, char) 指定查出字段长度，在单词left左边填充指定字符
+> RPAD(字段, 包装字符长度, 填充字符)右边
+> ltrim(字段) 裁剪left（左边的空格，不可见字符）
+> replace(字段, 被替换字符串, 新字符串)
+> substr(字段, 从1开始数的位置, 数多少个字符)替换
+> length()求长度
