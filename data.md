@@ -213,6 +213,10 @@ WHERE   emp.ename  like  'J%'
 select empno, ename, job, nvl(sal, 0) * 12
 from emp;
 
+> * 处理空
+nvl(comm, 0)
+
+scott
 1. 查询scott用户下的所有表
 SELECT *
 from tabs;
@@ -317,3 +321,60 @@ order by sal asc;
 select *
 from emp
 order by sal desc;
+
+hr用户
+23. (以下hr用户employees表)HR需要得到一个月薪$12000以上的员工名(last_name)和薪水报告，请完成查询语句
+select last_name, salary
+from
+employees
+where salary > 12000;
+
+24. HR需要识别高收入和低收入员工群体,请显示月薪不在$5000到$12000范围内的员工名和月薪
+select last_name, salary
+from
+employees
+where not (salary between 5000 and 12000);
+
+25. 请查询1994年雇员的员工名和雇佣日期
+select last_name, hire_date
+from employees
+where hire_date >= '1-1月-94' and hire_date <= '31-12月-94';
+
+26. 请查询没有领导的员工名和职位
+select last_name, job_id
+from employees
+where manager_id is null;
+
+27. 请查询有奖金的员工名和月薪，奖金，并按照奖金系数排序
+select last_name, salary, salary * commission_pct
+from employees
+where commission_pct is not null
+order by commission_pct desc;
+
+28. 请查询月薪大于1000的员工名和月薪
+select last_name, salary
+from employees
+where salary > 1000;
+
+29. 请查询第三个字母是a的员工名
+```sql
+select last_name
+from employees
+where last_name like '_a%';
+```
+
+30. 请查询员工名包含a或e的员工名
+select last_name
+from employees
+where last_name like '%a%' or last_name like '%e%';
+
+31. 请查询职位是"SA_REP" 或者 "ST_CLERK",且月薪不是$2500,$3500,$7000的员工信息
+select *
+from employees
+where JOB_ID in ('SA_REP', 'ST_CLERK')
+and salary not in (2500, 3500, 7000);
+
+32. 请查询奖金系数是20%的员工名、薪水和奖金系数
+select last_name, salary, commission_pct
+from employees
+where commission_pct = 0.2
