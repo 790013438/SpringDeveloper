@@ -81,8 +81,10 @@ all about vue
     韦联告      自黑
 
 执行力强，创新中心银海大学
-
 user015/111111
+系统账号        svn账号
+13595  userpp
+http://192.168.16.30:8080/gptool
 
 # ibatis
 > * SqlMapConfig.xml
@@ -173,3 +175,145 @@ ON object
 FROM {user}
 [CASCADE CONSTRAINTS 将用户付出去的收回]
 
+scott/tiger  --简单查询1,     单行函数1,   复杂查询1,   复杂查询2
+hr/hr        --简单查询2,     单行函数2
+## 1.  查询
+> * 取别名，可以在双引号里打空格
+```sql
+SELECT  empno  "id",  ename  as  "emp  name",  "123"
+FROM    emp;
+```
+> * 去重
+```sql
+SELECT  distinct  deptno
+FROM    emp;
+```
+
+> * 日期用单引号
+日期，月，年
+'13-7-18'
+中文版
+'20-7月-18'
+> * not 加括号
+> * 连接字符串
+> * 通配符，模糊查询 % _
+like '' 单引号
+```sql
+SELECT  ename,     sal
+FROM    emp
+WHERE   emp.ename  like  'J%'
+```
+> * 数据排序
+默认升序asc
+降序desc
+必须放在语句的最后
+空值作为最大值
+
+> * 查询年薪, 处理空值,月薪乘12
+select empno, ename, job, nvl(sal, 0) * 12
+from emp;
+
+1. 查询scott用户下的所有表
+SELECT *
+from tabs;
+
+2. 查询雇员表中所有信息
+select *
+from emp;
+
+3. 查询雇员编号，姓名，工作，工资
+SELECT empno, ename, job, sal
+from emp;
+
+4. 查询雇员编号，姓名，工作，工资，列标题需要显示中文。
+SELECT empno 编号, ename 姓名, job 工作, sal工资
+from emp;
+
+5. 消除重复列，查询雇员工作种类。
+SELECT distinct job 工作
+from emp;
+
+6. 查询所有雇员编号，姓名，工作，按以下格式显示：编号:7369,姓名:SMITH,工作:CLERK
+SELECT '编号:' || empno || ',姓名:' || ename || ',工作:' || job
+from emp;
+
+**7. 查询雇员编号,姓名,工作,年薪**
+SELECT empno,ename,job,nvl(sal, 0) * 12 + nvl(comm, 0) * 12
+from emp;
+
+8. 查询工资大于1500的雇员所有信息
+select *
+from emp
+where sal > 1500;
+
+9. 查询可以得到奖金的雇员所有信息
+select *
+from emp
+where comm is not null and comm <> 0;
+
+**10. 查询工资大于1500或可以获得奖金的雇员**
+select *
+from emp
+where sal > 1500 or (comm is not null and comm <> 0);
+
+11. 查询工资大于1500并且可以领取奖金的雇员
+select *
+from emp
+where sal > 1500 and comm is not null and comm <> 0;
+
+12. 查询工资大于1500或者不可以领取奖金的雇员
+select *
+from emp
+where sal <= 1500 or comm is null or comm = 0;
+
+13. 查询工资在1500到3000的所有雇员信息
+select *
+from emp
+where sal between 1500 and 3000;
+
+14. 查询在1981年雇用的员工信息
+select *
+from emp
+where hiredate >= '1-1月-81' and hiredate <= '31-12月-81';
+
+15. 查询雇员姓名中第二个字母为"M"的雇员信息
+```sql
+select *
+from emp
+where ename like '_M%'
+```
+
+16. 查询雇员工资中带8这个数字的雇员信息
+select *
+from emp
+where sal like '%8%';
+
+17. 查询编号是7369,7499,7521,7900的雇员信息
+select *
+from emp
+where empno in (7369,7499,7521,7900);
+
+18. 查询编号不是7369，7499，7521，7900的雇员信息
+select *
+from emp
+where empno not in (7369,7499,7521,7900);
+
+19. 查询雇员编号为7369的雇员信息
+select *
+from emp
+where empno = 7369;
+
+20. 查询雇员编号不为7369的雇员信息
+select * 
+from emp
+where empno != 7369;
+
+21. 查询雇员信息，按工资由低到高排序
+select *
+from emp
+order by sal asc;
+
+22. 查询雇员信息,按工资由高到低排序
+select *
+from emp
+order by sal desc;
