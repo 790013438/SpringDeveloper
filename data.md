@@ -423,8 +423,9 @@ from dual;
 > trunc(sysdate) 截断，只能截取单个，年，月，日
 > extract(year from sysdate) 提取年
 > to_char(sysdate, 'mm') 两位的月，转成字符串
-4个YYYY  2个YY  MONTH,  MON  2个月MM
-4位年    2位年
+
+4个YYYY  2个YY  月MONTH,   缩写MON   2个月MM
+4位年    2位年  月份名称   月份名称缩写
 
 > to__char(date, 'format') 将日期转换成指定格式
 ```sql
@@ -439,4 +440,42 @@ select to_char(13857.760, '$99,999.0000'), to_number('12.34')
 from dual;
 ```
 9代表数字，0代表没有保留零
->
+
+> coalesce 合并
+```sql
+select coalesce('', '3', '333')
+from dual
+```
+返回第一个不空的
+> decode(字段, 条件, 包装, 条件, 包装, default)
+返回男女
+
+count(1) 统计查询结果
+```sql
+select  count(1) total,
+        sum(decode(deptno, 10, 1, 0)) "10",
+        sum(decode(deptno, 20, 1, 0)) "20",
+        sum(decode(deptno, 30, 1, 0)) "30"
+from emp;
+```
+total  10  20  30
+13     3   4   6
+
+> * case when then end
+```sql
+select sal,
+    case
+        when sal>1500 then '>1500'
+        when sal=1500 then '=1500'
+        when sal<1500 then '<1500'
+    end as cc
+from emp;
+```
+```sql
+select sal
+    case sal
+        when 1600 then 1
+        when 1500 then 0
+    end cc
+from emp;
+```
