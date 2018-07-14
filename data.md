@@ -582,17 +582,146 @@ end
 from employees;
 ```
 
-67.
+67. 查询emp和dept表，产生笛卡尔积(多表行相乘)
+select * from emp,dept
 
-68.
+68. 加where条件过滤查询emp和dept表产生的笛卡尔积
+select * from emp,dept
+where emp.deptno = dept.deptno
 
-69.
+69. 查询emp和dept表，产生笛卡尔积(多表行相乘)，并为表去别名
+select * from emp t1, dept t2
 
-70.
+70. 查询雇员姓名，所在部门编号和名称
+select ename, deptno, (select dname from dept t2 where deptno = t1.deptno)
+from emp t1
 
-71.
+71. 查询所有雇员姓名，工作，领导的姓名
+select ename,job,(select ename from emp t2 where t2.empno = t1.mgr)
+from emp t1;
 
-72.
+72. 查询雇员姓名，工作，领导姓名及部门名称
+select ename,job,(select ename from emp t2 where t2.empno = t2.mgr)
+,(select dname from dept where deptno = t1.deptno)
+from emp t1;
+
+73. 查询雇员姓名，工作，工资及工资等级
+select ename, job, sal, (select grade from salgrade where losal <= t1.sal and hisal >= t1.sal)
+from emp t1;
+
+74. 查询雇员姓名，工作，工资及工资等级，要求工资显示为A B C D E
+select ename, job, sal
+case(select grade from salgrade where losal <= t1.sal and hisal >= t1.sal)
+    when 1 then 'A'
+    when 2 then 'B'
+    when 3 then 'C'
+    when 4 then 'D'
+    when 5 then 'E'
+end
+from emp t1;
+
+75. 查询雇员姓名，年薪（薪水 + 奖金），按年薪从高到低排序
+select ename, nvl(sal, 0) * 12 + nvl(comm, 0) * 12
+from
+emp;
+
+76. 查询每个部门中工资最高的雇员姓名，工作，工资，部门名称，最后按工资从高到低排序，工资相同的情况下按姓名排升序
+select ename, job, sal, (select dname from dept where deptno = t2.deptno)
+from emp t2
+where sal in(
+select max(sal)
+from emp t1
+group by deptno)
+order by sal desc, sal asc;
+
+77. 查询每个部门的部门编号和雇员数量
+select t2.deptno, sum(nvl2(t1.deptno, 1, 0))
+from emp t1 right join dept t2
+on t1.deptno = t2.deptno;
+
+78. 求出每个部门的部门和平均工资（保留2位小数，截断）
+select dname, trunc(avg(nvl(sal, 0)), 2)
+from emp t1 right join dept t2
+on t1.deptno = t2.deptno;
+
+79. 按部门分组，并显示部门的名称，以及每个部门的员工数
+```sql
+select distinct dname, (select count(*) from emp t2 where t2.deptno = t1.deptno)
+from emp t1 right join dept
+on t1.deptno = dept.deptno;
+```
+
+80. 要求显示平均工资大于2000的部门编号和平均工资（保留2位小数，截断）
+select deptno, trunc(avg(sal), 2)
+from emp
+group by deptno
+having avg(sal) > 2000
+
+81. 显示非销售人员工作名称以及从事同一工作雇员的月工资的总和，并且要满足从事同一工作的雇员的月工资大于$1500,输出结果按月工资的合计升序排列
+select job, sum(nvl(sal, 0))
+from emp
+where job <> 'SALESMAN' and nvl(sal, 0) > 1500
+group by job
+order by sum(nvl(sal, 0)) asc
+
+82. 求出平均工资最高的部门名称
+select dname
+from dept
+where deptno = (select deptno from emp group by deptno having avg(sal) =
+(select max(avg(sal)) from emp group by deptno));
+
+83. 要求查询出比7654工资要高的全部雇员的信息
+select *
+from emp
+where sal >
+(select sal 
+from emp
+where empno = '7654');
+
+84. 要求查询工资比7654高，与7788从事相同工作的全部雇员信息
+select *
+from emp
+where sal >
+(select sal 
+from emp
+where empno = '7654')
+and job = (
+select job
+from emp
+where empno = '7788');
+
+85. 查询出工资最低的雇员姓名，工作，工资
+select ename, job, sal
+from emp
+where sal = (
+select min(sal)
+from emp
+)
+
+86. 查询出各部门工资最低的雇员姓名，工作，工资
+select ename, job, sal
+from emp el
+where sal = (
+    select min(sal)
+    from emp e2
+    where e1.deptno = e2.deptno)
+
+87. 要求查询部门名称，部门的员工数，部门的平均工资，部门的最低收入雇员姓名，要求显示所有部门名，如果该部门没有任何员工，则员工数和平均工资需显示0，员工姓名显示null即可。
+select distinct d.dname, nvl(t.pcount, 0), nvl(t.savg, 0), (select ename from emp where sal = t.smin)
+from dept d, emp e, (select deptno, count(deptno) pcount, avg(sal), min(sal)smin from emp
+group by deptno) t
+where d.deptno = e.deptno(+)
+and d.deptno = t.deptno(+);
+
+88.
+
+89.
+
+90.
+
+91.
+
+92.
 
 > * 函数
 > chr(integer) 把整数换成ASCII码对应的字母，char
