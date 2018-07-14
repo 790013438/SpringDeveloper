@@ -13,6 +13,7 @@ methord   ->               是这个属性吗
 陈艳      陈姐
 张雷
 圆圆
+索引
 信息部      张磊         网络
 云平台 冯科 http://192.168.16.25/Citrix/DesktopWeb/site/directLaunch.aspx
 不要从里面关机
@@ -682,4 +683,136 @@ select sal
         when 1500 then 0
     end cc
 from emp;
+```
+
+> * 分组函数
+AVG, MAX, MIN, COUNT, SUM
+```SQL
+select max(sal), min(sal), sum(sal), avg(sal), count(sal)
+from emp;
+```
+distinct 用在sum里，不计算重复的项
+```SQL
+select max(sal), min(sal), sum(sal), sum(distinct, sal), avg(sal), count(sal)
+from emp;
+```
+
+对分组计算
+group by
+having
+order by
+查询每个部门
+```sql
+select max(sal), min(sal), sum(sal), sum(distinct, sal), avg(sal), count(sal)
+from emp;
+group by deptno;
+```
+> 空值处理
+空默认忽略
+```sql
+select deptno, sum(comm), avg(comm), count(comm)
+from emp
+group by deptno;
+```
+deptno  sum(comm)  avg(comm)  count(comm)
+30      2200       550        4
+20                            0
+10                            0
+
+nvl(comm, 0)处理空值
+可以根据多个列或者表达式分组
+where 子句里不能出现分组函数
+having 可以
+```sql
+select deptno, job, sum(comm)
+from emp
+group by deptno, job
+having sum(comm) > 0
+```
+分组函数可以嵌套，注意sum,count返回一个值
+-- 查询员工姓名和所在部门名称
+
+```sql
+select e.ename, d.dname
+from emp e, dept d
+where e.deptno = d.deptno
+```
+* 等值连接，用等号
+* 查询员工姓名及所在部门
+```sql
+select e.ename, d.dname
+from emp e, dept d
+where e.deptno(+) = d.deptno;
+* 表（left） right join 表（right，右边） on 条件 右边的会全部查出来
+* (+) 放在缺失的那边
+如果有n个表进行等值连接，需要n-1个条件
+```
+* 查询员工姓名及其领导姓名
+```sql
+select el.ename, e2.ename mgr
+from emp e1, emp e2
+where e1.mgr = e2.empno(+);
+```
+外连接
+```sql
+select e.ename, d.dname
+from emp e, dept d
+where e.deptno = d.deptno
+```
+* 自连接
+
+* > 子查询
+子查询里不用group by, top-n除外
+```sql
+select employee_id, last_name, job_id, salary
+from employees
+where salary < any
+(select salary
+from employees
+where job_id = 'IT_PROG')
+where job_id <> 'IT_PROG';
+```
+小于最大的，小于集合中的随机一个 || or
+```sql
+select employee_id, last_name, job_id, salary
+from employees
+where salary < ALL
+(select salary
+from employees
+where job_id = 'IT_PROG')
+where job_id <> 'IT_PROG';
+```
+小于集合中的全部 && and
+
+* 子查询里的空值
+判断where
+select ename from emp
+where empno not in (
+select mgr.empno from emp mgr where job = MANAGER and empno is not null)
+
+* 内联视图
+select e.ename, a.avgsal from emp e,
+(select deptno,avg(sal) avgsal from emp group by deptno) a
+where e.deptno = a.deptno;
+
+* top-n分析，工资前10名
+rownumber, 行号, 查询之后编号，之后order by 排序
+```sql
+select ename, sal
+from(select rownumber, ename, sal
+from emp
+order by sal desc)
+where rownumber <= 10;
+```
+
+* 集合
+并 UNION/UNION ALL
+union 去重，all不去重
+列数一致，第一个列为列名
+```sql
+select empno, ename
+from emp
+union
+select deptno, dname
+from dept;
 ```
