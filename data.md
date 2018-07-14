@@ -506,6 +506,92 @@ select ename
 from emp
 where ename like "%A%"
 
+57. (hr用户)查询系统当前日期
+select sysdate
+from dual;
+
+58. 请查询每个员工的姓名、薪水和加薪15.5%之后的薪水(trunc取整)
+select last_name, salary, trunc(salary * 1.155)
+from employees;
+
+59. 显示员工加薪15.5%（取整）之后员工的名字、原薪水和增加的薪水。(不允许做update操作,trunc取整)
+select last_name, salary, trunc(salary * 1.155) - salary
+from employees;
+
+60. 请显示所有以'J', 'A', 'M'打头的员工的名字和名字长度，且按照名字排升序
+select last_name, length(last_name)
+from employees
+where last_name like 'J%' or
+last_name like "A%" or
+last_name like "M%"
+order by last_name asc;
+
+61. 请查询员工名和工作时间（换算成月并取整），并按工作时间排降序
+select last_name, trunc(months_between(sysdate, hire_date))
+from employees
+order by trunc(months_between(sysdate, hire_date)) desc;
+
+62. 请查询员工的名字和薪水，并将薪水列变成15个字符长度，左边填充"$"符号
+select last_name,LPAD(salary, 15, '$')
+from employees;
+
+63. 请查询部门id为90的所有员工的名字和他们参加工作的星期数(保留2位小数，不需要四舍五入)使用
+select last_name, trunc((sysdate - hire_date) / 7, 2)
+from employees
+where department_id=90
+
+64. 创建报告，显示员工名和奖金系数，如果奖金系数为空，则显示"无奖金"
+select last_name
+case
+    when commission_pct is null then '无奖金'
+    when commission_pct is not null then to_char(commission_pct)
+end
+from employees
+where department_id = 90;
+
+65. 请使用decode语句，查询员工的job_id和级别。例如：
+Job Grade
+AD_PRES A
+ST_MAN B
+IT_PROG C
+SA_REP D
+ST_CLERK E
+None of the above 0
+select job_id Job, decode(job_id, 'AD_PRES', 'A', 'ST_MAN', 'B', 'IT_PROG', 'C', 'SA_REP', 'D', 'ST_CLERK', 'E', '0') Grade
+from employees;
+
+66. 请使用case语句，查询员工的job_id和级别。例如：
+Job Grade
+AD_PRES A
+ST_MAN B
+IT_PROG C
+SA_REP D
+ST_CLERK E
+None of the above 0
+```sql
+select job_id Job
+case job_id
+    when 'AD_PRES' then 'A'
+    when 'ST_MAN' then 'B'
+    when 'IT_PROG' then 'C'
+    when 'SA_REP' then 'D'
+    when 'ST_CLERK' then 'E'
+    else '0'
+end
+from employees;
+```
+
+67.
+
+68.
+
+69.
+
+70.
+
+71.
+
+72.
 
 > * 函数
 > chr(integer) 把整数换成ASCII码对应的字母，char
@@ -539,7 +625,8 @@ from dual;
 > round(sysdate) 四舍五入，默认按照日期
 > trunc(sysdate) 截断，只能截取单个，年，月，日
 > extract(year from sysdate) 提取年
-> to_char(sysdate, 'mm') 两位的月，转成字符串
+> to_char(sysdate, 'mm') 两位的月，转成字符串，比如07
+> to_number(char) 将字符串转换成数字，字符要求是纯数字
 
 4个YYYY  2个YY  月MONTH,   缩写MON   2个月MM
 4位年    2位年  月份名称   月份名称缩写
