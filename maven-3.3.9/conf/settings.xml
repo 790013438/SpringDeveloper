@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+    <localRepository>D:\maven_repos</localRepository>
+
+    <plugGroups></plugGroups>
+
+    <proxies></proxies>
+
+    <servers>
+        <server>
+            <id>nexus-releases</id>
+            <userName>dev</userName>
+            <password>dev</password>
+        </server>
+        <server>
+            <id>yh-archetypes</id>
+            <username>dev</username>
+            <password>dev</password>
+        </server>
+    </servers>
+
+    <mirrors>
+        <mirror>
+            <id>nexus-releases</id>
+            <mirrorOf>*</mirrorOf>
+            <url>http://192.168.17.18:8081/nexus/content/groups/public/</url>
+        </mirror>
+        <mirror>
+            <id>yh-archetypes</id>
+            <mirrorOf>*</mirrorOf>
+            <url>http://192.168.17.18:8081/nexus/content/repositories/yh-archetypes/</url>
+        </mirror>
+    </mirrors>
+
+    <profiles>
+        <profile>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <env.type>dev</env.type>
+            </properties>
+        </profile>
+    </profiles>
+</settings>

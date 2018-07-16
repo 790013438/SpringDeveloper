@@ -22,6 +22,22 @@ methord   ->               是这个属性吗
 file://192.168.16.21/shareFiles
 不要装wps
 myeclipse
+new web project -> 取消User default location -> lib文件上一层 -> next ->
+src修改成javacode -> next -> WebRoot修改成webapp,取消Generate index.jsp welcome file ->
+create from archetype
+填写archetype-catalog版本号4.0.1-SNAPSHOT的值
+不要有空字符，不要数字打头
+配置maven，全是Override
+全局idea设置，default settings-> Build,Execution,Deployment -> 设置maven的仓库
+
+内网地址：
+http://192.168.10.201:7076
+ta + cloud
+yhcip
+ta + 2
+ta + 3
+首先厚脸皮
+
 装java
 权限111/123456
 复制到d盘，再打开
@@ -945,3 +961,14 @@ union
 select deptno, dname
 from dept;
 ```
+
+* > 创建maven工程
+骨架文件
+192.168.17.18：8081/nexus/content/repository/yh-archetypes
+
+公司内网maven配置
+<?xml version="1.0" encoding="UTF-8"?>
+<archetypes-catalog xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetypes-plugin/archetype-catalog/1.0.0 http://maven.apache.org/xsd/archetype-catalog-1.0.0.xsd">
+    <archetypes>
+    </archetypes>
+</archetypes-catalog>
