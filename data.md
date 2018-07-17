@@ -1077,6 +1077,8 @@ buttonLayout 包含 button
   Base.setRequired("txt1")
   // 隐藏，是否占位
   Base.hideObj(), Base.showObj
+  // 显示对象
+  Base.showObj()
 </script>
 ```
 ```java
@@ -1102,4 +1104,87 @@ toolTip="提示信息" required="true" 没有输入有提示框，hover
 name属性，转到key
 placeholder 框内信息
 value 给框里设置默认值
+ta:text texthelp 小box
 
+ta:number
+cssInput, cssInput='font-size:20px;color:red'
+precision=2 小数位数显示为2，保存到数据库，16 = max14 + 2precision
+asAacount="true" 数值金额
+amountPre = "$" 金额
+alignLeft 左显示
+<ta:fieldset>
+  <ta:number alignLeft="true"></ta:number>
+</ta:fieldset>
+min=10, max=100数值区间
+numberRound="true" 四舍五入
+
+ta:date
+datetime
+validNowTime left-> 今天及之前
+issue=true 社保期号，4位年两位月
+datetime="true" 时分秒
+dateYear="true" 只有年
+dateMonth="true" 年月
+fulltime 毫秒
+enableKeyborard 方向键移动,通过方向键选择日期
+pchanged 改变日期触发，面板有变化
+onChange 移开有变化
+```html
+<ta:fieldset id="fls3" key="date组件" cols=3>
+  <ta:date id="date1" key="date1"></ta:date>
+</ta:fieldset>
+```
+默认没有日期面板，showSelectPanel="true"显示日期
+Base.submitForm("form的id")
+valideNowTime="left" 有提示
+valideNowTime="right" 提示选今天及以后
+min="2017-12-01" 之前的日期置灰
+max="201808-07-01"
+
+textarea组件
+maxLength 最大长度
+minLength 最小长度
+height=100px
+onmouseover 鼠标移入
+onmouseout 鼠标移出
+<ta:textarea></ta:textarea>
+
+button组件
+hotKey alt + 字母， ctrl+s
+icon="icon-edit" isShowIcon="true"
+asToolBar
+returnType reset
+
+buttonGroup 要和selectBuuton混用，圆角边
+button,sumbit,selectButton
+button,sumbit混用可以
+align center/lest/right 页面的位置
+columnWidth 百分比
+<ta:buttonGroup id="btngrp1">
+  <ta:button id="btn11" key="btn11" icon="icon-save" isShowIcon="true"></ta:button>
+  <ta:button id="btn12" key="btn12"></ta:button>
+</ta:buttonGroup>
+buttonLayou 圆角边
+<ta:buttonLayout id="btngrp1">
+  <ta:button id="btn11" key="btn11"></ta:button>
+  <ta:button id="btn12" key="btn12"></ta:button>
+</ta:buttonGroup>
+显示图标
+<ta:button id="btn11" key="btn11" icon="icon-save" isShowIcon="true"></ta:button>
+asToolBarItem="true" 买有边框
+hotkey="ctrl+a"
+hotkey="a" alt + a
+isok="true" 红色，确认框
+**type="resetPage" 刷新整个页面**
+
+selectButton
+hotKey、icon、
+```sql
+<ta:buttonLayout id="btn11">
+<ta:selectButton id="btn222" key="地区">
+  <ta:selectButtonItem key="成都"></ta:selectButtonItem>
+  <ta:selectButtonItem key="重庆"></ta:selectButtonItem>
+</ta:selectButton>
+</ta:selectButton>
+```
+宽高
