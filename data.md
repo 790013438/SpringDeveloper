@@ -1000,3 +1000,35 @@ spring/spring-dynamicTransaction.xml -> transactionProxy
 spring-ibatis.xml(可以修改)
 开发阶段注释
 404 修改404
+源文件夹(src/java, src/resource)合并成class
+inc.jsp -> inc-face.jsp
+        -> /appinc.jsp -> 第三方的东西整个项目都要用
+
+<script>
+document.
+//渲染页面布局
+</script>
+padding 内边距
+margin 外边距
+注释是<%--
+
+容器组件
+panel
+box 专门布局、div
+fieldset form表单
+tabs、tab
+
+列布局
+<ta:fieldset id="first1" key="fieldset组件" fit="true">
+  <ta:
+</ta:fieldset>
+
+layout="border"
+
+一个组件的最后fit=true，占据父元素剩下的高度
+heightDiff="100", 下面留白
+box div 有东西才有高度
+
+百分比布局（autoPercentHeight）
+<ta:box></ta:box>
+lableWidth设置标签宽度
