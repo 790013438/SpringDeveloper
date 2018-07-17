@@ -967,8 +967,36 @@ from dept;
 192.168.17.18：8081/nexus/content/repository/yh-archetypes
 
 公司内网maven配置
-<?xml version="1.0" encoding="UTF-8"?>
-<archetypes-catalog xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetypes-plugin/archetype-catalog/1.0.0 http://maven.apache.org/xsd/archetype-catalog-1.0.0.xsd">
-    <archetypes>
-    </archetypes>
-</archetypes-catalog>
+添加archetype
+groupId com.yinhai
+artifactId ta3-project-ta3-archetype
+version 4.0.1-SNAPSHOT
+repository http://192.168.17.18:8081/nexus/content/repositories/yh-archetypes
+
+框架库
+192.168.16.28:1521
+用户 cloud
+p@ssword cloud
+tomcat内存
+-Xms256m
+-Xmx512m
+-XX:PermSize=256M
+-XX:MaxPermSize=512M
+
+8080 jvm_bindException
+1099端口占用，修改端口,新配tomcat
+8445占用，
+
+TaParamDTO,从中获取数据， ValueObject
+BaseController,所有控制器的父类, Controller
+> setData(), setSelectInputList()下拉列表，setList(), getTaDto()获取数据
+!左边保持一致
+异步，submit,返回json
+
+web-app/web.xml -> app-context.xml -> jdbc.properties ->
+hiberdate.properties -> cas.properties -> session-redis.properties
+-> spring/spring-dynamicDatasource.xml ->
+spring/spring-dynamicTransaction.xml -> transactionProxy
+spring-ibatis.xml(可以修改)
+开发阶段注释
+404 修改404
