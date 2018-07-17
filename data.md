@@ -1031,4 +1031,75 @@ box div 有东西才有高度
 
 百分比布局（autoPercentHeight）
 <ta:box></ta:box>
-lableWidth设置标签宽度
+日期 - lableWidth设置标签宽度
+图片勾，box百分比
+
+text
+columnWidth 百分比
+readOnly 只读，传值
+disabled 不传值
+display 是否显示
+type 指定password, file
+validType 定义验证，url、email、ip、integer、issue期号、zipcode邮编、idcard身份证
+validFunction自定义验证方式
+```html
+<ta:text key="姓名" validType="self" validFunction="fnValid()" onChange=""></ta:text>
+<script>
+  function fnValid() {
+    var name = Base.getValue("txt1");
+    if (name.length > 20) {
+      Base.alert("姓名长度")
+    }
+  }
+</script>
+```
+buttonLayout 包含 button
+```html
+<ta:buttonLayou>
+
+</ta:buttonLayou>
+<script>
+  // 异步
+  function fnTest() {
+    Base.submit("flst1", "demoAction!test.do");
+  }
+  // 设置值
+  Base.setValue("txt1", "张三");
+  // 获取值
+  Base.getValue("txt1");
+  // 弹框
+  Base.alert("提示信息", "warn");
+  // 设置禁用
+  Base.setDisabled("text1")
+  // 恢复显示
+  Base.setEnable("txt1");
+  // 设置星号
+  Base.setRequired("txt1")
+  // 隐藏，是否占位
+  Base.hideObj(), Base.showObj
+</script>
+```
+```java
+@RequestMapping("demo1Action!test.do")
+public String test() throws Execution {
+    // 异步
+    ParamDTO paramDTO = getDto();
+    return JSON;
+}
+// 从后台设置值
+setData("txt1", "李四");
+```
+cssInput对应框
+labelStyle 对标签
+labelWidth 标签宽度
+
+bpopTipMsg="pop" 提示信息
+bpopTipMsgWidth 宽高
+popWin="true" 显示放大镜按钮, 搜索，可以指定url
+softkeyborad="true" 有软键盘
+showDetailed 放上去显示全
+toolTip="提示信息" required="true" 没有输入有提示框，hover
+name属性，转到key
+placeholder 框内信息
+value 给框里设置默认值
+
