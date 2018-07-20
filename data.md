@@ -30,6 +30,17 @@ create from archetype
 配置maven，全是Override
 全局idea设置，default settings-> Build,Execution,Deployment -> 设置maven的仓库
 
+解压mysql
+进入C:\mysql-5.7.12-win32\bin cmd目录
+1、执行：mysqld --initialize --user=mysql --console 会自动生成data目录，还有一个随机密码，记下来。 2、执行：mysqld --console 启动mysql，另打开进入C:\mysql-5.7.12-win32\bin dos界面,登录mysql -uroot -p 输入刚才记录的密码，执行：set password = password('root');修改密码。
+设置成系统启动，mysqld.exe -install
+net start mysql
+net stop mysql
+http://blog.csdn.net/zxfc88/article/details/8597473
+mysql>alter database mydb character set utf8;
+SET NAMES gbk;
+
+
 内网地址：
 http://192.168.10.201:7076
 ta + cloud
@@ -983,6 +994,9 @@ tomcat内存
 -XX:PermSize=256M
 -XX:MaxPermSize=512M
 
+-server -XX:PermSize=256M -XX:MaxPermSize=512m -Dfile.encoding=UTF-8
+rO0ABXNyAChjb20uemVyb3R1cm5hcm91bmQubGljZW5zaW5nLlVzZXJMaWNlbnNlAAAAAAAAAAECAANMAAdkYXRhTWFwdAAPTGphdmEvdXRpbC9NYXA7WwAHbGljZW5zZXQAAltCWwAJc2lnbmF0dXJlcQB+AAJ4cHB1cgACW0Ks8xf4BghU4AIAAHhwAAACZqztAAVzcgARamF2YS51dGlsLkhhc2hNYXAFB9rBwxZg0QMAAkYACmxvYWRGYWN0b3JJAAl0aHJlc2hvbGR4cD9AAAAAAAAYdwgAAAAgAAAAFHQACGxhc3ROYW1ldAAFZmxveWR0AAtHZW5lcmF0ZWRCeXQABEFVVE90AAVFbWFpbHQAEmZsb3lkYml0QGdtYWlsLmNvbXQADE9yZ2FuaXphdGlvbnQABHpya2p0AAplbnRlcnByaXNldAAEdHJ1ZXQAB1Byb2R1Y3R0AAZKUmViZWx0AAtHZW5lcmF0ZWRPbnNyAA5qYXZhLnV0aWwuRGF0ZWhqgQFLWXQZAwAAeHB3CAAAAWSxv0K2eHQACXZhbGlkRnJvbXEAfgAQdAAHT3JkZXJJZHQAAHQAC2xpbWl0ZWRGcm9tcQB+ABB0AAd2ZXJzaW9udAAEMS4yMXQABE5hbWV0AAtmbG95ZCBmbG95ZHQABVNlYXRzdAABMXQAA3VpZHQAKDI0MjE0OTM1MDRkYzU1MDZkNGU4NmIxN2I0OTRhYzk3MzJmMmY1OTJ0AAlmaXJzdE5hbWV0AAVmbG95ZHQABFR5cGV0AApldmFsdWF0aW9udAAKdmFsaWRVbnRpbHNxAH4AD3cIAAABbAlwbrZ4dAAIb3ZlcnJpZGV0AAVmYWxzZXQADGxpbWl0ZWRVbnRpbHEAfgAidAAJdmFsaWREYXlzc3IAEWphdmEubGFuZy5JbnRlZ2VyEuKgpPeBhzgCAAFJAAV2YWx1ZXhyABBqYXZhLmxhbmcuTnVtYmVyhqyVHQuU4IsCAAB4cAAAAA54dXEAfgAEAAABAJ8omr46kbiA0+O1YolrdirgIWKWhWrZotMvkI2wHYjH8GGGu6f+zR0tefATw6I7015IT2nuLnuVDMHWCu86ey58bR0pFwxUlI/CBJYN+sqzMJYvSbjBmKAcHofH8IbKtd2Ok4avmBSPh4U2OC7pp+HDK32mAUIfQOlXpPIaagMgjGtgjVsGAv8sDlp2kaGahi5+aXj797WyQ2+SUcPlbZ096bstLzeZnMmiC8lwxe+xLuEnvGCy4V1fMT5IcixE80uFQd2U554z5J7nNF1VBOeX5VckCNwgvN3HNeNcbmDvWZB+aDNfACqRREfX+e43Kzz9lovql7PeZ27VBzHkkzE=
+
 8080 jvm_bindException
 1099端口占用，修改端口,新配tomcat
 8445占用，
@@ -1038,7 +1052,7 @@ text
 columnWidth 百分比
 readOnly 只读，传值
 disabled 不传值
-display 是否显示
+displable 是否显示
 type 指定password, file
 validType 定义验证，url、email、ip、integer、issue期号、zipcode邮编、idcard身份证
 validFunction自定义验证方式
@@ -1079,6 +1093,7 @@ buttonLayout 包含 button
   Base.hideObj(), Base.showObj
   // 显示对象
   Base.showObj()
+  Base.setReadOnly
 </script>
 ```
 ```java
@@ -1188,3 +1203,92 @@ hotKey、icon、
 </ta:selectButton>
 ```
 宽高
+
+Base.setDate(map, boolean = true);
+
+下拉列表
+<ta:fieldset id="fist1"></ta:fieldset>
+
+datagrid
+labelStyle 标签
+cssInput 输入文本
+
+给下拉树设置
+```java
+setData("treeId", "id,name");
+```
+```javascript
+Base.setValue("treeId", "id,name")
+```
+
+js
+* getObj 对象
+* getIdCardGender 获取身份证的性别
+```html
+<ta:checkoutboxgroup id="">
+  <ta:checkbox></ta:checkbox>
+  <ta:checkbox></ta:checkbox>
+  <ta:checkbox></ta:checkbox>
+</ta:checkoutboxgroup>
+<script>
+   
+</script>
+```
+* 没有选中value值是空，没设置是on
+Base.getValue()
+
+* 获取标签Label
+Base.getFieldLabel("id");
+
+* 获取身份证的出生日期
+var idcard = Base.getValue("txtIdcard");
+Base.alert(Base.getIdCardBirthday(idcard));
+
+* 设置标签值
+setFieldLabel
+
+* 设置值，json对象
+setValue({"txt1":"张三","txt2":"行政"});
+
+* 设置组件的标签
+Base.setFieldLabel("txt", "名字")
+
+* 聚焦, 首次进入把焦点放在框上
+focus
+```html
+Base.focus('id');
+```
+
+* resetForm 重置表单填入信息,页面初始状态
+
+* hideObj 隐藏
+Base.hideObj("num1,num2", true) 要占位
+Base.hideObj("num1,num2")不占位，向前移
+
+* clearData 清楚数据
+Base.cearData("text1,text2")
+
+js事件，交互
+click focus blur change...
+onClick="fn1();fn2()"
+function fn1() {
+*  Base.submit("id", url)
+}
+dto.getAsString("id");
+
+*  三个参数json Base.submit("id", url, parameter)
+parameter -> {key: value}
+parameter -> {'dto.x': 100, 'dto.y': 200}
+Base.submit("id", url, {'dto.x': 100, 'dto.y': 200})
+
+*  四个参数回调函数，只写韩树明 json Base.submit("id", url, parameter, fnreturn)
+```javascript
+function fnreturn() {
+  return true;
+}
+```
+可以阻止提交
+
+*  五个参数回调函数，只写韩树明 json Base.submit("id", url, parameter, fnreturn, 自动验证boolean)
+
+
