@@ -1357,3 +1357,6 @@ select userenv('language') from dual;
 sql语句查询出来的值，设置为环境变量的value
 设置环境变量
 NLS_LANG SIMPLIFIED CHINESE_CHINA.AL32UTF8
+
+不缓存
+<select useCache="false">
