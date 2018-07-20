@@ -1291,4 +1291,69 @@ function fnreturn() {
 
 *  五个参数回调函数，只写韩树明 json Base.submit("id", url, parameter, fnreturn, 自动验证boolean)
 
+> * tree js调整
 
+> * tab js调整
+
+> * panel js调整
+
+> * checkbox js调整
+默认选中 Base.setValue("id", "on")
+
+selectInput
+onselect 回调函数，获取值
+
+loadSelectInputData
+后端 writeJsonToClient(); return null;
+
+> * datagrid js调整
+getGridSelectedRows(gridid); 获取选中行的json格式数据
+submitGridAllData(grdid, url, submitIds) 提交表格
+clearGridDirty(grdid) 清楚分页渲染的脏数据
+setGridCellData(gridId, row, cell, data)
+
+> * window js
+Base.alert("message")
+Base.alert("message", type) type => error, warn, success
+无阻塞
+block
+Base.alet("message", type, function回调)
+msgTopTip(message)
+msgTopTip(message, time)
+msgTopTip(message, time, width, height, style)
+openWindow
+confirm
+
+> * ibatis: config, sql -> spring-ibatis.xml -> app
+> * springServer
+
+> * sqlMapConfig
+```sqlMapConfig-xxx.xml
+<sqlMapConfigi
+    userName
+></sqlMapConfig>
+```
+
+<sqlMap namespace="不重名">
+  <select id="queryAllEmp" resultClass="java.util.HashMap">
+      select e.empno,
+  e.ename as ename,
+  to_char(e.hiredatei, 'yyyy-mm-dd') as hiredate
+  from emp e;
+  </select>
+</sqlMap>
+
+不写这个会dao空
+```spring-ibatis.xml
+<bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapConfig">
+    <property>
+</bean>
+```
+
+解决Oracle乱码
+```sql
+select userenv('language') from dual;
+```
+sql语句查询出来的值，设置为环境变量的value
+设置环境变量
+NLS_LANG SIMPLIFIED CHINESE_CHINA.AL32UTF8
