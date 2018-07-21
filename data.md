@@ -1971,6 +1971,13 @@ Web Development with Bootstrap and Vue.JS
 Grokking Algorithms
 127
 
+3 - 7没看
+6 4:007
+8-2 4:05
+5-4 00:45 select
+5-6 00:45 datagrid
+疑问，分页，精准查询，下拉联动
+
 邮政
 1169090319220
 
@@ -2167,3 +2174,28 @@ QCheckBoxEntity
 ChoiceEntity
 BlankEntity
 CheckBoxEntity -> belong_answer_id对应t_survey_answer
+
+    SELECT
+      e1.empno as empno,
+      e1.ename as ename,
+      e1.hiredate as hiredate,
+      rowno
+    FROM (
+      SELECT
+        e.empno as empno,
+        e.ename as ename,
+        e.hiredate as hiredate,
+        ROWNUM rowno
+      FROM (
+        select
+          t.empno as empno,
+          t.ename as ename,
+          t.hiredate as hiredate
+        from emp t
+        ORDER BY ename asc ) e
+      where 1=1
+      and
+      rownum <= 13) e1
+     WHERE 1=1
+    and
+      rowno >= 2;
