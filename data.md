@@ -1360,3 +1360,10 @@ NLS_LANG SIMPLIFIED CHINESE_CHINA.AL32UTF8
 
 不缓存
 <select useCache="false">
+
+判断删除是否符合，抛异常，事务回滚
+int ud = dao.xxx
+if (ud != 1) {
+    throw new AppException("");
+}
+return ud
