@@ -112,6 +112,7 @@ all about vue
 user015/111111
 系统账号        svn账号
 13595  userpp
+111111
 http://192.168.16.30:8080/gptool
 
 # ibatis
@@ -257,67 +258,95 @@ select comm,
 
 scott
 1. 查询scott用户下的所有表
+```sql
 SELECT *
 from tabs;
+```
 
 2. 查询雇员表中所有信息
+```sql
 select *
 from emp;
+```
 
 3. 查询雇员编号，姓名，工作，工资
+```sql
 SELECT empno, ename, job, sal
 from emp;
+```
 
 4. 查询雇员编号，姓名，工作，工资，列标题需要显示中文。
+```sql
 SELECT empno 编号, ename 姓名, job 工作, sal工资
 from emp;
+```
 
 5. 消除重复列，查询雇员工作种类。
+```sql
 SELECT distinct job 工作
 from emp;
+```
 
 6. 查询所有雇员编号，姓名，工作，按以下格式显示：编号:7369,姓名:SMITH,工作:CLERK
+```sql
 SELECT '编号:' || empno || ',姓名:' || ename || ',工作:' || job
 from emp;
+```
 
 **7. 查询雇员编号,姓名,工作,年薪**
+```sql
 SELECT empno,ename,job,nvl(sal, 0) * 12 + nvl(comm, 0) * 12
 from emp;
+```
 
 8. 查询工资大于1500的雇员所有信息
+```sql
 select *
 from emp
 where sal > 1500;
+```
 
 9. 查询可以得到奖金的雇员所有信息
+```sql
 select *
 from emp
 where comm is not null and comm <> 0;
+```
 
 **10. 查询工资大于1500或可以获得奖金的雇员**
+```sql
 select *
 from emp
 where sal > 1500 or (comm is not null and comm <> 0);
+```
 
 11. 查询工资大于1500并且可以领取奖金的雇员
+```sql
 select *
 from emp
 where sal > 1500 and comm is not null and comm <> 0;
+```
 
 12. 查询工资大于1500或者不可以领取奖金的雇员
+```sql
 select *
 from emp
 where sal <= 1500 or comm is null or comm = 0;
+```
 
 13. 查询工资在1500到3000的所有雇员信息
+```sql
 select *
 from emp
 where sal between 1500 and 3000;
+```
 
 14. 查询在1981年雇用的员工信息
+```sql
 select *
 from emp
 where hiredate >= '1-1月-81' and hiredate <= '31-12月-81';
+```
 
 15. 查询雇员姓名中第二个字母为"M"的雇员信息
 ```sql
@@ -327,73 +356,99 @@ where ename like '_M%'
 ```
 
 16. 查询雇员工资中带8这个数字的雇员信息
+```sql
 select *
 from emp
 where sal like '%8%';
+```
 
 17. 查询编号是7369,7499,7521,7900的雇员信息
+```sql
 select *
 from emp
 where empno in (7369,7499,7521,7900);
+```
 
 18. 查询编号不是7369，7499，7521，7900的雇员信息
+```sql
 select *
 from emp
 where empno not in (7369,7499,7521,7900);
+```
 
 19. 查询雇员编号为7369的雇员信息
+```sql
 select *
 from emp
 where empno = 7369;
+```
 
 20. 查询雇员编号不为7369的雇员信息
+```sql
 select * 
 from emp
 where empno != 7369;
+```
 
 21. 查询雇员信息，按工资由低到高排序
+```sql
 select *
 from emp
 order by sal asc;
+```
 
 22. 查询雇员信息,按工资由高到低排序
+```sql
 select *
 from emp
 order by sal desc;
+```
 
 hr用户
 23. (以下hr用户employees表)HR需要得到一个月薪$12000以上的员工名(last_name)和薪水报告，请完成查询语句
+```sql
 select last_name, salary
 from
 employees
 where salary > 12000;
+```
 
 24. HR需要识别高收入和低收入员工群体,请显示月薪不在$5000到$12000范围内的员工名和月薪
+```sql
 select last_name, salary
 from
 employees
 where not (salary between 5000 and 12000);
+```
 
 25. 请查询1994年雇员的员工名和雇佣日期
+```sql
 select last_name, hire_date
 from employees
 where hire_date >= '1-1月-94' and hire_date <= '31-12月-94';
+```
 
 26. 请查询没有领导的员工名和职位
+```sql
 select last_name, job_id
 from employees
 where manager_id is null;
+```
 
 27. 请查询有奖金的员工名和月薪，奖金，并按照奖金系数排序
+```sql
 select last_name, salary, salary * commission_pct
 from employees
 where commission_pct is not null
 order by commission_pct desc;
+```
 
 28. 请查询月薪大于1000的员工名和月薪
+```sql
 select last_name, salary
 from employees
 where salary > 1000;
+```
 
 29. 请查询第三个字母是a的员工名
 ```sql
@@ -403,172 +458,241 @@ where last_name like '_a%';
 ```
 
 30. 请查询员工名包含a或e的员工名
+```sql
 select last_name
 from employees
 where last_name like '%a%' or last_name like '%e%';
+```
 
 31. 请查询职位是"SA_REP" 或者 "ST_CLERK",且月薪不是$2500,$3500,$7000的员工信息
+```sql
 select *
 from employees
 where JOB_ID in ('SA_REP', 'ST_CLERK')
 and salary not in (2500, 3500, 7000);
+```
 
 32. 请查询奖金系数是20%的员工名、薪水和奖金系数
+```sql
 select last_name, salary, commission_pct
 from employees
 where commission_pct = 0.2
+```
 
 33. 查询部门30中的所有员工信息
+```sql
 select *
 from emp
 where deptno=30;
+```
 
 34. 列出所有办事员(CLERK)的姓名,编号和部门编号
+```sql
 select ename,empno,deptno
 from emp
 where job='CLERK';
+```
 
 35. 找出奖金高于薪金的员工信息
+```sql
 select *
 from emp
 where comm > sal;
+```
 
 36. 找出奖金高于薪金的60%的员工信息
+```sql
 select *
 from emp
 where comm >= sal * 60;
+```
 
 37. 找出部门10中所有经理(MANAGER) 和部门20中所有办事员（CLERK）的详细资料
+```sql
 select *
 from emp
 where deptno = 10 and job = 'MANAGER' or deptno = 20 and job = 'CLERK';
+```
 
 38. 找出部门10中所有经理(MANAGER)和部门20中所有办事员(CLERK),既不是经理又不是办事员但薪金大于或等于2000的所有员工的详细资料
+```sql
 select *
 from emp
 where deptno = 10 and job = 'MANAGER' or deptno = 20 and job = 'CLERK' or
 ((not(job = 'MANAGER' or job = 'CLERK')) and sal >= 2000);
+```
 
 39. 找出员工可以获取到奖金的工作
+```sql
 select distinct job
 from emp
 where comm is not null and comm <> 0;
+```
 
 40. 找出不收取或收取奖金低于100的员工信息
+```sql
 select *
 from emp
 where comm is null or comm = 0 or comm < 100;
+```
 
 41. 找出各月倒数第3天受雇的所有员工信息
+```sql
 select *
 from emp
 where hiredate > last_day(hiredate) - 3;
+```
 
 42. 找出早于12年前受雇的员工信息
+```sql
 select *
 from emp
 where months_between(sysdate, hiredate) / 12 > 12;
+```
 
 43. 以首字母大写的方式显示所有员工的姓名
+```sql
 select initcap(ename)
 from ename;
+```
 
 44. 显示正好5个字符的员工的姓名
+```sql
 select ename
 from emp
 where length(ename) = 5;
+```
 
 45. 显示不带有"R"的员工的姓名
+```sql
 select ename
 from emp
 where ename not like "%R%";
+```
 
 46. 显示所有员工的姓名的前三个字符
+```sql
 select substr(ename, 0, 3)
 from emp;
+```
 
 47. 显示所有员工的姓名,用'a'代替所有的'A'
+```sql
 select replace(ename, 'A', 'a')
 from emp;
+```
 
 48. 显示满10年服务年限的员工的姓名和受雇日期
+```sql
 select ename, hiredate
 from emp
 where months_between(sysdate, hiredate) / 12 > 10;
+```
 
 49. 显示员工详细信息，按姓名排升序
+```sql
 select *
 from emp
 order by ename asc;
+```
 
 50. 显示员工的姓名和受雇日期，根据其服务年限，将最老的员工排在最前
+```sql
 select ename, hiredate
 from emp
 order by months_between(sysdate, hiredate) desc;
+```
 
 51. 显示所有员工的姓名，工作和薪金，按工作的降序排序，若工作相同则薪金升序排序
+```sql
 select ename,jobs,sal
 from emp
 order by job desc,sal asc;
+```
 
 52. 显示所有员工的姓名，加入公司的年份和月份，按受雇日期所在月排序，若月份相同则将最早年份的员工排在前面（要求使用extract函数）
+```sql
 select ename, extract(year from hiredate), extract(month from hiredate)
 from emp
 order by extract(month from hiredate) asc, months_between(sysdate, hiredate) desc;
+```
 
 53. 显示在一个月为30天的情况，所有员工的名字和日薪金，忽略余数
+```sql
 select ename, trunc(sal/30)
 from emp;
+```
 
 54. (以下emp表)找出在(任何年份的)2月受雇的所有员工信息
+```sql
 select *
 from emp
 where extract(month from hiredate) = 2;
+```
 
 55. 对于每个员工，显示名字和其加入公司的天数，保留2位小数(四舍五入)
+```sql
 select ename, round(sysdate - hiredate, 2)
 from emp;
+```
 
 56. 显示姓名字段的任何位置包含"A"的所有员工的姓名
+```sql
 select ename
 from emp
 where ename like "%A%"
+```
 
 57. (hr用户)查询系统当前日期
+```sql
 select sysdate
 from dual;
+```
 
 58. 请查询每个员工的姓名、薪水和加薪15.5%之后的薪水(trunc取整)
+```sql
 select last_name, salary, trunc(salary * 1.155)
 from employees;
+```
 
 59. 显示员工加薪15.5%（取整）之后员工的名字、原薪水和增加的薪水。(不允许做update操作,trunc取整)
+```sql
 select last_name, salary, trunc(salary * 1.155) - salary
 from employees;
+```
 
 60. 请显示所有以'J', 'A', 'M'打头的员工的名字和名字长度，且按照名字排升序
+```sql
 select last_name, length(last_name)
 from employees
 where last_name like 'J%' or
 last_name like "A%" or
 last_name like "M%"
 order by last_name asc;
+```
 
 61. 请查询员工名和工作时间（换算成月并取整），并按工作时间排降序
+```sql
 select last_name, trunc(months_between(sysdate, hire_date))
 from employees
 order by trunc(months_between(sysdate, hire_date)) desc;
+```
 
 62. 请查询员工的名字和薪水，并将薪水列变成15个字符长度，左边填充"$"符号
+```sql
 select last_name,LPAD(salary, 15, '$')
 from employees;
+```
 
 63. 请查询部门id为90的所有员工的名字和他们参加工作的星期数(保留2位小数，不需要四舍五入)使用
+```sql
 select last_name, trunc((sysdate - hire_date) / 7, 2)
 from employees
 where department_id=90
+```
 
 64. 创建报告，显示员工名和奖金系数，如果奖金系数为空，则显示"无奖金"
+```sql
 select last_name
 case
     when commission_pct is null then '无奖金'
@@ -576,8 +700,10 @@ case
 end
 from employees
 where department_id = 90;
+```
 
 65. 请使用decode语句，查询员工的job_id和级别。例如：
+```sql
 Job Grade
 AD_PRES A
 ST_MAN B
@@ -587,15 +713,17 @@ ST_CLERK E
 None of the above 0
 select job_id Job, decode(job_id, 'AD_PRES', 'A', 'ST_MAN', 'B', 'IT_PROG', 'C', 'SA_REP', 'D', 'ST_CLERK', 'E', '0') Grade
 from employees;
+```
 
 66. 请使用case语句，查询员工的job_id和级别。例如：
-Job Grade
+```sql
 AD_PRES A
 ST_MAN B
 IT_PROG C
 SA_REP D
 ST_CLERK E
 None of the above 0
+
 ```sql
 select job_id Job
 case job_id
@@ -610,33 +738,48 @@ from employees;
 ```
 
 67. 查询emp和dept表，产生笛卡尔积(多表行相乘)
+```sql
 select * from emp,dept
+```
 
 68. 加where条件过滤查询emp和dept表产生的笛卡尔积
+```sql
 select * from emp,dept
 where emp.deptno = dept.deptno
+```
 
 69. 查询emp和dept表，产生笛卡尔积(多表行相乘)，并为表去别名
+```sql
 select * from emp t1, dept t2
+```
 
 70. 查询雇员姓名，所在部门编号和名称
+```sql
 select ename, deptno, (select dname from dept t2 where deptno = t1.deptno)
 from emp t1
+```
 
 71. 查询所有雇员姓名，工作，领导的姓名
+```sql
 select ename,job,(select ename from emp t2 where t2.empno = t1.mgr)
 from emp t1;
+```
 
 72. 查询雇员姓名，工作，领导姓名及部门名称
+```sql
 select ename,job,(select ename from emp t2 where t2.empno = t2.mgr)
 ,(select dname from dept where deptno = t1.deptno)
 from emp t1;
+```
 
 73. 查询雇员姓名，工作，工资及工资等级
+```sql
 select ename, job, sal, (select grade from salgrade where losal <= t1.sal and hisal >= t1.sal)
 from emp t1;
+```
 
 74. 查询雇员姓名，工作，工资及工资等级，要求工资显示为A B C D E
+```sql
 select ename, job, sal
 case(select grade from salgrade where losal <= t1.sal and hisal >= t1.sal)
     when 1 then 'A'
@@ -646,13 +789,17 @@ case(select grade from salgrade where losal <= t1.sal and hisal >= t1.sal)
     when 5 then 'E'
 end
 from emp t1;
+```
 
 75. 查询雇员姓名，年薪（薪水 + 奖金），按年薪从高到低排序
+```sql
 select ename, nvl(sal, 0) * 12 + nvl(comm, 0) * 12
 from
 emp;
+```
 
 76. 查询每个部门中工资最高的雇员姓名，工作，工资，部门名称，最后按工资从高到低排序，工资相同的情况下按姓名排升序
+```sql
 select ename, job, sal, (select dname from dept where deptno = t2.deptno)
 from emp t2
 where sal in(
@@ -660,16 +807,21 @@ select max(sal)
 from emp t1
 group by deptno)
 order by sal desc, sal asc;
+```
 
 77. 查询每个部门的部门编号和雇员数量
+```sql
 select t2.deptno, sum(nvl2(t1.deptno, 1, 0))
 from emp t1 right join dept t2
 on t1.deptno = t2.deptno;
+```
 
 78. 求出每个部门的部门和平均工资（保留2位小数，截断）
+```sql
 select dname, trunc(avg(nvl(sal, 0)), 2)
 from emp t1 right join dept t2
 on t1.deptno = t2.deptno;
+```
 
 79. 按部门分组，并显示部门的名称，以及每个部门的员工数
 ```sql
@@ -679,33 +831,42 @@ on t1.deptno = dept.deptno;
 ```
 
 80. 要求显示平均工资大于2000的部门编号和平均工资（保留2位小数，截断）
+```sql
 select deptno, trunc(avg(sal), 2)
 from emp
 group by deptno
 having avg(sal) > 2000
+```
 
 81. 显示非销售人员工作名称以及从事同一工作雇员的月工资的总和，并且要满足从事同一工作的雇员的月工资大于$1500,输出结果按月工资的合计升序排列
+```sql
 select job, sum(nvl(sal, 0))
 from emp
 where job <> 'SALESMAN' and nvl(sal, 0) > 1500
 group by job
 order by sum(nvl(sal, 0)) asc
+```
 
 82. 求出平均工资最高的部门名称
+```sql
 select dname
 from dept
 where deptno = (select deptno from emp group by deptno having avg(sal) =
 (select max(avg(sal)) from emp group by deptno));
+```
 
 83. 要求查询出比7654工资要高的全部雇员的信息
+```sql
 select *
 from emp
 where sal >
 (select sal 
 from emp
 where empno = '7654');
+```
 
 84. 要求查询工资比7654高，与7788从事相同工作的全部雇员信息
+```sql
 select *
 from emp
 where sal >
@@ -716,39 +877,56 @@ and job = (
 select job
 from emp
 where empno = '7788');
+```
 
 85. 查询出工资最低的雇员姓名，工作，工资
+```sql
 select ename, job, sal
 from emp
 where sal = (
 select min(sal)
 from emp
 )
+```
 
 86. 查询出各部门工资最低的雇员姓名，工作，工资
+```sql
 select ename, job, sal
 from emp el
 where sal = (
     select min(sal)
     from emp e2
     where e1.deptno = e2.deptno)
+```
 
 87. 要求查询部门名称，部门的员工数，部门的平均工资，部门的最低收入雇员姓名，要求显示所有部门名，如果该部门没有任何员工，则员工数和平均工资需显示0，员工姓名显示null即可。
+```sql
 select distinct d.dname, nvl(t.pcount, 0), nvl(t.savg, 0), (select ename from emp where sal = t.smin)
 from dept d, emp e, (select deptno, count(deptno) pcount, avg(sal), min(sal)smin from emp
 group by deptno) t
 where d.deptno = e.deptno(+)
 and d.deptno = t.deptno(+);
+```
 
 88.
+```sql
+```
 
 89.
+```sql
+```
 
 90.
+```sql
+```
 
 91.
+```sql
+```
 
 92.
+```sql
+```
 
 > * 函数
 > chr(integer) 把整数换成ASCII码对应的字母，char
@@ -1367,3 +1545,46 @@ if (ud != 1) {
     throw new AppException("");
 }
 return ud
+
+toolbar 按钮
+首页查询，部门改成下拉框，绑值
+新增，雇员，部门（不可用）， 领导下拉框，显示姓名，不是编号，放在部门之后，这个部门的所属人员
+checkout，做完提交
+emp 和 dept
+自己的名字和456
+
+共享 SqlmapConfig-team?.xml Spring
+加自己的名字
+20170307开发规范
+类，方法，变量，循环
+写注释
+// 单独成行
+int len = list.size();
+for (int i = 0; i < len; ++i)
+
+update delete,返回值判断
+if (1 != )
+TaParamDto dto = getTaDto();
+先实现代码
+
+新增的要输入的数据要验证
+选择部门，领导是这个部门的所有人员
+编辑员工，部门tab不能修改，可以查看
+* > 测试批量删除
+
+```sql
+Select 
+e.empno as empno,
+e.ename as ename,
+e.sex   as sex,
+e.job   as job,
+e.deptno as deptno,
+d.dname as dname
+FROM dept d, emp e, emp b
+where d.deptno(+)=b.deptno
+and b.empno(+)=e.mgr
+```
+
+部门显示全，或者雇员显示全，部门下没有员工的不显示
+交换e和b的位置后不对，换成select*看值
+data
