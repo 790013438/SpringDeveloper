@@ -717,6 +717,7 @@ from employees;
 
 66. 请使用case语句，查询员工的job_id和级别。例如：
 ```sql
+Job Grade
 AD_PRES A
 ST_MAN B
 IT_PROG C
@@ -806,21 +807,35 @@ where sal in(
 select max(sal)
 from emp t1
 group by deptno)
-order by sal desc, sal asc;
+order by sal desc, ename asc;
 ```
+不一定使用group by
+```sql
+select
+e.ename,
+e.job,
+e.sal,
+(select dname from dept d where d.deptno = e.deptno) from emp e
+where sal = (select max(sal) from emp e1 where e1.deptno = e.deptno)
+order by e.sal desc, ename asc;
+```
+
+
 
 77. 查询每个部门的部门编号和雇员数量
 ```sql
-select t2.deptno, sum(nvl2(t1.deptno, 1, 0))
-from emp t1 right join dept t2
-on t1.deptno = t2.deptno;
+select d.deptno, sum(nvl2(e.deptno, 1, 0))
+from dept d left join emp e
+on d.deptno = e.deptno
+group by d.deptno;
 ```
 
-78. 求出每个部门的部门和平均工资（保留2位小数，截断）
+78. 求出每个部门的部门名字和平均工资（保留2位小数，截断）
 ```sql
-select dname, trunc(avg(nvl(sal, 0)), 2)
-from emp t1 right join dept t2
-on t1.deptno = t2.deptno;
+select d.dname, trunc(avg(nvl2(sal, sal, 0)), 2)
+from dept d left join emp e
+on d.deptno = e.deptno
+group by d.dname;
 ```
 
 79. 按部门分组，并显示部门的名称，以及每个部门的员工数
@@ -832,10 +847,11 @@ on t1.deptno = dept.deptno;
 
 80. 要求显示平均工资大于2000的部门编号和平均工资（保留2位小数，截断）
 ```sql
-select deptno, trunc(avg(sal), 2)
-from emp
-group by deptno
-having avg(sal) > 2000
+select d.deptno, avg(nvl2(sal, sal, 0))
+from dept d left join emp e
+on d.deptno = e.deptno
+group by d.deptno
+having avg(nvl2(sal, sal, 0)) > 2000;
 ```
 
 81. 显示非销售人员工作名称以及从事同一工作雇员的月工资的总和，并且要满足从事同一工作的雇员的月工资大于$1500,输出结果按月工资的合计升序排列
@@ -902,10 +918,17 @@ where sal = (
 87. 要求查询部门名称，部门的员工数，部门的平均工资，部门的最低收入雇员姓名，要求显示所有部门名，如果该部门没有任何员工，则员工数和平均工资需显示0，员工姓名显示null即可。
 ```sql
 select distinct d.dname, nvl(t.pcount, 0), nvl(t.savg, 0), (select ename from emp where sal = t.smin)
-from dept d, emp e, (select deptno, count(deptno) pcount, avg(sal), min(sal)smin from emp
+from dept d, emp e, (select deptno, count(deptno) pcount, avg(sal) savg, min(sal)smin from emp
 group by deptno) t
 where d.deptno = e.deptno(+)
 and d.deptno = t.deptno(+);
+```
+```sql
+select distinct d.dname, nvl(t.pcount, 0), nvl(t.savg, 0), (select ename from emp where sal = t.smin)
+from dept d left join emp e on d.deptno= e.deptno
+left join (select deptno, count(deptno) pcount, avg(sal) savg, min(sal)smin from emp
+group by deptno) t
+on d.deptno = t.deptno;
 ```
 
 88.
@@ -1586,5 +1609,7 @@ and b.empno(+)=e.mgr
 ```
 
 部门显示全，或者雇员显示全，部门下没有员工的不显示
-交换e和b的位置后不对，换成select*看值
+交换e和b的位置后不对，换成select看值
 data
+
+org.apache.catalina.core.StandardContext.startInteral One or more listener failed to start
