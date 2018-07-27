@@ -1613,3 +1613,32 @@ and b.empno(+)=e.mgr
 data
 
 org.apache.catalina.core.StandardContext.startInteral One or more listener failed to start
+
+ta3工具
+ValidateUtil
+DateUtil
+获取服务器时间
+BaseService.getSysStrDate()
+BaseService.getSysDate()
+JSOnFactory 将java转成json
+WebUtil.getBasePath 获取url根路径
+FileTypeUtil 文件工具类
+  getFileTypeByStream() 根据流判断文件类型
+StringUtil 对字符串处理
+PinYinUtil 转拼音
+
+13595
+http://192.168.30.1:8080/gptool/
+255127
+
+存储过程，自己犯错
+1. AppCode 写成 OERROR, ta3框架会判断NOERROR, 除此外就报错
+```sql
+if (dto.getAppCode() == null || !"NOERROR".equalsIgnoreCase(dto.getAppCode())) {
+    throw new PrcException(prcName, dto.getAppCode(), dto.getErroMsg(), dto.getShortMsg());
+}
+```
+2. ibatis对格式要求，jdbcType="VARCHAR", 是大小写敏感
+3. dao.callPrc("sqlmap的namespace.procedure的id") 之前写成parameterMap的id
+4. jsp里的url写成了全路径，相对路径就写prm!queryProc.do
+5. 映射jsp，后缀不用写jsp
