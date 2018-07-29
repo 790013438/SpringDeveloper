@@ -1978,6 +1978,13 @@ Grokking Algorithms
 5-6 00:45 datagrid
 疑问，分页，精准查询，下拉联动
 
+各位同事，
+7月份考勤起止：6.21-7.24
+1、请关注自己的考勤状态，及时备注；
+2、请假申请于休假之前录入系统，领导审批有效，请假不用写日志；
+3、7月份日志备案收集截止时间：2018.7.25；
+4、工资卡有变动的，请第一时间通知邓小双。
+
 邮政
 1169090319220
 
@@ -1990,9 +1997,17 @@ Vue JS 2 - The Complete Guide (incl. Vuex)
 21
 
 【编程】《跟上 Java 8 - 从入门到实践》
-28:13
+0:13
 
-微信上看到的要看的书
+1.早晨上班，晚出门的那个要给先出门的，一个吻；晚上下班，先回家的那个要给晚回家的那个，一个抱抱。
+
+2.如果吵架了，当晚必须抱着睡，错的那个第二天做早餐，给另一个挤牙膏。
+
+3.不准把工作的坏情绪带回家，不准在家里谈工作，如果非要谈，出去，找一个咖啡馆。
+
+4.下班后，早点回家吃饭。
+
+5.觉得很重要的情话，要写下来，送给对方。微信上看到的要看的书
 测试面试题的sql语句，在GitHub上
 男为1，女为0
 undo 'git commit --amend'
@@ -2199,3 +2214,6 @@ CheckBoxEntity -> belong_answer_id对应t_survey_answer
      WHERE 1=1
     and
       rowno >= 2;
+
+创建 squence
+CREATE SEQUENCE "CLOUD"."SEQ_EMP" MINVALUE 1 MAXVALUE 99999999999999999999 INCREMENT BY 1 START WITH 2540 CACHE 20 NOORDER NOCYCLE;
