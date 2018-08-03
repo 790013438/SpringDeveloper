@@ -989,7 +989,10 @@ from dual;
 4个YYYY  2个YY  月MONTH,   缩写MON   2个月MM
 4位年    2位年  月份名称   月份名称缩写
 
-> to__char(date, 'format') 将日期转换成指定格式
+日期格式转换
+> to_date('2018-04-04 15:53:24', 'yyyy-mm-dd hh24:mi:ss')
+
+> to_char(date, 'format') 将日期转换成指定格式
 ```sql
 ```
 ```sql
@@ -1642,3 +1645,18 @@ if (dto.getAppCode() == null || !"NOERROR".equalsIgnoreCase(dto.getAppCode())) {
 3. dao.callPrc("sqlmap的namespace.procedure的id") 之前写成parameterMap的id
 4. jsp里的url写成了全路径，相对路径就写prm!queryProc.do
 5. 映射jsp，后缀不用写jsp
+6. datagridItem click 不能加括号
+7. distinct 只能有一个
+
+user027
+maven-3.3.9\conf\settings.xml
+
+小版本一致
+1. 使用exp导出scott用户的所有数据库对象，新建用户testscott,
+将scott的所有数据库对象使用imp命令导入到testscott.
+> * 命令，不进入数据库
+```sql
+exp scott/tiger@orcl file=d:\dmp\scott.dmp log=d:\dmp\scott.txt 
+```
+
+
