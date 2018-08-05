@@ -1257,7 +1257,7 @@ columnWidth 百分比
 readOnly 只读，传值
 disabled 不传值
 displable 是否显示
-type 指定password, file
+type 指定password, file, 上传文件
 validType 定义验证，url、email、ip、integer、issue期号、zipcode邮编、idcard身份证
 validFunction自定义验证方式
 ```html
@@ -1323,7 +1323,7 @@ toolTip="提示信息" required="true" 没有输入有提示框，hover
 name属性，转到key
 placeholder 框内信息
 value 给框里设置默认值
-ta:text texthelp 小box
+ta:text texthelp 小box 小书
 
 ta:number
 cssInput, cssInput='font-size:20px;color:red'
