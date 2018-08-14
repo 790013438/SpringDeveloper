@@ -930,6 +930,13 @@ left join (select deptno, count(deptno) pcount, avg(sal) savg, min(sal)smin from
 group by deptno) t
 on d.deptno = t.deptno;
 ```
+```sql
+select distinct d.dname, nvl(t.pcount, 0), nvl(t.savg, 0), (select ename from emp where sal = t.smin)
+from dept d, emp e, (select deptno, count(deptno) pcount, avg(sal) savg, min(sal)smin from emp
+group by deptno) t
+where d.deptno = e.deptno(+)
+and d.deptno = t.deptno(+);
+```
 
 88.
 ```sql
@@ -1104,6 +1111,9 @@ select e.ename, d.dname
 from emp e, dept d
 where e.deptno(+) = d.deptno;
 * 表（left） right join 表（right，右边） on 条件 右边的会全部查出来
+  - 如果多条
+    *      表（left）       right  join  表（right，右边）   on  条件   右边的会全部查出来
+                            right  join  表（right，右边）   on  条件   右边的会全部查出来
 * (+) 放在缺失的那边
 如果有n个表进行等值连接，需要n-1个条件
 ```
@@ -1261,7 +1271,7 @@ type 指定password, file, 上传文件
 validType 定义验证，url、email、ip、integer、issue期号、zipcode邮编、idcard身份证
 validFunction自定义验证方式
 ```html
-<ta:text key="姓名" validType="self" validFunction="fnValid()" onChange=""></ta:text>
+<ta:text key="姓名" validType="self" validFunction="fnValid" onChange=""></ta:text>
 <script>
   function fnValid() {
     var name = Base.getValue("txt1");
@@ -1340,7 +1350,7 @@ numberRound="true" 四舍五入
 ta:date
 datetime
 validNowTime left-> 今天及之前
-issue=true 社保期号，4位年两位月
+> * issue=true 社保期号，4位年两位月
 datetime="true" 时分秒
 dateYear="true" 只有年
 dateMonth="true" 年月
@@ -1348,11 +1358,13 @@ fulltime 毫秒
 enableKeyborard 方向键移动,通过方向键选择日期
 pchanged 改变日期触发，面板有变化
 onChange 移开有变化
+
 ```html
 <ta:fieldset id="fls3" key="date组件" cols=3>
   <ta:date id="date1" key="date1"></ta:date>
 </ta:fieldset>
 ```
+
 默认没有日期面板，showSelectPanel="true"显示日期
 Base.submitForm("form的id")
 valideNowTime="left" 有提示
@@ -1503,6 +1515,7 @@ function fnreturn() {
 
 > * checkbox js调整
 默认选中 Base.setValue("id", "on")
+不选 Base.setValue("id", null);
 
 selectInput
 onselect 回调函数，获取值
@@ -1647,6 +1660,7 @@ if (dto.getAppCode() == null || !"NOERROR".equalsIgnoreCase(dto.getAppCode())) {
 5. 映射jsp，后缀不用写jsp
 6. datagridItem click 不能加括号
 7. distinct 只能有一个
+8. 老版本，包名要包含项目名，要有包名含action
 
 user027
 maven-3.3.9\conf\settings.xml
@@ -1735,3 +1749,83 @@ impdp testscott2/testscott directory=dir_scott logfile=scott_impdp.log dumpfile=
 > * 执行计划
 set autotrace on
 set autotrace traceonly
+
+<ta:button id="btn6" key="事务测试" onClick="fnTranTest()"></ta:button>
+
+function fnTranTest() {
+    Base.submit("fist1", "demo1Action!transaction.do");
+}
+
+@RequestMaping("demo1Action!.transaction.do")
+public String transaction() throws Exception {
+    return JSON;
+}
+
+tagdir改成uri="/ta3"
+
+截图
+插入2次临时表
+然后读取
+1. 单位基本信息
+2. 险种
+
+保存一个有一个az002
+az012
+
+公务员补充-比较特殊 和 基本医疗联动
+个账补充可以不共享，红星共享
+
+数据共享
+suggest
+税号
+
+raq rqx后缀名
+系统不一样，要替换授权文件
+> * 竖向
+=to(1,  5,  2)  开始，结束（包含），   递增
+```
+1, 3, 5
+```
+=to(1,  5)  开始，结束（包含）
+
+> * 横向属性里选择
+
+> *  属性   值   表达式
+函数帮助
+
+> * 配置 > 数据源
+```
+jdbc:oracle:thin:@192.168.168.28:1521:orcl
+```
+> * 文件 > 新建报表 > 数据集 > 普通报表 > SQL检索 >
+数据源（填写之前配置的名字）> 数据表 > 指定模式(选择对应的用户) >
+可选表名(选择需要的表名) > 数据字段 > 选择需要的字段 > 确定 >
+生成网格报表
+
+> * 中间格子为分页线
+> * 属性 > 报表属性 > 打印 > 方向 横向
+> * 头 > 属性 > 显示值（编辑成自己想要的中文）
+> * 日期 > 属性 > 显示格式 > 日期
+> * 奇偶不同颜色
+选中行 > 背景色 >
+```
+if (row() % 2 == 0, -2073793, -2082415 )
+```
+> * sal 大于2000的显示红色
+选中sal格子 > 前景色 > 表达式
+```
+if (value() > 2000, -2665767)
+```
+
+
+参数报表名字
+
+帮助 > 学习教程 > 报表初级设计
+
+> * ta3里用润乾报表
+系统管理 > 润乾报表管理 > 润乾报表菜单管理 > 系统路径:系统管理
+菜单类型:通用菜单 > 安全策略:要认证要显示 > 报表相关配置,报表类型:主报表 >
+报表标志:floyd-emp > 报表名称:floydemp
+
+打印时lodop需要重新设置页眉页脚
+js放在web-app下
