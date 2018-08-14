@@ -385,7 +385,7 @@ where empno = 7369;
 
 20. 查询雇员编号不为7369的雇员信息
 ```sql
-select * 
+select *
 from emp
 where empno != 7369;
 ```
@@ -876,7 +876,7 @@ where deptno = (select deptno from emp group by deptno having avg(sal) =
 select *
 from emp
 where sal >
-(select sal 
+(select sal
 from emp
 where empno = '7654');
 ```
@@ -886,7 +886,7 @@ where empno = '7654');
 select *
 from emp
 where sal >
-(select sal 
+(select sal
 from emp
 where empno = '7654')
 and job = (
@@ -956,6 +956,18 @@ and d.deptno = t.deptno(+);
 
 92.
 ```sql
+```
+
+> * with 字
+重复利用
+```sql
+with t as (
+select
+sum(nvl2(deptno, 1, 0)) sum_emp,
+avg(sal) avg_sal,
+deptno, min(nvl(sal,0))
+from emp group by deptno)
+select * from dept d left join t on d.deptno = t.deptno
 ```
 
 > * 函数
@@ -1447,7 +1459,7 @@ js
   <ta:checkbox></ta:checkbox>
 </ta:checkoutboxgroup>
 <script>
-   
+
 </script>
 ```
 * 没有选中value值是空，没设置是on
@@ -1612,7 +1624,7 @@ TaParamDto dto = getTaDto();
 * > 测试批量删除
 
 ```sql
-Select 
+Select
 e.empno as empno,
 e.ename as ename,
 e.sex   as sex,
@@ -1670,7 +1682,7 @@ maven-3.3.9\conf\settings.xml
 将scott的所有数据库对象使用imp命令导入到testscott.
 > * 命令，不进入数据库, 导出数据库命令
 ```terminal
-exp scott/tiger@orcl file=d:\dmp\scott.dmp log=d:\dmp\scott.txt 
+exp scott/tiger@orcl file=d:\dmp\scott.dmp log=d:\dmp\scott.txt
 ```
 
 > * 授权
@@ -1700,7 +1712,7 @@ grant update any table to testscott2;
 grant execute on dbms_session to testscott2;
 grant execute on DBMS_PIPE to testscott2;
 grant execute on dbms_lock to testscott2;
---授予dba权限 
+--授予dba权限
 grant connect,resource,dba to testscott2;
 ```
 
