@@ -1,0 +1,481 @@
+<!-- 新增 -->
+insert into xinjiang_zb08(
+    xzb008,      <!-- '主键' -->
+    azb072,      <!-- '项目名称' -->
+    azb089,      <!-- '项目法人' -->
+    azb090,      <!-- '工程等级' -->
+    azb091,      <!-- '移民安置规划大纲审批时间及文号' -->
+    azb092,      <!-- '移民安置规划报告审核时间及文号' -->
+    azb093,      <!-- '建设征地涉及地、县（市）' -->
+    azb094,      <!-- '移民安置所在地' -->
+    azb095,      <!-- '移民安置规划投资' -->
+    azb096,      <!-- '移民搬迁安置人口(户)' -->
+    azb190,      <!-- '移民搬迁安置人口(人)' -->
+    azb097,      <!-- '移民生产安置人口(户)' -->
+    azb191,      <!-- '移民生产安置人口(人)' -->
+    azb098,      <!-- '核定纳入后期搬迁安置人口(户)' -->
+    azb192,      <!-- '核定纳入后期搬迁安置人口(人)' -->
+    azb099,      <!-- '核定纳入后期生产安置人口(户)' -->
+    azb193,      <!-- '核定纳入后期生产安置人口(人)' -->
+    azb100,      <!-- '移民安置截流验收' -->
+    azb101,      <!-- '移民安置蓄水验收' -->
+    azb102,      <!-- '移民安置竣工验收' -->
+    remark,      <!-- '备注' -->
+    aar008,      <!-- '行政区划' -->
+    creatorid,   <!-- '创建人ID' -->
+    creator,     <!-- '创建人' -->
+    createtime,  <!-- '创建时间' -->
+    modifierid,  <!-- '修改人ID' -->
+    modifier,    <!-- '修改人' -->
+    modifytime,  <!-- '修改时间' -->
+    auditorid,   <!-- '审核人ID' -->
+    auditor,     <!-- '审核人' -->
+    audittime,   <!-- '审核时间' -->
+    azb999,      <!-- '状态标志' -->
+    azb998       <!-- '数据来源标志' -->
+) values (
+    #xzb008#,
+    #azb072#,
+    #azb089#,
+    #azb090#,
+    #azb091#,
+    #azb092#,
+    #azb093#,
+    #azb094#,
+    #azb095#,
+    #azb096#,
+    #azb190#,
+    #azb097#,
+    #azb191#,
+    #azb098#,
+    #azb192#,
+    #azb099#,
+    #azb193#,
+    #azb100#,
+    #azb101#,
+    #azb102#,
+    #remark#,
+    #aar008#,
+    #creatorid#,
+    #creator#,
+    #createtime#,
+    #modifierid#,
+    #modifier#,
+    #modifytime#,
+    #auditorid#,
+    #auditor#,
+    #audittime#,
+    #azb999#,
+    #azb998#
+)
+
+    <!-- 更新 -->
+    <update id="updateFp11" parameterClass="map">
+        UPDATE xinjiang_fp11
+           <dynamic prepend="SET">
+                   <isNotEmpty prepend="," property="aar003">
+                        aar003 = #aar003:VARCHAR2#
+                   </isNotEmpty>
+                   <isNotEmpty prepend="," property="aar004">
+                        aar004 = #aar004:VARCHAR2#
+                   </isNotEmpty>
+                   <isNotEmpty prepend="," property="aae002">
+                        aae002 = to_date(#aae002:DATE#, 'yyyy-mm-dd')
+                   </isNotEmpty>
+                   <isNotEmpty prepend="," property="afp148">
+                        afp148 = #afp148:NUMBER#
+                   </isNotEmpty>
+                   <isNotEmpty prepend="," property="afp149">
+                        afp149 = #afp149:NUMBER#
+                   </isNotEmpty>
+                   <isNotEmpty prepend="," property="afp150">
+                        afp150 = #afp150:NUMBER#
+                   </isNotEmpty>
+                   <isNotEmpty prepend="," property="afp186">
+                        afp186 = #afp186:NUMBER#
+                   </isNotEmpty>
+                   <isNotEmpty prepend="," property="afp187">
+                        afp187 = #afp187:NUMBER#
+                   </isNotEmpty>
+                   <isNotEmpty prepend="," property="afp188">
+                        afp188 = #afp188:NUMBER#
+                   </isNotEmpty>
+                   <isNotEmpty prepend="," property="afp189">
+                        afp189 = #afp189:NUMBER#
+                   </isNotEmpty>
+                   <isNotEmpty prepend="," property="afp151">
+                        afp151 = #afp151:NUMBER#
+                   </isNotEmpty>
+                   <isNotEmpty prepend="," property="afp152">
+                        afp152 = #afp152:NUMBER#
+                   </isNotEmpty>
+                   <isNotEmpty prepend="," property="afp190">
+                        afp190 = #afp190:NUMBER#
+                   </isNotEmpty>
+                   <isNotEmpty prepend="," property="afp153">
+                        afp153 = #afp153:NUMBER#
+                   </isNotEmpty>
+                   <isNotEmpty prepend="," property="afp154">
+                        afp154 = #afp154:NUMBER#
+                   </isNotEmpty>
+                   <isNotEmpty prepend="," property="afp191">
+                        afp191 = #afp191:NUMBER#
+                   </isNotEmpty>
+                   <isNotEmpty prepend="," property="afp155">
+                        afp155 = #afp155:NUMBER#
+                   </isNotEmpty>
+                   <isNotEmpty prepend="," property="afp156">
+                        afp156 = #afp156:NUMBER#
+                   </isNotEmpty>
+                   <isNotEmpty prepend="," property="afp192">
+                        afp192 = #afp192:NUMBER#
+                   </isNotEmpty>
+                   <isNotEmpty prepend="," property="afp193">
+                        afp193 = #afp193:NUMBER#
+                   </isNotEmpty>
+                   <isNotEmpty prepend="," property="afp194">
+                        afp194 = #afp194:NUMBER#
+                   </isNotEmpty>
+                   <isNotEmpty prepend="," property="afp195">
+                        afp195 = #afp195:NUMBER#
+                   </isNotEmpty>
+                   <isNotEmpty prepend="," property="afp196">
+                        afp196 = #afp196:NUMBER#
+                   </isNotEmpty>
+                   <isNotEmpty prepend="," property="afp197">
+                        afp197 = #afp197:NUMBER#
+                   </isNotEmpty>
+                   <isNotEmpty prepend="," property="afp198">
+                        afp198 = #afp198:NUMBER#
+                   </isNotEmpty>
+                   <isNotEmpty prepend="," property="afp199">
+                        afp199 = #afp199:NUMBER#
+                   </isNotEmpty>
+                   <isNotEmpty prepend="," property="afp200">
+                        afp200 = #afp200:NUMBER#
+                   </isNotEmpty>
+                   <isNotEmpty prepend="," property="afp201">
+                        afp201 = #afp201:NUMBER#
+                   </isNotEmpty>
+                   <isNotEmpty prepend="," property="afp157">
+                        afp157 = #afp157:NUMBER#
+                   </isNotEmpty>
+                   <isNotEmpty prepend="," property="afp158">
+                        afp158 = #afp158:NUMBER#
+                   </isNotEmpty>
+                   <isNotEmpty prepend="," property="afp202">
+                        afp202 = #afp202:NUMBER#
+                   </isNotEmpty>
+                   <isNotEmpty prepend="," property="afp159">
+                        afp159 = #afp159:NUMBER#
+                   </isNotEmpty>
+                   <isNotEmpty prepend="," property="afp160">
+                        afp160 = #afp160:NUMBER#
+                   </isNotEmpty>
+                   <isNotEmpty prepend="," property="afp203">
+                        afp203 = #afp203:NUMBER#
+                   </isNotEmpty>
+                   <isNotEmpty prepend="," property="afp161">
+                        afp161 = #afp161:NUMBER#
+                   </isNotEmpty>
+                   <isNotEmpty prepend="," property="afp162">
+                        afp162 = #afp162:NUMBER#
+                   </isNotEmpty>
+                   <isNotEmpty prepend="," property="afp204">
+                        afp204 = #afp204:NUMBER#
+                   </isNotEmpty>
+                   <isNotEmpty prepend="," property="afp163">
+                        afp163 = #afp163:NUMBER#
+                   </isNotEmpty>
+                   <isNotEmpty prepend="," property="afp164">
+                        afp164 = #afp164:NUMBER#
+                   </isNotEmpty>
+                   <isNotEmpty prepend="," property="afp205">
+                        afp205 = #afp205:NUMBER#
+                   </isNotEmpty>
+                   <isNotEmpty prepend="," property="afp206">
+                        afp206 = #afp206:NUMBER#
+                   </isNotEmpty>
+                   <isNotEmpty prepend="," property="afp207">
+                        afp207 = #afp207:NUMBER#
+                   </isNotEmpty>
+                   <isNotEmpty prepend="," property="afp165">
+                        afp165 = #afp165:NUMBER#
+                   </isNotEmpty>
+                   <isNotEmpty prepend="," property="afp166">
+                        afp166 = #afp166:NUMBER#
+                   </isNotEmpty>
+                   <isNotEmpty prepend="," property="afp167">
+                        afp167 = #afp167:NUMBER#
+                   </isNotEmpty>
+                   <isNotEmpty prepend="," property="afp168">
+                        afp168 = #afp168:VARCHAR2#
+                   </isNotEmpty>
+                   <isNotEmpty prepend="," property="afp169">
+                        afp169 = #afp169:VARCHAR2#
+                   </isNotEmpty>
+                   <isNotEmpty prepend="," property="afp050">
+                        afp050 = #afp050:VARCHAR2#
+                   </isNotEmpty>
+                   <isNotEmpty prepend="," property="aae015">
+                        aae015 = #aae015:VARCHAR2#
+                   </isNotEmpty>
+                   <isNotEmpty prepend="," property="aae038">
+                        aae038 = SYSDATE
+                   </isNotEmpty>
+                   <isNotEmpty prepend="," property="aar001">
+                        aar001 = #aar001#
+                   </isNotEmpty>
+                   <isNotEmpty prepend="," property="aar008">
+                        aar008 = #aar008#
+                   </isNotEmpty>
+                   </dynamic>
+                        WHERE 1=1
+                   <![CDATA[ AND afp001 = #afp001# ]]>
+    </update>
+    <!-- 删除 -->
+    <update id="RemoveFp11" parameterClass="map">
+        update XINJIANG_FP11 fp11 set fp11.afp050 = '0'
+        WHERE fp11.afp001 = #afp001#
+    </update>
+
+    <!-- 更新访惠聚信息 -->
+    <update id="updateFp12" parameterClass="map">
+        UPDATE XINJIANG_FP12
+        <dynamic prepend="SET">
+         <isNotEmpty prepend="," property="aar001">
+           aar001 = #aar001:VARCHAR2#
+         </isNotEmpty>
+         <isNotEmpty prepend="," property="aar008">
+           aar008 = #aar008:VARCHAR2#
+         </isNotEmpty>
+         <isNotEmpty prepend="," property="aar003">
+           aar003 = #aar003:VARCHAR2#
+         </isNotEmpty>
+         <isNotEmpty prepend="," property="aar004">
+           aar004 = #aar004:VARCHAR2#
+         </isNotEmpty>
+         <isNotEmpty prepend="," property="aar005">
+           aar005 = #aar005:VARCHAR2#
+         </isNotEmpty>
+         <isNotEmpty prepend="," property="aar006">
+           aar006 = #aar006:VARCHAR2#
+         </isNotEmpty>
+         <isNotEmpty prepend="," property="aae002">
+           aae002 = to_date(#aae002:DATE#, 'yyyy-mm-dd')
+         </isNotEmpty>
+         <isNotEmpty prepend="," property="afp208">
+           afp208 = #afp208:VARCHAR2#
+         </isNotEmpty>
+         <isNotEmpty prepend="," property="afp002">
+           afp002 = #afp002:VARCHAR2#
+         </isNotEmpty>
+         <isNotEmpty prepend="," property="afp209">
+           afp209 = #afp209:NUMBER#
+         </isNotEmpty>
+         <isNotEmpty prepend="," property="afp210">
+           afp210 = #afp210:NUMBER#
+         </isNotEmpty>
+         <isNotEmpty prepend="," property="afp211">
+           afp211 = #afp211:NUMBER#
+         </isNotEmpty>
+         <isNotEmpty prepend="," property="afp212">
+           afp212 = #afp212:NUMBER#
+         </isNotEmpty>
+         <isNotEmpty prepend="," property="afp213">
+           afp213 = #afp213:NUMBER#
+         </isNotEmpty>
+         <isNotEmpty prepend="," property="afp214">
+           afp214 = #afp214:NUMBER#
+         </isNotEmpty>
+         <isNotEmpty prepend="," property="afp184">
+           afp184 = #afp184:NUMBER#
+         </isNotEmpty>
+         <isNotEmpty prepend="," property="afp215">
+           afp215 = #afp215:NUMBER#
+         </isNotEmpty>
+         <isNotEmpty prepend="," property="afp216">
+           afp216 = #afp216:NUMBER#
+         </isNotEmpty>
+         <isNotEmpty prepend="," property="afp217">
+           afp217 = #afp217:NUMBER#
+         </isNotEmpty>
+         <isNotEmpty prepend="," property="afp218">
+           afp218 = #afp218:NUMBER#
+         </isNotEmpty>
+         <isNotEmpty prepend="," property="afp219">
+           afp219 = #afp219:NUMBER#
+         </isNotEmpty>
+         <isNotEmpty prepend="," property="afp220">
+           afp220 = #afp220:NUMBER#
+         </isNotEmpty>
+         <isNotEmpty prepend="," property="afp056">
+           afp056 = #afp056:NUMBER#
+         </isNotEmpty>
+         <isNotEmpty prepend="," property="afp057">
+           afp057 = #afp057:NUMBER#
+         </isNotEmpty>
+         <isNotEmpty prepend="," property="afp058">
+           afp058 = #afp058:NUMBER#
+         </isNotEmpty>
+         <isNotEmpty prepend="," property="afp059">
+           afp059 = #afp059:NUMBER#
+         </isNotEmpty>
+         <isNotEmpty prepend="," property="afp060">
+           afp060 = #afp060:NUMBER#
+         </isNotEmpty>
+         <isNotEmpty prepend="," property="afp061">
+           afp061 = #afp061:NUMBER#
+         </isNotEmpty>
+         <isNotEmpty prepend="," property="afp035">
+           afp035 = #afp035:NUMBER#
+         </isNotEmpty>
+         <isNotEmpty prepend="," property="afp036">
+           afp036 = #afp036:NUMBER#
+         </isNotEmpty>
+         <isNotEmpty prepend="," property="afp037">
+           afp037 = #afp037:NUMBER#
+         </isNotEmpty>
+         <isNotEmpty prepend="," property="afp038">
+           afp038 = #afp038:NUMBER#
+         </isNotEmpty>
+         <isNotEmpty prepend="," property="afp066">
+           afp066 = #afp066:NUMBER#
+         </isNotEmpty>
+     <isNotEmpty prepend="," property="afp040">
+           afp040 = #afp040:NUMBER#
+         </isNotEmpty>
+         <isNotEmpty prepend="," property="afp041">
+           afp041 = #afp041:NUMBER#
+         </isNotEmpty>
+         <isNotEmpty prepend="," property="afp042">
+           afp042 = #afp042:NUMBER#
+         </isNotEmpty>
+         <isNotEmpty prepend="," property="afp067">
+           afp067 = #afp067:NUMBER#
+         </isNotEmpty>
+         <isNotEmpty prepend="," property="afp068">
+           afp068 = #afp068:NUMBER#
+         </isNotEmpty>
+         <isNotEmpty prepend="," property="afp045">
+           afp045 = #afp045:NUMBER#
+         </isNotEmpty>
+         <isNotEmpty prepend="," property="afp046">
+           afp046 = #afp046:NUMBER#
+         </isNotEmpty>
+         <isNotEmpty prepend="," property="afp182">
+           afp182 = #afp182:NUMBER#
+         </isNotEmpty>
+         <isNotEmpty prepend="," property="afp183">
+           afp183 = #afp183:NUMBER#
+         </isNotEmpty>
+         <isNotEmpty prepend="," property="afp047">
+           afp047 = #afp047:VARCHAR2#
+         </isNotEmpty>
+         <isNotEmpty prepend="," property="afp048">
+           afp048 = #afp048:VARCHAR2#
+         </isNotEmpty>
+         <isNotEmpty prepend="," property="afp050">
+           afp050 = #afp050:VARCHAR2#
+         </isNotEmpty>
+         <isNotEmpty prepend="," property="aae015">
+           aae015 = #aae015:VARCHAR2#
+         </isNotEmpty>
+         <isNotEmpty prepend="," property="aae038">
+           aae038 = SYSDATE
+         </isNotEmpty>
+         <isNotEmpty prepend="," property="afp051">
+           afp051 = #afp051:VARCHAR2#
+         </isNotEmpty>
+         <isNotEmpty prepend="," property="afp185">
+           afp185 = #afp185:VARCHAR2#
+         </isNotEmpty>
+        </dynamic>
+           WHERE 1=1
+        <![CDATA[ AND afp001 = #afp001# ]]>
+    </update>
+
+    <!-- 查询 -->
+    <select id="getfp12all" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+                     SELECT a.afp001,
+                            a.aar001,
+                            a.aar008,
+                            a.aar003,
+                            a.aar004,
+                            a.aar005,
+                            a.aar006,
+                            a.aae002,
+                            a.afp208,
+                            a.afp002,
+                            a.afp209,
+                            a.afp210,
+                            a.afp211,
+                            a.afp212,
+                            a.afp213,
+                            a.afp214,
+                            a.afp184,
+                            a.afp215,
+                            a.afp216,
+                            a.afp217,
+                            a.afp218,
+                            a.afp219,
+                            a.afp220,
+                            a.afp056,
+                            a.afp057,
+                            a.afp058,
+                            a.afp059,
+                            a.afp060,
+                            a.afp061,
+                            a.afp035,
+                            a.afp036,
+                            a.afp037,
+                            a.afp038,
+                            a.afp066,
+                            a.afp040,
+                            a.afp041,
+                            a.afp042,
+                            a.afp067,
+                            a.afp068,
+                            a.afp045,
+                            a.afp046,
+                            a.afp182,
+                            a.afp183,
+                            a.afp047,
+                            a.afp048,
+                            a.afp049,
+                            decode(a.afp050,'1','未审核','2','已审核','3','审核不通过') as afp050,
+                            a.aae011,
+                            a.aae036,
+                            a.aae014,
+                            a.aae037,
+                            a.aae015,
+                            a.aae038,
+                            a.afp051,
+                            a.afp185
+                       FROM xinjiang_fp12 a
+                      WHERE a.afp050 in ('1','3')
+                  <isNotEmpty prepend="AND" property="afp001">   <!--项目编号-->
+                                a.afp001 = #afp001#
+                  </isNotEmpty>
+                  <isNotEmpty prepend="AND" property="aar003">   <!--地州   -->
+                                a.aar003 = #aar003#
+                  </isNotEmpty>
+                  <isNotEmpty prepend="AND" property="aar004">   <!--县市-->
+                                a.aar004 = #aar004#
+                  </isNotEmpty>
+                  <isNotEmpty prepend="AND" property="aar005">   <!--乡镇-->
+                                a.aar005 = #aar005#
+                  </isNotEmpty>
+                  <isNotEmpty prepend="AND" property="aar006">   <!--村-->
+                                a.aar006 = #aar006#
+                  </isNotEmpty>
+        </select>
+
+    <!-- 删除fp09信息 -->
+    <update id="RemoveFp09" parameterClass="map">
+        update XINJIANG_FP09 fp09 set fp09.afp050 = '0'
+        WHERE fp09.afp001 = #afp001#
+    </update>
+
+    <!-- 序列号 seq_afp001.nextval-->
+
