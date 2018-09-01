@@ -1,11 +1,16 @@
 package io.github.floyd.graph;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class DijkstrasAlgorithm {
     // the graph
     private static Map<String, Map<String, Double>> graph = new HashMap<>();
     private static List<String> processed = new ArrayList<>();
 
-    private static String findLowestCostNode(Map<String, Double> consts) {
+    private static String findLowestCostNode(Map<String, Double> costs) {
         Double lowestCost = Double.POSITIVE_INFINITY;
         String lowestCostNode = null;
 
@@ -29,11 +34,11 @@ public class DijkstrasAlgorithm {
         graph.get("start").put("b", 2.0);
 
         graph.put("a", new HashMap<>());
-        graph.put("a".put("fin", 1.0));
+        graph.get("a").put("fin", 1.0);
 
         graph.put("b", new HashMap<>());
-        graph.put("b").put("a", 3.0);
-        graph.put("b").put("fin", 5.0);
+        graph.get("b").put("a", 3.0);
+        graph.get("b").put("fin", 5.0);
 
         graph.put("fin", new HashMap<>());
 
@@ -57,7 +62,14 @@ public class DijkstrasAlgorithm {
             Map<String, Double> neighbors = graph.get(node);
 
             for (String n : neighbors.keySet()) {
-                double newCost = 
+                double newCost = cost + neighbors.get(n);
+                // If it's cheaper to get to this neighbor by going through this node
+                if (costs.get(n) > newCost) {
+                    // ... update the cost for this node
+                    costs.put(n, newCost);
+                    // This node becomes the new parent for this neighbor.
+                    parents.put(n, node);
+                }
             }
             // Mark the node as processed
             processed.add(node);
@@ -67,6 +79,7 @@ public class DijkstrasAlgorithm {
         }
 
         System.out.println("Cost from the start to each node:");
-        System.out.println(costs); // { a: 5, b: 2, fin: 6 }
+        // { a: 5, b: 2, fin: 6 }
+        System.out.println(costs);
     }
 }
