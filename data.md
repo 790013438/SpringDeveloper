@@ -1961,7 +1961,6 @@ Pivotal Certified Professional Spring Developer Exam.pdf
 
    近期的进度有点落后，要在保质保量的情况下，将进度提升起来。最后，感谢张老师在百忙之中对我们的督促和教导。
 
-Pro Spring boot
 272
 
 Web Development with Bootstrap and Vue.JS
@@ -1969,11 +1968,57 @@ Web Development with Bootstrap and Vue.JS
 263
 
 Grokking Algorithms
-157
-158
+170
+178
 
 Beginning Oracle Database 11g Administration- From Novice to Professional
-33
+37
+
+Effective Java, Third Edition
+26
+
+Learning Vue.js 2
+53
+
+Vue.js 2 Web Development Projects
+
+vim-1.0.pdf
+40
+606
+
+Mastering Concurrency Programming with Java 8
+30
+
+Java 8 in Action: Lambdas, Streams, and functional-style programming
+52
+
+《疯狂Java讲义(第3版)》.(李刚).pdf
+64
+847
+
+Vue JS 2 - The Complete Guide (incl. Vuex)
+27
+
+【编程】《跟上 Java 8 - 从入门到实践》
+10 13:14
+
+Java Performance Companion
+45
+
+Hacking Vim 7.2.pdf
+105
+
+1. 认识更多的同事，做到和同事和谐相处，互帮互助；
+2. 通过公司技术文档和自身实践，培养独立解决问题能力，大幅提高工作效率；
+3. 树立执行力第一意识，严格遵守公司规范和公司管理制度；
+4. 从专业能力和个人性格方面解剖自己，分析专业能力和工作的薄弱地方，及时学习改正；
+5. 充分利用现有的工作条件优势，认真跟同事学习，加深对专业技术的理解，全面提高个人综合素质；
+6.
+7.
+8.
+9.
+10.
+
 
 5.2 - 7没看  12:53
 6 4:007
@@ -1996,12 +2041,6 @@ Beginning Oracle Database 11g Administration- From Novice to Professional
 授权，表导入导出
 exp/imp
 expdb/impdb
-
-Vue JS 2 - The Complete Guide (incl. Vuex)
-21
-
-【编程】《跟上 Java 8 - 从入门到实践》
-0:13
 
 1.早晨上班，晚出门的那个要给先出门的，一个吻；晚上下班，先回家的那个要给晚回家的那个，一个抱抱。
 
@@ -2121,11 +2160,11 @@ file:///D:/zrkj08/pdf/Vue.js-2-and-Bootstrap-4-Web-Development.pdf
 =================
 作业管理模块 4. homework文件夹，姓名和学号, 还要有一个学习资料，为共有文件夹
 
-在线测试模块 5. 
+在线测试模块 5.
 =================
-系统管理模块 6. 
+系统管理模块 6.
 =================
-留言板       7. 
+留言板       7.
 
 
 Spring Boot 1.5.9.RELEASE
