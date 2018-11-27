@@ -262,6 +262,12 @@ scott
 SELECT *
 from tabs;
 ```
+-- 查看所有用户
+```sql
+select
+* from
+all_users;  
+```
 
 2. 查询雇员表中所有信息
 ```sql
