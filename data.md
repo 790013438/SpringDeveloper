@@ -1968,11 +1968,14 @@ Web Development with Bootstrap and Vue.JS
 263
 
 Grokking Algorithms
-170
+171
 178
 
 Beginning Oracle Database 11g Administration- From Novice to Professional
 37
+
+韩顺平 oracle
+3
 
 Effective Java, Third Edition
 26
@@ -1996,11 +1999,21 @@ Java 8 in Action: Lambdas, Streams, and functional-style programming
 64
 847
 
+Accelerated JavaScript Training
+11
+
 Vue JS 2 - The Complete Guide (incl. Vuex)
 27
 
 【编程】《跟上 Java 8 - 从入门到实践》
-10 13:14
+10 24:36
+
+Pro Spring 5th Edition
+66
+2章 Refactoring with Spring
+
+Mastering Spring MVC 4
+68
 
 Java Performance Companion
 45

@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>D:\users\79001\IdeaProjects\data.md\Untitled.html</title>
+<meta name="Generator" content="Vim/8.1">
+<meta name="plugin-version" content="vim7.4_v2">
+<meta name="syntax" content="none">
+<meta name="settings" content="number_lines,use_css,no_foldcolumn,expand_tabs,line_ids,prevent_copy=">
+<meta name="colorscheme" content="zenburn">
+<style type="text/css">
+<!--
+pre { font-family: monospace; color: #dcdccc; background-color: #3f3f3f; }
+body { font-family: monospace; color: #dcdccc; background-color: #3f3f3f; }
+* { font-size: 1em; }
+.LineNr { color: #9fafaf; background-color: #262626; padding-bottom: 1px; }
+-->
+</style>
+
+<script type='text/javascript'>
+<!--
+
+/* function to open any folds containing a jumped-to line before jumping to it */
+function JumpToLine()
+{
+  var lineNum;
+  lineNum = window.location.hash;
+  lineNum = lineNum.substr(1); /* strip off '#' */
+
+  if (lineNum.indexOf('L') == -1) {
+    lineNum = 'L'+lineNum;
+  }
+  lineElem = document.getElementById(lineNum);
+  /* Always jump to new location even if the line was hidden inside a fold, or
+   * we corrected the raw number to a line ID.
+   */
+  if (lineElem) {
+    lineElem.scrollIntoView(true);
+  }
+  return true;
+}
+if ('onhashchange' in window) {
+  window.onhashchange = JumpToLine;
+}
+
+-->
+</script>
+</head>
+<body onload='JumpToLine();'>
+<pre id='vimCodeElement'>
+<span id="L1" class="LineNr">1 </span>ab\{2,3}c:      &quot;abbc&quot; or &quot;abbbc&quot;
+<span id="L2" class="LineNr">2 </span>a\{5}:          &quot;aaaaa&quot;
+<span id="L3" class="LineNr">3 </span>ab\{2,}c:       &quot;abbc&quot;, &quot;abbbc&quot;, &quot;abbbbc&quot;, etc.
+<span id="L4" class="LineNr">4 </span>ab\{-,3}c:      &quot;ac&quot;, &quot;abc&quot;, &quot;abbc&quot; or &quot;abbbc&quot;
+<span id="L5" class="LineNr">5 </span>a[bc]\{3}d:     &quot;abbbd&quot;, &quot;abbcd&quot;, &quot;acbcd&quot;, &quot;acccd&quot;, etc.
+<span id="L6" class="LineNr">6 </span>a\(bc\)\{1,2}d: &quot;abcd&quot; or &quot;abcbcd&quot;
+<span id="L7" class="LineNr">7 </span>a[bc]\{-}[cd]:  &quot;abc&quot; in &quot;abcd&quot;
+<span id="L8" class="LineNr">8 </span>a[bc]*[cd]:     &quot;abcd&quot; in &quot;abcd&quot;
+</pre>
+</body>
+</html>
+<!-- vim: set foldmethod=manual : -->
