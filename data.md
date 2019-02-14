@@ -1982,6 +1982,8 @@ Effective Java, Third Edition
 
 Learning Vue.js 2
 53
+你的时间是公司费钱购买，调高效率，思路清晰，提供更多产出，避免后期返工
+系统分析师，高级项目管理师
 
 Vue.js 2 Web Development Projects
 
